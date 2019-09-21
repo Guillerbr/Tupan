@@ -14,6 +14,8 @@ async function validatePassword(plainPassword, hashedPassword) {
     return await bcrypt.compare(plainPassword, hashedPassword);
 }
 
+
+
 //function regiter logic
 exports.signup = async (req, res, next) => {
     try {
@@ -33,6 +35,7 @@ exports.signup = async (req, res, next) => {
         next(error)
     }
 }
+
 
 //function login logic 
 exports.login = async (req, res, next) => {
@@ -54,4 +57,29 @@ exports.login = async (req, res, next) => {
         next(error);
     }
 }
+
+
+//function get total users
+exports.getUsers = async (req, res, next) => {
+    const users = await User.find({});
+    res.status(200).json({
+        data: users
+    });
+}
+
+
+//get the user by his id   
+exports.getUser = async (req, res, next) => {
+    try {
+        const userId = req.params.userId;
+        const user = await User.findById(userId);
+        if (!user) return next(new Error('User does not exist'));
+        res.status(200).json({
+            data: user
+        });
+    } catch (error) {
+        next(error)
+    }
+}
+
 
