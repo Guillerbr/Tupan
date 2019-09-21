@@ -4,6 +4,9 @@ const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
+// Add this to the top of the file
+const { roles } = require('../roles')
+
 //functions bcrypt pass
 async function hashPassword(password) {
     return await bcrypt.hash(password, 10);
