@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const path = require('path')
 const User = require('./models/userModel')
-const routes = require('./routes/route.js');
+const routes = require('./routes/routes.js');
 
 
 require("dotenv").config({
@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 3000;
 
 
 mongoose
-    .connect('mongodb://localhost:27017/rbac')
+    .connect(process.env.MONGO_SECRET)
     .then(() => {
         console.log('Connected to the Database successfully');
     });
