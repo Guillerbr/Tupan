@@ -15,4 +15,19 @@ router.put('/user/:userId', userController.allowIfLoggedin, userController.grant
 
 router.delete('/user/:userId', userController.allowIfLoggedin, userController.grantAccess('deleteAny', 'profile'), userController.deleteUser);
 
+
+
+
+//new routes 
+
+//router and controller OK
+router.get('/basic', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'profile'), userController.basic);
+
+//router and controller OK
+//router.get('/basic', userController.allowIfLoggedin, userController.basic );
+
+
+
+
+
 module.exports = router;

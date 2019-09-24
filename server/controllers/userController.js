@@ -118,35 +118,53 @@ exports.deleteUser = async (req, res, next) => {
 }
 
 
-//grantAccess executes permission if user has authorization         IMPORTANT
-exports.grantAccess = function(action, resource) {
+//grantAccess executes permission if user has authorization                //IMPORTANT
+exports.grantAccess = function (action, resource) {
     return async (req, res, next) => {
-     try {
-      const permission = roles.can(req.user.role)[action](resource);
-      if (!permission.granted) {
-       return res.status(401).json({
-        error: "You don't have enough permission to perform this action"
-       });
-      }
-      next()
-     } catch (error) {
-      next(error)
-     }
+        try {
+            const permission = roles.can(req.user.role)[action](resource);       //IMPORTANT
+            if (!permission.granted) {
+                return res.status(401).json({
+                    error: "You don't have enough permission to perform this action"
+                });
+            }
+            next()
+        } catch (error) {
+            next(error)
+        }
     }
-   }
+}
 
 
-   //allows access if user is logged in
-   exports.allowIfLoggedin = async (req, res, next) => {
+//allows access if user is logged in
+exports.allowIfLoggedin = async (req, res, next) => {
     try {
-     const user = res.locals.loggedInUser;
-     if (!user)
-      return res.status(401).json({
-       error: "You need to be logged in to access this route"
-      });
-      req.user = user;
-      next();
-     } catch (error) {
-      next(error);
-     }
-   }
+        const user = res.locals.loggedInUser;
+        if (!user)
+            return res.status(401).json({
+                error: "You need to be logged in to access this route"
+            });
+        req.user = user;
+        next();
+    } catch (error) {
+        next(error);
+    }
+
+}
+    //new function restrict acess
+    exports.basic = async (req, res, next) => {
+        try {
+            const user = res.locals.loggedInUser;
+            if (user)
+                return res.status(200).json({
+                    Status: "Success! Authorized user! Welcome!"
+                });
+            req.user = user;
+            next();
+        } catch (error) {
+            next(error);
+        }
+
+    }
+
+
