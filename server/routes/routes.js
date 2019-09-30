@@ -21,7 +21,7 @@ router.delete('/user/:userId', userController.allowIfLoggedin, userController.gr
 //new routes 
 
 //router and controller OK
-router.get('/basic', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'profile'), userController.basic);
+router.get('/basic', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'profile', 'credit'), userController.basic);
 
 //router and controller OK
 //router.get('/basic', userController.allowIfLoggedin, userController.basic );

@@ -4,7 +4,7 @@ const ac = new AccessControl();
 
 exports.roles = (function() {
 ac.grant("basic")
- .readOwn("profile")
+ .readOwn("profile")                //OWN = PROPRIO
  .updateOwn("profile")
 
 ac.grant("supervisor")
@@ -14,7 +14,7 @@ ac.grant("supervisor")
 ac.grant("admin")
  .extend("basic")
  .extend("supervisor")
- .updateAny("profile")
+ .updateAny("profile")                //ANY = TODOS-QUALQUER
  .deleteAny("profile")
 
 
@@ -22,7 +22,7 @@ ac.grant("admin")
  //new roles functions acess user
 ac.grant("final_user")
 .readOwn("profile")             
-//.readAny("profile")  
+.updateAny("credit")  
 
 
 return ac;

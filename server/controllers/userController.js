@@ -19,7 +19,7 @@ async function validatePassword(plainPassword, hashedPassword) {
 
 
 
-//function regiter logic
+//function register 
 exports.signup = async (req, res, next) => {
     try {
         const { email, password, role } = req.body
@@ -139,6 +139,7 @@ exports.grantAccess = function (action, resource) {
 //allows access if user is logged in
 exports.allowIfLoggedin = async (req, res, next) => {
     try {
+        
         const user = res.locals.loggedInUser;
         if (!user)
             return res.status(401).json({
@@ -147,24 +148,29 @@ exports.allowIfLoggedin = async (req, res, next) => {
         req.user = user;
         next();
     } catch (error) {
+      //  return res.status(400).send({ error: 'Registration failed' });
         next(error);
     }
 
 }
     //new function restrict acess
     exports.basic = async (req, res, next) => {
+
+        
         try {
             const user = res.locals.loggedInUser;
             if (user)
                 return res.status(200).json({
-                    Status: "Success! Authorized user! Welcome!"
+                    data: user,
+                    message: 'User get information'
                 });
-            req.user = user;
+            //req.user = user;
+            
             next();
-        } catch (error) {
-            next(error);
+        } catch (err) {
+            return res.status(400).send({ error: 'Registration failed' });
         }
 
     }
 
-
+   
