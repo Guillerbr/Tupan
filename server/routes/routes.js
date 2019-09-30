@@ -25,7 +25,7 @@ router.get('/basic', userController.allowIfLoggedin, userController.grantAccess(
 
 //router and controller OK
 //router.get('/basic', userController.allowIfLoggedin, userController.basic );
-
+router.get('/balance/:userId',  userController.allowIfLoggedin, userController.getBalance);
 
 
 
