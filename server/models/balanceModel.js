@@ -4,10 +4,10 @@ const Schema = mongoose.Schema;
 
 const BalanceSchema = new Schema({
 
-    user_id: {
+    user: {
         type: mongoose.Schema.Types.ObjectId,     //ref user id, moogoose
-        ref: 'User',                             //user schema ref
-        require: true,
+        ref: 'user',                             //user schema ref
+        require: true
 
     },
     balance: {
