@@ -1,6 +1,7 @@
 // server/controllers/userController.js
 
 const User = require('../models/userModel');
+const Balance = require('../models/balanceModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
@@ -139,7 +140,7 @@ exports.grantAccess = function (action, resource) {
 //allows access if user is logged in
 exports.allowIfLoggedin = async (req, res, next) => {
     try {
-        
+
         const user = res.locals.loggedInUser;
         if (!user)
             return res.status(401).json({
@@ -148,29 +149,71 @@ exports.allowIfLoggedin = async (req, res, next) => {
         req.user = user;
         next();
     } catch (error) {
-      //  return res.status(400).send({ error: 'Registration failed' });
+        //  return res.status(400).send({ error: 'Registration failed' });
         next(error);
     }
 
 }
-    //new function restrict acess
-    exports.basic = async (req, res, next) => {
+//new function restrict acess
+exports.basic = async (req, res, next) => {
 
-        
-        try {
-            const user = res.locals.loggedInUser;
-            if (user)
-                return res.status(200).json({
-                    data: user,
-                    message: 'User get information'
-                });
-            //req.user = user;
-            
-            next();
-        } catch (err) {
-            return res.status(400).send({ error: 'Registration failed' });
-        }
 
+    try {
+        const user = res.locals.loggedInUser;
+        if (user)
+            return res.status(200).json({
+                data: user,
+                message: 'User get information'
+            });
+        //req.user = user;
+
+        next();
+    } catch (err) {
+        return res.status(400).send({ error: 'Registration failed' });
     }
 
-   
+}
+
+
+exports.getBalance = async (req, res, next) => {
+
+
+    try {
+        const Balance = new Balance({ balance, deposits }) 
+        const user = res.locals.loggedInUser;
+        if (user)
+            return res.status(200).json({
+                data: Balance,
+                message: 'User get information'
+            });
+       
+
+        next();
+    } catch (err) {
+        return res.status(400).send({ error: 'Registration failed' });
+    }
+
+}
+
+//post balance
+
+exports.postBalance = async (req, res, next) => {
+
+
+    try {
+        const { balance, deposits } = req.body;
+        const newBalance = new Balance({ balance, deposits })
+
+        await newBalance.save();
+
+         res.json({
+            data: newBalance 
+            
+        });
+
+    } catch (err) {
+        return res.status(400).send({ error: 'Post balance failed' });
+    }
+
+}
+

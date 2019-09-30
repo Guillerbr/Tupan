@@ -1,0 +1,142 @@
+[1mdiff --git a/server/controllers/userController.js b/server/controllers/userController.js[m
+[1mindex 41b4411..25e903b 100644[m
+[1m--- a/server/controllers/userController.js[m
+[1m+++ b/server/controllers/userController.js[m
+[36m@@ -1,6 +1,7 @@[m
+ // server/controllers/userController.js[m
+ [m
+ const User = require('../models/userModel');[m
+[32m+[m[32mconst Balance = require('../models/balanceModel');[m
+ const jwt = require('jsonwebtoken');[m
+ const bcrypt = require('bcrypt');[m
+ [m
+[36m@@ -139,7 +140,7 @@[m [mexports.grantAccess = function (action, resource) {[m
+ //allows access if user is logged in[m
+ exports.allowIfLoggedin = async (req, res, next) => {[m
+     try {[m
+[31m-        [m
+[32m+[m
+         const user = res.locals.loggedInUser;[m
+         if (!user)[m
+             return res.status(401).json({[m
+[36m@@ -148,29 +149,71 @@[m [mexports.allowIfLoggedin = async (req, res, next) => {[m
+         req.user = user;[m
+         next();[m
+     } catch (error) {[m
+[31m-      //  return res.status(400).send({ error: 'Registration failed' });[m
+[32m+[m[32m        //  return res.status(400).send({ error: 'Registration failed' });[m
+         next(error);[m
+     }[m
+ [m
+ }[m
+[31m-    //new function restrict acess[m
+[31m-    exports.basic = async (req, res, next) => {[m
+[32m+[m[32m//new function restrict acess[m
+[32m+[m[32mexports.basic = async (req, res, next) => {[m
+ [m
+[31m-        [m
+[31m-        try {[m
+[31m-            const user = res.locals.loggedInUser;[m
+[31m-            if (user)[m
+[31m-                return res.status(200).json({[m
+[31m-                    data: user,[m
+[31m-                    message: 'User get information'[m
+[31m-                });[m
+[31m-            //req.user = user;[m
+[32m+[m
+[32m+[m[32m    try {[m
+[32m+[m[32m        const user = res.locals.loggedInUser;[m
+[32m+[m[32m        if (user)[m
+[32m+[m[32m            return res.status(200).json({[m
+[32m+[m[32m                data: user,[m
+[32m+[m[32m                message: 'User get information'[m
+[32m+[m[32m            });[m
+[32m+[m[32m        //req.user = user;[m
+[32m+[m
+[32m+[m[32m        next();[m
+[32m+[m[32m    } catch (err) {[m
+[32m+[m[32m        return res.status(400).send({ error: 'Registration failed' });[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m
+[32m+[m[32mexports.getBalance = async (req, res, next) => {[m
+[32m+[m
+[32m+[m
+[32m+[m[32m    try {[m
+[32m+[m[32m        const Balance = new Balance({ balance, deposits })[m[41m [m
+[32m+[m[32m        const user = res.locals.loggedInUser;[m
+[32m+[m[32m        if (user)[m
+[32m+[m[32m            return res.status(200).json({[m
+[32m+[m[32m                data: Balance,[m
+[32m+[m[32m                message: 'User get information'[m
+[32m+[m[32m            });[m
+[32m+[m[41m       [m
+[32m+[m
+[32m+[m[32m        next();[m
+[32m+[m[32m    } catch (err) {[m
+[32m+[m[32m        return res.status(400).send({ error: 'Registration failed' });[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32m//post balance[m
+[32m+[m
+[32m+[m[32mexports.postBalance = async (req, res, next) => {[m
+[32m+[m
+[32m+[m
+[32m+[m[32m    try {[m
+[32m+[m[32m        const { balance, deposits } = req.body;[m
+[32m+[m[32m        const newBalance = new Balance({ balance, deposits })[m
+[32m+[m
+[32m+[m[32m        await newBalance.save();[m
+[32m+[m
+[32m+[m[32m         res.json({[m
+[32m+[m[32m            data: newBalance[m[41m [m
+             [m
+[31m-            next();[m
+[31m-        } catch (err) {[m
+[31m-            return res.status(400).send({ error: 'Registration failed' });[m
+[31m-        }[m
+[32m+[m[32m        });[m
+ [m
+[32m+[m[32m    } catch (err) {[m
+[32m+[m[32m        return res.status(400).send({ error: 'Post balance failed' });[m
+     }[m
+ [m
+[31m-   [m
+[32m+[m[32m}[m
+[32m+[m
+[1mdiff --git a/server/models/userModel.js b/server/models/userModel.js[m
+[1mindex 86490ad..c5147e1 100644[m
+[1m--- a/server/models/userModel.js[m
+[1m+++ b/server/models/userModel.js[m
+[36m@@ -19,7 +19,11 @@[m [mconst UserSchema = new Schema({[m
+  },[m
+  accessToken: {[m
+   type: String[m
+[31m- }[m
+[32m+[m[32m },[m
+[32m+[m[32m createdAt: {[m
+[32m+[m[32m    type: Date,[m
+[32m+[m[32m    default: Date.now,[m
+[32m+[m[32m}[m
+ });[m
+ [m
+ const User = mongoose.model('user', UserSchema);[m
+[1mdiff --git a/server/routes/routes.js b/server/routes/routes.js[m
+[1mindex c96cca8..af2bca7 100644[m
+[1m--- a/server/routes/routes.js[m
+[1m+++ b/server/routes/routes.js[m
+[36m@@ -25,7 +25,9 @@[m [mrouter.get('/basic', userController.allowIfLoggedin, userController.grantAccess([m
+ [m
+ //router and controller OK[m
+ //router.get('/basic', userController.allowIfLoggedin, userController.basic );[m
+[31m-router.get('/balance/:userId',  userController.allowIfLoggedin, userController.getBalance);[m
+[32m+[m[32mrouter.get('/balance',  userController.allowIfLoggedin, userController.getBalance);[m
+[32m+[m
+[32m+[m[32mrouter.post('/balance', userController.allowIfLoggedin, userController.postBalance);[m
+ [m
+ [m
+ [m
