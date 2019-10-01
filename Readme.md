@@ -17,3 +17,12 @@ Routes endpoint
 
 post('/signup')
 post('/login')
+
+
+Init project
+
+npm install 
+
+cd /server
+
+npm server

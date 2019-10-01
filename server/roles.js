@@ -6,7 +6,7 @@ exports.roles = (function() {
 ac.grant("basic")
  .readOwn("profile")                //OWN = PROPRIO
  .updateOwn("profile")
- //.readOwn("balance")
+ .readOwn("balance")
 
 ac.grant("supervisor")
  .extend("basic")

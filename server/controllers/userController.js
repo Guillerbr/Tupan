@@ -187,7 +187,6 @@ exports.getBalance = async (req, res, next) => {
 }
 
 //post balance
-
 exports.postBalance = async (req, res, next) => {
 
 
