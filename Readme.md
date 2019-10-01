@@ -18,6 +18,11 @@
     post('/signup')
     post('/login')
     get('/user/:userId')
+    get('/users')
+    put('/user/:userId')
+    delete('/user/:userId')
+
+
     
 
 
