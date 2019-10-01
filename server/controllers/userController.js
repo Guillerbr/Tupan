@@ -154,6 +154,7 @@ exports.allowIfLoggedin = async (req, res, next) => {
     }
 
 }
+
 //new function restrict acess
 exports.basic = async (req, res, next) => {
 
@@ -174,7 +175,7 @@ exports.basic = async (req, res, next) => {
 
 }
 
-
+//get balance
 exports.getBalance = async (req, res, next) => {
 
 
