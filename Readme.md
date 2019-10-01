@@ -19,10 +19,10 @@ Routes endpoint
     post('/login')
 
 
-Init project
+# Init project
 
-npm install 
+    npm install 
 
-cd /server
+    cd /server
 
-npm server
+    npm server
