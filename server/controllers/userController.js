@@ -179,20 +179,10 @@ exports.basic = async (req, res, next) => {
 exports.getBalance = async (req, res, next) => {
 
 
-    try {
-        const Balance = new Balance({ balance, deposits }) 
-        const user = res.locals.loggedInUser;
-        if (user)
-            return res.status(200).json({
-                data: Balance,
-                message: 'User get information'
-            });
-       
-
-        next();
-    } catch (err) {
-        return res.status(400).send({ error: 'Get balance failed' });
-    }
+    const balances = await Balance.find({});
+    res.status(200).json({
+        data: balances
+    });
 
 }
 
@@ -207,9 +197,9 @@ exports.postBalance = async (req, res, next) => {
 
         await newBalance.save();
 
-         res.json({
-            data: newBalance 
-            
+        res.json({
+            data: newBalance
+
         });
 
     } catch (err) {
