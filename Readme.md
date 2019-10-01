@@ -10,3 +10,10 @@ Dependencies used
     express 
     jsonwebtoken 
     mongoose 
+
+
+
+Routes endpoint
+
+post('/signup')
+post('/login')
