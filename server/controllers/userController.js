@@ -191,7 +191,7 @@ exports.getBalance = async (req, res, next) => {
 
         next();
     } catch (err) {
-        return res.status(400).send({ error: 'Registration failed' });
+        return res.status(400).send({ error: 'Get balance failed' });
     }
 
 }

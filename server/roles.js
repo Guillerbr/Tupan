@@ -6,7 +6,7 @@ exports.roles = (function() {
 ac.grant("basic")
  .readOwn("profile")                //OWN = PROPRIO
  .updateOwn("profile")
- .readOwn("balance")
+ //.readOwn("balance")
 
 ac.grant("supervisor")
  .extend("basic")
@@ -24,7 +24,7 @@ ac.grant("admin")
  //new roles functions acess user
 ac.grant("final_user")
 .readOwn("profile")             
-//.updateAny("balance")  
+.readOwn("balance")  
 
 
 return ac;
