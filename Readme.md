@@ -29,7 +29,5 @@
 ## Init project
 
     npm install 
-
     cd /server
-
     npm server

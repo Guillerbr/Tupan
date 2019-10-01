@@ -19,17 +19,16 @@ router.delete('/user/:userId', userController.allowIfLoggedin, userController.gr
 
 
 //new routes 
-
 //router and controller OK
 router.get('/basic', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'profile', 'credit'), userController.basic);
 
-//router and controller OK
-//router.get('/basic', userController.allowIfLoggedin, userController.basic );
 router.get('/balances',  userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance')  ,userController.getBalance);
 
 router.post('/balance', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), userController.postBalance);
 
+router.put('/balance/:balanceId', userController.allowIfLoggedin, userController.grantAccess('updateAny', 'profile'), userController.updateBalance);
 
+router.delete('/balance/:balanceId', userController.allowIfLoggedin, userController.grantAccess('deleteAny', 'profile'), userController.deleteBalance);
 
 
 module.exports = router;
