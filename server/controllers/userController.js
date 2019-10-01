@@ -211,19 +211,19 @@ exports.postBalance = async (req, res, next) => {
 exports.updateBalance = async (req, res, next) => {
     try {
         const update = req.body
-        const userId = req.params.userId;
-        await User.findByIdAndUpdate(userId, update);
-        const user = await User.findById(userId)
+        const balanceId = req.params.balanceId;
+        await Balance.findByIdAndUpdate(balanceId, update);
+        const balance = await Balance.findById(balanceId)
         res.status(200).json({
-            data: user,
-            message: 'User has been updated'
+            data: balance,
+            message: 'Balance has been updated'
         });
-    } catch (error) {
-        next(error)
+    } catch (err) {
+        return res.status(400).send({ error: 'Update balance failed' });
     }
 }
 
-//update balance user
+//delete balance user
 exports.deleteBalance = async (req, res, next) => {
     try {
         const update = req.body
@@ -232,7 +232,7 @@ exports.deleteBalance = async (req, res, next) => {
         const user = await User.findById(userId)
         res.status(200).json({
             data: user,
-            message: 'User has been updated'
+            message: 'Balance has been deleted'
         });
     } catch (error) {
         next(error)
