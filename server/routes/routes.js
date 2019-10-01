@@ -16,10 +16,8 @@ router.put('/user/:userId', userController.allowIfLoggedin, userController.grant
 router.delete('/user/:userId', userController.allowIfLoggedin, userController.grantAccess('deleteAny', 'profile'), userController.deleteUser);
 
 
-
-
 //new routes 
-//router and controller OK
+//router Balances 
 router.get('/basic', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'profile', 'credit'), userController.basic);
 
 router.get('/balances',  userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance')  ,userController.getBalance);
