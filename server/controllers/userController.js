@@ -202,7 +202,7 @@ exports.postBalance = async (req, res, next) => {
 
     try {
         const { balance, deposits } = req.body;
-        const newBalance = new Balance({ balance, deposits, user: req.userId })
+        const newBalance = new Balance({ balance, deposits, user: req.user })
 
         await newBalance.save();
 
