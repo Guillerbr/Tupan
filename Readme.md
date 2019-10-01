@@ -17,6 +17,8 @@
 
     post('/signup')
     post('/login')
+    get('/user/:userId')
+    
 
 
 ## Init project
