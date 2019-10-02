@@ -11,7 +11,8 @@
     dotenv 
     express 
     jsonwebtoken 
-    mongoose 
+    mongoose
+    cors 
 
 
 

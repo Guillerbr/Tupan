@@ -18,7 +18,7 @@ router.delete('/user/:userId', userController.allowIfLoggedin, userController.gr
 
 //new routes 
 //router Balances 
-router.get('/basic', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'profile', 'credit'), userController.basic);
+router.get('/basic', userController.basic);
 
 router.get('/balances',  userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance')  ,userController.getBalance);
 

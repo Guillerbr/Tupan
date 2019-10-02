@@ -7,13 +7,18 @@ const path = require('path')
 const User = require('./models/userModel')
 const routes = require('./routes/routes.js');
 
+//import cors
+const cors = require('cors');
 
+
+//dir path env set
 require("dotenv").config({
     path: path.join(__dirname, "../.env")
 });
 
 
 const app = express();
+
 
 
 const PORT = process.env.PORT || 3000;
@@ -25,7 +30,7 @@ mongoose
         console.log('Connected to the Database successfully');
     });
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true })).use(cors());
 
 
 //define default type headers 
