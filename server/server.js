@@ -16,20 +16,18 @@ require("dotenv").config({
     path: path.join(__dirname, "../.env")
 });
 
-
+//express and set port
 const app = express();
-
-
-
 const PORT = process.env.PORT || 3000;
 
-
+//mongoose connect function
 mongoose
     .connect(process.env.MONGO_SECRET)
     .then(() => {
         console.log('Connected to the Database successfully');
     });
 
+//set cors and bodyparser    
 app.use(bodyParser.urlencoded({ extended: true })).use(cors());
 
 
@@ -50,6 +48,7 @@ app.use(async (req, res, next) => {
     }
 });
 
+//reposnse server connect
 app.use('/', routes); app.listen(PORT, () => {
     console.log('Server is listening on Port:', PORT)
 })

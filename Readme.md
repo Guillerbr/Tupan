@@ -32,6 +32,11 @@
     delete('/balance/:balanceId')
 
 
+## Access token and requirement headers
+
+     x-access-token     header
+     content-Type:      application/x-www-form-urlencoded  
+
 
     
 ## Init project
