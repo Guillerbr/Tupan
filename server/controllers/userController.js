@@ -156,6 +156,7 @@ exports.allowIfLoggedin = async (req, res, next) => {
 }
 
 //new function restrict acess
+//get user individual data
 exports.basic = async (req, res, next) => {
 
 
@@ -236,4 +237,13 @@ exports.deleteBalance = async (req, res) => {
     } catch (err) {
         return res.status(400).send({ error: 'Delete balance failed' });
     }
+}
+
+
+//Ping get teste api
+exports.pingme = async (req, res) => {
+    res.status(200).json({
+        message: "Server OK"
+        
+    });
 }

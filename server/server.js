@@ -28,10 +28,11 @@ mongoose
     });
 
 //set cors and bodyparser    
-app.use(bodyParser.urlencoded({ extended: true })).use(cors());
+app.use(bodyParser.urlencoded({ extended: true })).use(cors());          //cors set all origen
 
 
 //define default type headers 
+//x-access-token use token
 app.use(async (req, res, next) => {
     if (req.headers["x-access-token"]) {
         const accessToken = req.headers["x-access-token"];
@@ -43,6 +44,7 @@ app.use(async (req, res, next) => {
         res.locals.loggedInUser = await User.findById(userId); next();
     } else {
         next();
+        //returne message user expired token x-access-token
         //return res.status(200).send({ error: "Please login to obtain a new one" });
 
     }

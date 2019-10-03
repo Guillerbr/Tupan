@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
 
+
 router.post('/signup', userController.signup);
 
 router.post('/login', userController.login);
@@ -27,6 +28,10 @@ router.post('/balance', userController.allowIfLoggedin, userController.grantAcce
 router.put('/balance/:balanceId', userController.allowIfLoggedin, userController.grantAccess('updateAny', 'profile'), userController.updateBalance);
 
 router.delete('/balance/:balanceId', userController.allowIfLoggedin, userController.grantAccess('deleteAny', 'profile'), userController.deleteBalance);
+
+//test ping router get
+router.get('/ping', userController.pingme);
+
 
 
 module.exports = router;
