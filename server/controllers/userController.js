@@ -240,7 +240,7 @@ exports.deleteBalance = async (req, res) => {
 }
 
 
-//Ping get teste api public
+//ping get status api public
 exports.pingme = async (req, res) => {
     res.status(200).json({
         message: "Server OK"
