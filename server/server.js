@@ -27,12 +27,15 @@ mongoose
         console.log('Connected to the Database successfully');
     });
 
-//set cors and bodyparser    
-app.use(bodyParser.urlencoded({ extended: true })).use(cors());          //cors set all origen
+//set cors and bodyparser  
+//cors setting to receive all origins  
+app.use(bodyParser.urlencoded({ extended: true })).use(cors());      //implement in cors, connect to specifically configured origin domain
 
 
 //define default type headers 
 //x-access-token use token
+//future possibility to implement authorization or bearer token
+//more efficient standards
 app.use(async (req, res, next) => {
     if (req.headers["x-access-token"]) {
         const accessToken = req.headers["x-access-token"];
@@ -44,7 +47,7 @@ app.use(async (req, res, next) => {
         res.locals.loggedInUser = await User.findById(userId); next();
     } else {
         next();
-        //returne message user expired token x-access-token
+        // to do implement return message user 401 expired token x-access-token 
         //return res.status(200).send({ error: "Please login to obtain a new one" });
 
     }

@@ -4,10 +4,13 @@ const router = express.Router();
 const userController = require('../controllers/userController');
 
 
+//routers auth
 router.post('/signup', userController.signup);
 
 router.post('/login', userController.login);
 
+
+//router user crud
 router.get('/user/:userId', userController.allowIfLoggedin, userController.getUser);
 
 router.get('/users', userController.allowIfLoggedin, userController.grantAccess('readAny', 'profile'), userController.getUsers);
@@ -17,7 +20,7 @@ router.put('/user/:userId', userController.allowIfLoggedin, userController.grant
 router.delete('/user/:userId', userController.allowIfLoggedin, userController.grantAccess('deleteAny', 'profile'), userController.deleteUser);
 
 
-//new routes 
+
 //router Balances 
 router.get('/basic', userController.basic);
 
@@ -29,7 +32,8 @@ router.put('/balance/:balanceId', userController.allowIfLoggedin, userController
 
 router.delete('/balance/:balanceId', userController.allowIfLoggedin, userController.grantAccess('deleteAny', 'profile'), userController.deleteBalance);
 
-//test ping router get
+
+//test status api
 router.get('/ping', userController.pingme);
 
 
