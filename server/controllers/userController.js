@@ -21,6 +21,7 @@ async function validatePassword(plainPassword, hashedPassword) {
 
 
 //function register 
+//bug-access level exposed, only administrator can register role level
 exports.signup = async (req, res, next) => {
     try {
 
@@ -31,7 +32,8 @@ exports.signup = async (req, res, next) => {
             return res.status(400).send({ error: 'User already registered' });
 
         const hashedPassword = await hashPassword(password);
-        const newUser = new User({ email, password: hashedPassword, role: role || "basic" });
+        const newUser = new User({ email, password: hashedPassword, role: role || "basic" });      //open function basic users,choose by its function,error
+
         const accessToken = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, {
             expiresIn: "1d"
         });
@@ -245,6 +247,36 @@ exports.deleteBalance = async (req, res) => {
         return res.status(400).send({ error: 'Delete balance failed' });
     }
 }
+
+/*
+//register admin for admin
+exports.signupAdmin  = async (req, res, next) => {
+    try {
+
+        const { email, password, role } = req.body
+
+        //  check if email exist in db,if yes,returns or error
+        if (await User.findOne({ email }))
+            return res.status(400).send({ error: 'User already registered' });
+
+        const hashedPassword = await hashPassword(password);
+        const newUser = new User({ email, password: hashedPassword, role: role || "basic" });
+        const accessToken = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, {
+            expiresIn: "1d"
+        });
+        newUser.accessToken = accessToken;
+        await newUser.save();
+        res.json({
+            data: newUser,
+            accessToken
+        })
+    } catch (error) {
+        next(error)
+
+    }
+}
+
+*/
 
 
 //ping get status api public

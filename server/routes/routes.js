@@ -36,6 +36,9 @@ router.delete('/balance/:balanceId', userController.allowIfLoggedin, userControl
 //test status api
 router.get('/ping', userController.pingme);
 
+//admin user role register
+//router.post('/signupadmin', userController.grantAccess('readAny', 'profile'), userController.signupAdmin);
+//router.post('/signupadmin', userController.grantAccess('readAny'), userController.signupAdmin);
 
 
 module.exports = router;
