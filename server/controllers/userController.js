@@ -21,6 +21,7 @@ async function validatePassword(plainPassword, hashedPassword) {
 
 
 //function register 
+//bug erro -same email can be registered multiple times-check if email already exists, if yes report error
 exports.signup = async (req, res, next) => {
     try {
         const { email, password, role } = req.body

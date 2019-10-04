@@ -42,6 +42,8 @@
     
      in /server/roles.js    
      We can configure the crud access level rules per user
+     Admin user type has to control CRUD over system
+      
 
     
 ## Init project
