@@ -40,7 +40,7 @@
 
 ## Roles accesscontrol lib module
     
-     in /src/roles.js    
+     in /server/roles.js    
      We can configure the crud access level rules per user
 
     
