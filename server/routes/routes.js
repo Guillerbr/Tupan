@@ -37,8 +37,8 @@ router.delete('/balance/:balanceId', userController.allowIfLoggedin, userControl
 router.get('/ping', userController.pingme);
 
 //admin user role register
-//router.post('/signupadmin', userController.grantAccess('readAny', 'profile'), userController.signupAdmin);
-//router.post('/signupadmin', userController.grantAccess('readAny'), userController.signupAdmin);
+router.post('/signupadmin', userController.allowIfLoggedin, userController.grantAccess('readAny', 'profile'), userController.signupAdmin);
+//router.post('/signupadmin', userController.allowIfLoggedin, userController.grantAccess('readAny'), userController.signupAdmin);
 
 
 module.exports = router;

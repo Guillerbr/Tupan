@@ -19,9 +19,7 @@ async function validatePassword(plainPassword, hashedPassword) {
 }
 
 
-
-//function register 
-//bug-access level exposed, only administrator can register role level
+//function register basic user
 exports.signup = async (req, res, next) => {
     try {
 
@@ -32,7 +30,8 @@ exports.signup = async (req, res, next) => {
             return res.status(400).send({ error: 'User already registered' });
 
         const hashedPassword = await hashPassword(password);
-        const newUser = new User({ email, password: hashedPassword, role: role || "basic" });      //open function basic users,choose by its function,error
+        const newUser = new User({ email, password: hashedPassword, role: "basic" });
+        //option function role :   role: "basic"      or     role: role || "basic" }); 
 
         const accessToken = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, {
             expiresIn: "1d"
@@ -248,8 +247,8 @@ exports.deleteBalance = async (req, res) => {
     }
 }
 
-/*
-//register admin for admin
+
+//register users roles admin for admin
 exports.signupAdmin  = async (req, res, next) => {
     try {
 
@@ -276,7 +275,7 @@ exports.signupAdmin  = async (req, res, next) => {
     }
 }
 
-*/
+
 
 
 //ping get status api public
