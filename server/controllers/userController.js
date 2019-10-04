@@ -21,10 +21,15 @@ async function validatePassword(plainPassword, hashedPassword) {
 
 
 //function register 
-//bug erro -same email can be registered multiple times-check if email already exists, if yes report error
 exports.signup = async (req, res, next) => {
     try {
+
         const { email, password, role } = req.body
+
+        //  check if email exist in db,if yes,returns or error
+        if (await User.findOne({ email }))
+            return res.status(400).send({ error: 'User already registered' });
+
         const hashedPassword = await hashPassword(password);
         const newUser = new User({ email, password: hashedPassword, role: role || "basic" });
         const accessToken = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, {
@@ -38,6 +43,7 @@ exports.signup = async (req, res, next) => {
         })
     } catch (error) {
         next(error)
+
     }
 }
 
@@ -245,6 +251,6 @@ exports.deleteBalance = async (req, res) => {
 exports.pingme = async (req, res) => {
     res.status(200).json({
         message: "Server OK"
-        
+
     });
 }
