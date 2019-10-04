@@ -18,6 +18,8 @@
 
 ## Routes endpoint
 
+    get('/ping')  
+    
     post('/signup')
     post('/login')
 
@@ -30,6 +32,11 @@
     post('/balance')
     put('/balance/:balanceId')
     delete('/balance/:balanceId')
+
+    post('/signupadmin')
+
+
+    
 
 
 ## Access token and requirement headers
