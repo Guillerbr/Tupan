@@ -38,6 +38,11 @@
      content-Type:      application/x-www-form-urlencoded  
 
 
+## Roles accesscontrol lib module
+    
+     in /src/roles.js    
+     We can configure the crud access level rules per user
+
     
 ## Init project
 
