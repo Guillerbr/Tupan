@@ -39,7 +39,7 @@ exports.signup = async (req, res, next) => {
         newUser.accessToken = accessToken;
         await newUser.save();
         res.json({
-            data: newUser,
+            //  data: newUser,                    //return of sensitive user data //      IMPORTANT BLOK 
             accessToken
         })
     } catch (error) {
@@ -249,7 +249,7 @@ exports.deleteBalance = async (req, res) => {
 
 
 //register users roles admin for admin
-exports.signupAdmin  = async (req, res, next) => {
+exports.signupAdmin = async (req, res, next) => {
     try {
 
         const { email, password, role } = req.body

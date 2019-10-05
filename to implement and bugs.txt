@@ -10,7 +10,7 @@ Create route function to recover lost password
 
 -BUGS
 
-When registering user-sensitive data, such as password, are returned.
+
 
 
 
