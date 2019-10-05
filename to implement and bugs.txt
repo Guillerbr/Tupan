@@ -1,0 +1,17 @@
+TO DO IMPLEMENT AND BUGS
+
+IMPLEMENT
+
+
+Create route function for password reset
+
+Create route function to recover lost password
+
+
+
+
+
+
+
+BUGS
+

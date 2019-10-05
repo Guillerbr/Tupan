@@ -5,35 +5,35 @@
 
 ## Dependencies used
 
-    accesscontrol 
-    bcrypt 
-    body-parser
-    dotenv 
-    express 
-    jsonwebtoken 
-    mongoose
-    cors 
+     accesscontrol 
+     bcrypt 
+     body-parser
+     dotenv 
+     express 
+     jsonwebtoken 
+     mongoose
+     cors 
 
 
 
 ## Routes endpoint
 
-    get('/ping')  
+     get('/ping')  
     
-    post('/signup')
-    post('/login')
+     post('/signup')
+     post('/login')
 
-    get('/user/:userId')
-    get('/users')
-    put('/user/:userId')
-    delete('/user/:userId')
+     get('/user/:userId')
+     get('/users')
+     put('/user/:userId')
+     delete('/user/:userId')
 
-    get('/balances')
-    post('/balance')
-    put('/balance/:balanceId')
-    delete('/balance/:balanceId')
+     get('/balances')
+     post('/balance')
+     put('/balance/:balanceId')
+     delete('/balance/:balanceId')
 
-    post('/signupadmin')
+     post('/signupadmin')
 
 
     
@@ -55,7 +55,7 @@
     
 ## Init project
 
-    npm install 
-    cd /server
-    npm server or yarn server
+     npm install 
+     cd /server
+     npm server or yarn server
     
