@@ -1,7 +1,6 @@
-TO DO IMPLEMENT AND BUGS
+-TO DO IMPLEMENT AND BUGS-
 
-IMPLEMENT
-
+-IMPLEMENT
 
 Create route function for password reset
 
@@ -9,9 +8,9 @@ Create route function to recover lost password
 
 
 
+-BUGS
+
+When registering user-sensitive data, such as password, are returned.
 
 
-
-
-BUGS
 
