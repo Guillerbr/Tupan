@@ -30,10 +30,10 @@ exports.signup = async (req, res, next) => {
             return res.status(400).send({ error: 'User already registered' });
 
         const hashedPassword = await hashPassword(password);
-        const newUser = new User({ email, password: hashedPassword, role: "basic" });
+        const newUser = new User({ email, password: hashedPassword, role: role || "basic" });
         //option function role :   role: "basic"      or     role: role || "basic" }); 
 
-        const accessToken = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, {
+        const accessToken = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, {         //return 400 message expiration token 
             expiresIn: "1d"
         });
         newUser.accessToken = accessToken;
