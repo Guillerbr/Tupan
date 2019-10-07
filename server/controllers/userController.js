@@ -36,6 +36,7 @@ exports.signup = async (req, res, next) => {
         const accessToken = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, {         //return 400 message expiration token 
             expiresIn: "1d"
         });
+
         newUser.accessToken = accessToken;
         await newUser.save();
         res.json({
@@ -43,7 +44,8 @@ exports.signup = async (req, res, next) => {
             accessToken
         })
     } catch (error) {
-        next(error)
+        // next(error)
+        return res.status(400).json({ error: 'Acess Token invalid go to login' });
 
     }
 }
@@ -66,7 +68,8 @@ exports.login = async (req, res, next) => {
             accessToken
         })
     } catch (error) {
-        next(error);
+        //next(error);
+        return res.status(400).send({ error: 'Acess Token invalid go to login' });
     }
 }
 
@@ -157,8 +160,8 @@ exports.allowIfLoggedin = async (req, res, next) => {
         req.user = user;
         next();
     } catch (error) {
-        //  return res.status(400).send({ error: 'Registration failed' });
-        next(error);
+        return res.status(400).json({ error: 'Registration failed' });
+        // next(error);
     }
 
 }
