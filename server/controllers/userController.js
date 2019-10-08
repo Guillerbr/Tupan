@@ -68,8 +68,8 @@ exports.login = async (req, res, next) => {
             accessToken
         })
     } catch (error) {
-        //next(error);
-        return res.status(400).send({ error: 'Acess Token invalid go to login' });
+        next(error);
+        //return res.status(400).send({ error: 'Acess Token invalid go to login' });
     }
 }
 
