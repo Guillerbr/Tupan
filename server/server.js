@@ -39,6 +39,12 @@ app.use(bodyParser.urlencoded({ extended: true })).use(cors());      //implement
 app.use(async (req, res, next) => {
     if (req.headers["x-access-token"]) {
         const accessToken = req.headers["x-access-token"];
+
+        //check x-access token headers valid,if not,alert login new token provider-IMPORTANT MIDDLEWARE CHECK VALID TOKEN JWT ACCESS
+        if (accessToken != true) {
+            return res.status(400).send({ error: "Please login to obtain a new one token access" });
+        }
+
         const { userId, exp } = await jwt.verify(accessToken, process.env.JWT_SECRET);
         // Check if token has expired
         if (exp < Date.now().valueOf() / 1000) {
@@ -48,7 +54,7 @@ app.use(async (req, res, next) => {
     } else {
         next();
         // to do implement return message user 401 expired token x-access-token 
-        //return res.status(200).send({ error: "Please login to obtain a new one" });
+        return res.status(400).send({ error: "Please login to obtain a new one" });
 
     }
 });

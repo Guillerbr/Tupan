@@ -33,7 +33,7 @@ exports.signup = async (req, res, next) => {
         const newUser = new User({ email, password: hashedPassword, role: role || "basic" });
         //option function role :   role: "basic"      or     role: role || "basic" }); 
 
-        const accessToken = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, {         //return 400 message expiration token 
+        const accessToken = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, {         //to implement return 400 message expiration token 
             expiresIn: "1d"
         });
 
@@ -169,7 +169,6 @@ exports.allowIfLoggedin = async (req, res, next) => {
 //new function restrict acess
 //get user individual data
 exports.basic = async (req, res, next) => {
-
 
     try {
         const user = res.locals.loggedInUser;
