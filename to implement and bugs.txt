@@ -12,8 +12,10 @@ Create route function to recover lost password
 
 -BUGS
 
+request has no server response, however in server log points invalid jwt
 Does not return expired token error
 does not report expired token message
+
 
 
 
