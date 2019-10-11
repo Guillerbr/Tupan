@@ -12,12 +12,13 @@ Create route function to recover lost password
 
 -BUGS
 
-request has no server response, however in server log points invalid jwt
+Request has no server response, however in server log points invalid jwt
 Does not return expired token error
 does not report expired token message
 
 
-
+As soon as the header token expires, no message is returned and a 
+request is in the infinite loop, no error is reported to the client.
 
 
 
