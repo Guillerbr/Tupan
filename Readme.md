@@ -57,5 +57,7 @@
 
      npm install 
      cd /server
-     npm server or yarn server
+     npm server or
+     yarn server or
+     node server
     
