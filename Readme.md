@@ -51,6 +51,18 @@
      We can configure the crud access level rules per user
      Admin user type has to control CRUD over system
 
+## Creating your admin account
+
+     post ('/signup')
+     Headers
+     Content-Type = application/x-www-form-urlencoded
+     Body 
+     email   =    rbca@rb.com
+     password  =  2321
+     role = admin
+
+     Register with your email and password details
+
  
 ## After creating your admin account
     
@@ -61,14 +73,12 @@
 
      
      Now only admin can on route:
-     post ('/ signupadmin')
+     post ('/signupadmin')
 
      register user levels:
      admin,supervisor,basic,final_user.
 
-      
-
-    
+         
 ## Init project
 
      npm install 
