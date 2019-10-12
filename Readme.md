@@ -67,7 +67,7 @@
 ## After creating your admin account
     
     
-     In the userController file change line 33 to:
+     In the server/controllers file userController change line 33 to:
 
      const newUser = new User ({email, password: hashedPassword, role: "basic"});
 
