@@ -50,6 +50,22 @@
      in /server/roles.js    
      We can configure the crud access level rules per user
      Admin user type has to control CRUD over system
+
+ 
+## After creating your admin account
+    
+    
+     In the userController file change line 33 to:
+
+     const newUser = new User ({email, password: hashedPassword, role: role || "basic"});
+
+     
+     Now only admin can on route:
+     post ('/ signupadmin')
+
+     register user levels:
+     admin,supervisor,basic,final_user.
+
       
 
     
