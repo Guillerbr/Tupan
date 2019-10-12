@@ -57,7 +57,7 @@
     
      In the userController file change line 33 to:
 
-     const newUser = new User ({email, password: hashedPassword, role: role || "basic"});
+     const newUser = new User ({email, password: hashedPassword, role: "basic"});
 
      
      Now only admin can on route:
