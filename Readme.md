@@ -79,7 +79,7 @@
      admin,supervisor,basic,final_user.
 
          
-## Init project
+## Init project dev test
 
      npm install 
      cd /server
@@ -87,3 +87,11 @@
      yarn server or
      node server
     
+## Init project production
+
+     I recommend using the pm2 tool
+
+     Command installing globally:                   sudo npm install pm2 -g
+
+     Inside of the directory /server folder run the command:     pm2 start server.js
+
