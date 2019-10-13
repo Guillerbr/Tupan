@@ -56,9 +56,10 @@ exports.login = async (req, res, next) => {
     try {
         const { email, password } = req.body;
         const user = await User.findOne({ email });
-        if (!user) return next(new Error('Email does not exist'));
+        if (!user) return res.status(400).send({ error: 'Email does not exist' });
         const validPassword = await validatePassword(password, user.password);
-        if (!validPassword) return next(new Error('Password is not correct'))
+        if (!validPassword) return res.status(400).send({ error: 'Password incorrect' });
+
         const accessToken = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
             expiresIn: "1d"
         });
@@ -255,55 +256,56 @@ exports.deleteBalance = async (req, res) => {
 exports.resetPass = async (req, res) => {
     try {
         const update = req.body
-        const balanceId = req.params.balanceId;
-        await Balance.findByIdAndDelete(balanceId, update);
-        const balance = await Balance.findById(balanceId)
+        const userId = req.params.userId;
+        await User.findByIdAndUpdate(userId, update);
+        const user = await User.findById(userId)
         res.status(200).json({
-            message: 'Balance has been deleted'
-
-
+            data: user,
+            message: 'Password has been updated'
+        
         });
 
     } catch (err) {
         return res.status(400).send({ error: 'Delete balance failed' });
     }
+
 }
 */
 
 //register users roles admin for admin
 exports.signupAdmin = async (req, res, next) => {
-        try {
+    try {
 
-            const { email, password, role } = req.body
+        const { email, password, role } = req.body
 
-            //  check if email exist in db,if yes,returns or error
-            if (await User.findOne({ email }))
-                return res.status(400).send({ error: 'User already registered' });
+        //  check if email exist in db,if yes,returns or error
+        if (await User.findOne({ email }))
+            return res.status(400).send({ error: 'User already registered' });
 
-            const hashedPassword = await hashPassword(password);
-            const newUser = new User({ email, password: hashedPassword, role: role || "basic" });
-            const accessToken = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, {
-                expiresIn: "1d"
-            });
-            newUser.accessToken = accessToken;
-            await newUser.save();
-            res.json({
-                data: newUser,
-                accessToken
-            })
-        } catch (error) {
-            next(error)
+        const hashedPassword = await hashPassword(password);
+        const newUser = new User({ email, password: hashedPassword, role: role || "basic" });
+        const accessToken = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, {
+            expiresIn: "1d"
+        });
+        newUser.accessToken = accessToken;
+        await newUser.save();
+        res.json({
+            data: newUser,
+            accessToken
+        })
+    } catch (error) {
+        next(error)
 
-        }
     }
+}
 
 
 
 
 //ping get status api public
 exports.pingme = async (req, res) => {
-        res.status(200).json({
-            message: "Server OK"
+    res.status(200).json({
+        message: "Server OK"
 
-        });
-    }
+    });
+}
