@@ -91,7 +91,19 @@
 
      I recommend using the pm2 tool
 
-     Command installing globally:   sudo npm install pm2 -g
+     Command installing globally:
+     sudo npm install pm2 -g
 
-     Inside of the directory /server folder run the command:   pm2 start server.js
+     Inside of the directory /server folder run the command: 
+     pm2 start server.js  
+     or cluster mode:
+     pm2 start server.js -i max
 
+     Persistence mode command:
+     pm2 startup
+
+     Finish
+     pm2 save
+
+
+## Use in Nodejs 10.16.3 and Npm 6.9.0
