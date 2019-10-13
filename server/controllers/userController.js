@@ -110,8 +110,8 @@ exports.updateUser = async (req, res, next) => {
         await User.findByIdAndUpdate(userId, update);
         const user = await User.findById(userId)
         res.status(200).json({
-            data: user,
-            message: 'User has been updated'
+            // data: user,
+            success: 'User has been updated'
         });
     } catch (error) {
         // next(error)
@@ -259,14 +259,10 @@ exports.deleteBalance = async (req, res) => {
 /*
 //reset password
 exports.resetPass = async (req, res) => {
-    try {
-        const update = req.body
-        const userId = req.params.userId;
-        await User.findByIdAndUpdate(userId, update);
-        const user = await User.findById(userId)
-        res.status(200).json({
-            data: user,
-            message: 'Password has been updated'
+
+     try {
+         const { password } = req.body
+         const validPassword = await validatePassword(password, user.password);
         
         });
 

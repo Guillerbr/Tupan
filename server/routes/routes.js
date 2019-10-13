@@ -10,7 +10,7 @@ router.post('/signup', userController.signup);
 router.post('/login', userController.login);
 
 
-//router user crud
+//routers user 
 router.get('/user/:userId', userController.allowIfLoggedin, userController.getUser);
 
 router.get('/users', userController.allowIfLoggedin, userController.grantAccess('readAny', 'profile'), userController.getUsers);
@@ -18,7 +18,6 @@ router.get('/users', userController.allowIfLoggedin, userController.grantAccess(
 router.put('/user/:userId', userController.allowIfLoggedin, userController.grantAccess('updateAny', 'profile'), userController.updateUser);
 
 router.delete('/user/:userId', userController.allowIfLoggedin, userController.grantAccess('deleteAny', 'profile'), userController.deleteUser);
-
 
 
 //router Balances 
@@ -40,7 +39,7 @@ router.get('/ping', userController.pingme);
 router.post('/signupadmin', userController.allowIfLoggedin, userController.grantAccess('readAny', 'profile'), userController.signupAdmin);
 
 //resetpassword
-//router.put('/resetpassword', userController.allowIfLoggedin, userController.grantAccess('updateAny', 'profile'), userController.resetPass);
+//router.post('/resetpassword', userController.allowIfLoggedin, userController.grantAccess('updateAny', 'profile'), userController.resetPass);
 
 
 module.exports = router;
