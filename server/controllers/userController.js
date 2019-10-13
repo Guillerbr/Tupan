@@ -90,13 +90,13 @@ exports.getUser = async (req, res, next) => {
     try {
         const userId = req.params.userId;
         const user = await User.findById(userId);
-        if (!user) return res.status(400).send({ error: 'User does not exist' });
+        if (!user) return res.status(400).json({ error: 'User does not exist' });
         res.status(200).json({
             data: user
         });
     } catch (error) {
-       // next(error)
-       return res.status(400).send({ error: 'Error finding user' });
+        // next(error)
+        return res.status(400).send({ error: 'Error finding user' });
     }
 
 }
@@ -114,7 +114,7 @@ exports.updateUser = async (req, res, next) => {
             message: 'User has been updated'
         });
     } catch (error) {
-       // next(error)
+        // next(error)
         return res.status(400).send({ error: 'Error update user' });
     }
 }
@@ -126,12 +126,12 @@ exports.deleteUser = async (req, res, next) => {
         const userId = req.params.userId;
         await User.findByIdAndDelete(userId);
         res.status(200).json({
-            data: null,
-            message: 'User has been deleted'
+            // data: null,
+            success: 'User has been deleted'
         });
     } catch (error) {
-       // next(error)
-       return res.status(400).send({ error: 'Error delete user' });
+        // next(error)
+        return res.status(400).send({ error: 'Error delete user' });
     }
 }
 
