@@ -20,6 +20,7 @@ async function validatePassword(plainPassword, hashedPassword) {
 
 
 //function register basic user
+//role access control config 
 exports.signup = async (req, res, next) => {
     try {
 
@@ -30,7 +31,7 @@ exports.signup = async (req, res, next) => {
             return res.status(400).send({ error: 'User already registered' });
 
         const hashedPassword = await hashPassword(password);
-        const newUser = new User({ email, password: hashedPassword, role: role || "basic" });
+        const newUser = new User({ email, password: hashedPassword, role: role || "basic" });   //important config role signup
         //option function role :   role: "basic"      or     role: role || "basic" }); 
 
         const accessToken = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, {         //to implement return 400 message expiration token 
@@ -51,7 +52,7 @@ exports.signup = async (req, res, next) => {
 }
 
 
-//function login logic 
+//function login 
 exports.login = async (req, res, next) => {
     try {
         const { email, password } = req.body;
@@ -89,13 +90,15 @@ exports.getUser = async (req, res, next) => {
     try {
         const userId = req.params.userId;
         const user = await User.findById(userId);
-        if (!user) return next(new Error('User does not exist'));
+        if (!user) return res.status(400).send({ error: 'User does not exist' });
         res.status(200).json({
             data: user
         });
     } catch (error) {
-        next(error)
+       // next(error)
+       return res.status(400).send({ error: 'Error finding user' });
     }
+
 }
 
 
@@ -111,7 +114,8 @@ exports.updateUser = async (req, res, next) => {
             message: 'User has been updated'
         });
     } catch (error) {
-        next(error)
+       // next(error)
+        return res.status(400).send({ error: 'Error update user' });
     }
 }
 
@@ -126,7 +130,8 @@ exports.deleteUser = async (req, res, next) => {
             message: 'User has been deleted'
         });
     } catch (error) {
-        next(error)
+       // next(error)
+       return res.status(400).send({ error: 'Error delete user' });
     }
 }
 
