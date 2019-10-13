@@ -91,7 +91,7 @@
 
      I recommend using the pm2 tool
 
-     Command installing globally:                   sudo npm install pm2 -g
+     Command installing globally:   sudo npm install pm2 -g
 
-     Inside of the directory /server folder run the command:     pm2 start server.js
+     Inside of the directory /server folder run the command:   pm2 start server.js
 

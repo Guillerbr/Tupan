@@ -250,40 +250,60 @@ exports.deleteBalance = async (req, res) => {
 }
 
 
-//register users roles admin for admin
-exports.signupAdmin = async (req, res, next) => {
+/*
+//reset password
+exports.resetPass = async (req, res) => {
     try {
+        const update = req.body
+        const balanceId = req.params.balanceId;
+        await Balance.findByIdAndDelete(balanceId, update);
+        const balance = await Balance.findById(balanceId)
+        res.status(200).json({
+            message: 'Balance has been deleted'
 
-        const { email, password, role } = req.body
 
-        //  check if email exist in db,if yes,returns or error
-        if (await User.findOne({ email }))
-            return res.status(400).send({ error: 'User already registered' });
-
-        const hashedPassword = await hashPassword(password);
-        const newUser = new User({ email, password: hashedPassword, role: role || "basic" });
-        const accessToken = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, {
-            expiresIn: "1d"
         });
-        newUser.accessToken = accessToken;
-        await newUser.save();
-        res.json({
-            data: newUser,
-            accessToken
-        })
-    } catch (error) {
-        next(error)
 
+    } catch (err) {
+        return res.status(400).send({ error: 'Delete balance failed' });
     }
 }
+*/
+
+//register users roles admin for admin
+exports.signupAdmin = async (req, res, next) => {
+        try {
+
+            const { email, password, role } = req.body
+
+            //  check if email exist in db,if yes,returns or error
+            if (await User.findOne({ email }))
+                return res.status(400).send({ error: 'User already registered' });
+
+            const hashedPassword = await hashPassword(password);
+            const newUser = new User({ email, password: hashedPassword, role: role || "basic" });
+            const accessToken = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, {
+                expiresIn: "1d"
+            });
+            newUser.accessToken = accessToken;
+            await newUser.save();
+            res.json({
+                data: newUser,
+                accessToken
+            })
+        } catch (error) {
+            next(error)
+
+        }
+    }
 
 
 
 
 //ping get status api public
 exports.pingme = async (req, res) => {
-    res.status(200).json({
-        message: "Server OK"
+        res.status(200).json({
+            message: "Server OK"
 
-    });
-}
+        });
+    }
