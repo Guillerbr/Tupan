@@ -240,6 +240,7 @@ exports.updateBalance = async (req, res) => {
     }
 }
 
+
 //delete balance user
 exports.deleteBalance = async (req, res) => {
     try {
@@ -256,22 +257,42 @@ exports.deleteBalance = async (req, res) => {
 }
 
 
-/*
+
 //reset password
 exports.resetPass = async (req, res) => {
 
-     try {
-         const { password } = req.body
-         const validPassword = await validatePassword(password, user.password);
-        
-        });
+    const { email, password } = req.body;
+
+    try {
+        const user = await User.findOne({ email })
+        //   .select('+passwordResetToken passwordResetExpires');
+
+        if (!user)
+            return res.status(400).send({ error: 'User not found' });
+
+        if (token !== user.passwordResetToken)
+            return res.status(400).send({ error: 'Token invalid' });
+
+        const now = new Date();
+
+        if (now > user.passwordResetExpires)
+            return res.status(400).send({ error: 'Token expired, generate new token' });
+
+        user.password = password;
+
+        await user.save();
+        res.send({ Successfully: true, user: req.userId });     //ok return user id,alter response sucess mensage
+
 
     } catch (err) {
-        return res.status(400).send({ error: 'Delete balance failed' });
-    }
+        //console.log(err);
+        res.status(400).send({ error: 'Cannot reset password, try again' });
 
+    }
 }
-*/
+
+
+
 
 //register users roles admin for admin
 exports.signupAdmin = async (req, res, next) => {
