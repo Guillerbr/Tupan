@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
+const balanceController = require('../controllers/balanceController');
 
 
 //routers auth
@@ -19,17 +20,20 @@ router.put('/user/:userId', userController.allowIfLoggedin, userController.grant
 
 router.delete('/user/:userId', userController.allowIfLoggedin, userController.grantAccess('deleteAny', 'profile'), userController.deleteUser);
 
+router.get('/userinfo', userController.userInfo);
+
 
 //router Balances 
-router.get('/basic', userController.basic);
 
-router.get('/balances',  userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance')  ,userController.getBalance);
+router.get('/balances',  userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance')  ,balanceController.getBalances);
 
-router.post('/balance', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), userController.postBalance);
+router.get('/balance/:balanceId', userController.allowIfLoggedin, balanceController.getBalance);
 
-router.put('/balance/:balanceId', userController.allowIfLoggedin, userController.grantAccess('updateAny', 'profile'), userController.updateBalance);
+router.post('/balance', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), balanceController.postBalance);
 
-router.delete('/balance/:balanceId', userController.allowIfLoggedin, userController.grantAccess('deleteAny', 'profile'), userController.deleteBalance);
+router.put('/balance/:balanceId', userController.allowIfLoggedin, userController.grantAccess('updateAny', 'profile'), balanceController.updateBalance);
+
+router.delete('/balance/:balanceId', userController.allowIfLoggedin, userController.grantAccess('deleteAny', 'profile'), balanceController.deleteBalance);
 
 
 //test status api

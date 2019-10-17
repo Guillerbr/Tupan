@@ -34,6 +34,7 @@
      delete('/balance/:balanceId')
 
      post('/signupadmin')
+     get('/userinfo')
 
 
     

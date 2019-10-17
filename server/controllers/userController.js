@@ -174,7 +174,7 @@ exports.allowIfLoggedin = async (req, res, next) => {
 
 //new function restrict acess
 //get user individual data
-exports.basic = async (req, res, next) => {
+exports.userInfo = async (req, res, next) => {
 
     try {
         const user = res.locals.loggedInUser;
@@ -192,69 +192,13 @@ exports.basic = async (req, res, next) => {
 
 }
 
-//get balance
-exports.getBalance = async (req, res, next) => {
 
 
-    const balances = await Balance.find({});
-    res.status(200).json({
-        data: balances
-    });
-
-}
-
-//post balance
-exports.postBalance = async (req, res, next) => {
 
 
-    try {
-        const { balance, deposits } = req.body;
-        const newBalance = new Balance({ balance, deposits, user: req.user })
-
-        await newBalance.save();
-
-        res.json({
-            data: newBalance
-
-        });
-
-    } catch (err) {
-        return res.status(400).send({ error: 'Post balance failed' });
-    }
-
-}
-
-//update balance user
-exports.updateBalance = async (req, res) => {
-    try {
-        const update = req.body
-        const balanceId = req.params.balanceId;
-        await Balance.findByIdAndUpdate(balanceId, update);
-        const balance = await Balance.findById(balanceId)
-        res.status(200).json({
-            data: balance,
-            message: 'Balance has been updated'
-        });
-    } catch (err) {
-        return res.status(400).send({ error: 'Update balance failed' });
-    }
-}
 
 
-//delete balance user
-exports.deleteBalance = async (req, res) => {
-    try {
-        const update = req.body
-        const balanceId = req.params.balanceId;
-        await Balance.findByIdAndDelete(balanceId, update);
-        const balance = await Balance.findById(balanceId)
-        res.status(200).json({
-            message: 'Balance has been deleted'
-        });
-    } catch (err) {
-        return res.status(400).send({ error: 'Delete balance failed' });
-    }
-}
+
 
 
 
@@ -320,7 +264,6 @@ exports.signupAdmin = async (req, res, next) => {
 
     }
 }
-
 
 
 
