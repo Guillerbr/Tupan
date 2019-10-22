@@ -16,6 +16,7 @@ async function validatePassword(plainPassword, hashedPassword) {
     return await bcrypt.compare(plainPassword, hashedPassword);
 }
 
+
 //get balance id
 exports.getBalance = async (req, res, next) => {
     try {

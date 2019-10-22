@@ -38,45 +38,37 @@ app.use(bodyParser.urlencoded({ extended: true })).use(cors());      //implement
 //more efficient standards
 app.use(async (req, res, next) => {
 
-    if (req.headers["x-access-token"]) {
-        const accessToken = req.headers["x-access-token"];
+    try {
 
-        //    check x-access token headers valid,if not,alert login new token provider-IMPORTANT MIDDLEWARE CHECK VALID TOKEN JWT ACCESS
-        //    if (accessToken = true) {
-        //        return res.status(400).send({ error: "Please login to obtain a new one token access" });
-        //    }
+        if (req.headers["x-access-token"]) {
 
-        const { userId, exp } = await jwt.verify(accessToken, process.env.JWT_SECRET);
-        // Check if token has expired
-        if (exp < Date.now().valueOf() / 1000) {
-            return res.status(400).send({ error: "JWT token has expired, please login to obtain a new one" });
-        }
-        res.locals.loggedInUser = await User.findById(userId); next();
-    }
-    else {
+            const accessToken = req.headers["x-access-token"];
 
-        next();
-        // return res.status(400).send({ error: "JWT token has expired, please login to obtain a new one" });
+            const { userId, exp } = await jwt.verify(accessToken, process.env.JWT_SECRET);
 
-    }
 
-});
+            // Check if token has expired
+            if (exp < Date.now().valueOf() / 1000) {
+                return res.status(401).send({ error: "JWT token has expired, please login to obtain a new one" });
+            }
 
-/*
-app.use(async (req, res, next) => {
-   // if (req.headers["x-access-token"]) {
-   //     const accessToken = req.headers["x-access-token"];
-
-        if (accessToken == false ) {
-            return res.status(400).send({ error: "JWT token has expired, please login to obtain a new one" });
-        } else {
+            res.locals.loggedInUser = await User.findById(userId);
             next();
-            // return res.status(400).send({ error: "JWT token has expired, please login to obtain a new one" });
 
-        } 
+        }
+        else {
+            next();
+        }
+    }
+    catch (error) {
+        // next(error)
+        return res.status(401).json({ error: 'Acess Token invalid go to login' });
+
+    }
+
+
 });
 
-*/
 
 //reposnse server connect
 app.use('/', routes); app.listen(PORT, () => {

@@ -23,9 +23,8 @@ router.delete('/user/:userId', userController.allowIfLoggedin, userController.gr
 router.get('/userinfo', userController.userInfo);
 
 
-//router Balances 
-
-router.get('/balances',  userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance')  ,balanceController.getBalances);
+//router Balances in balanceController.js
+router.get('/balances', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), balanceController.getBalances);
 
 router.get('/balance/:balanceId', userController.allowIfLoggedin, balanceController.getBalance);
 
@@ -43,7 +42,7 @@ router.get('/ping', userController.pingme);
 router.post('/signupadmin', userController.allowIfLoggedin, userController.grantAccess('readAny', 'profile'), userController.signupAdmin);
 
 //resetpassword
-router.post('/resetpassword', userController.allowIfLoggedin, userController.grantAccess('updateAny', 'profile'), userController.resetPass);
+//router.put('/resetpassword', userController.allowIfLoggedin, userController.grantAccess('updateAny', 'profile'), userController.resetPass);
 
 
 module.exports = router;

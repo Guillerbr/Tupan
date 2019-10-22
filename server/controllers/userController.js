@@ -172,7 +172,7 @@ exports.allowIfLoggedin = async (req, res, next) => {
 
 }
 
-//new function restrict acess
+
 //get user individual data
 exports.userInfo = async (req, res, next) => {
 
@@ -193,50 +193,26 @@ exports.userInfo = async (req, res, next) => {
 }
 
 
-
-
-
-
-
-
-
-
-
+/*
+//coment implement block
 //reset password
-exports.resetPass = async (req, res) => {
-
-    const { email, password } = req.body;
-
+exports.resetPass = async (req, res, next) => {
     try {
-        const user = await User.findOne({ email })
-        //   .select('+passwordResetToken passwordResetExpires');
-
-        if (!user)
-            return res.status(400).send({ error: 'User not found' });
-
-        if (token !== user.passwordResetToken)
-            return res.status(400).send({ error: 'Token invalid' });
-
-        const now = new Date();
-
-        if (now > user.passwordResetExpires)
-            return res.status(400).send({ error: 'Token expired, generate new token' });
-
-        user.password = password;
-
-        await user.save();
-        res.send({ Successfully: true, user: req.userId });     //ok return user id,alter response sucess mensage
-
-
-    } catch (err) {
-        //console.log(err);
-        res.status(400).send({ error: 'Cannot reset password, try again' });
-
+        const update = req.body
+        const userId = req.params.userId;
+        await User.findByIdAndUpdate(userId, update);
+        const user = await User.findById(userId)
+        res.status(200).json({
+            // data: user,
+            success: 'User has been updated'
+        });
+    } catch (error) {
+        // next(error)
+        return res.status(400).send({ error: 'Error update user' });
     }
 }
 
-
-
+*/
 
 //register users roles admin for admin
 exports.signupAdmin = async (req, res, next) => {
