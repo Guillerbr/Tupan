@@ -42,7 +42,7 @@ router.get('/ping', userController.pingme);
 router.post('/signupadmin', userController.allowIfLoggedin, userController.grantAccess('readAny', 'profile'), userController.signupAdmin);
 
 //resetpassword
-//router.put('/resetpassword', userController.allowIfLoggedin, userController.grantAccess('updateAny', 'profile'), userController.resetPass);
+//router.post('/resetpassword', userController.allowIfLoggedin, userController.grantAccess('updateAny', 'profile'), userController.resetPass);
 
 
 module.exports = router;

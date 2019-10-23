@@ -193,26 +193,41 @@ exports.userInfo = async (req, res, next) => {
 }
 
 
+
+
 /*
 //coment implement block
 //reset password
 exports.resetPass = async (req, res, next) => {
     try {
-        const update = req.body
-        const userId = req.params.userId;
-        await User.findByIdAndUpdate(userId, update);
-        const user = await User.findById(userId)
-        res.status(200).json({
-            // data: user,
-            success: 'User has been updated'
-        });
+        const { password } = req.body
+
+       // if (await User.findOne({ email }))
+        //    return res.status(400).send({ error: 'User already registered' });
+        const hashedPassword = await hashPassword(password);
+
+        const newPassword = await User.findOne({ password: hashedPassword });
+        //console.log(newPassword);
+
+        await newPassword.save();
+        res.json({
+            //  data: newUser,                    
+            accessToken
+        })
+
+       // console.log(newPassword);
+
+
     } catch (error) {
+        //console.log(error);
         // next(error)
-        return res.status(400).send({ error: 'Error update user' });
+        return res.status(400).send({ error: 'Error update password' });
     }
 }
 
 */
+
+
 
 //register users roles admin for admin
 exports.signupAdmin = async (req, res, next) => {

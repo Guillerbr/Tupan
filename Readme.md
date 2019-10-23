@@ -108,3 +108,5 @@
 
 
 ## Use in Nodejs 10.16.3 and Npm 6.9.0
+
+## Change the .env file with your credentials
