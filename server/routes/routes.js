@@ -10,6 +10,8 @@ router.post('/signup', userController.signup);
 
 router.post('/login', userController.login);
 
+router.post('/forgot-password', userController.forgotPassword);
+
 
 //routers user 
 router.get('/user/:userId', userController.allowIfLoggedin, userController.getUser);
