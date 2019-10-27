@@ -25,6 +25,7 @@
      post('/signup')
      post('/login')
      post('/forgot-password')
+     post('/reset-password')
 
      get('/user/:userId')
      get('/users')
