@@ -12,7 +12,8 @@
      express 
      jsonwebtoken 
      mongoose
-     cors 
+     cors
+     sendgrid/mail
 
 
 
