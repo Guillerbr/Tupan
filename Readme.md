@@ -23,6 +23,7 @@
     
      post('/signup')
      post('/login')
+     post('/forgot-password')
 
      get('/user/:userId')
      get('/users')
