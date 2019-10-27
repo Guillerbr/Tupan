@@ -14,6 +14,7 @@
      mongoose
      cors
      sendgrid/mail
+     crypto
 
 
 

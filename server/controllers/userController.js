@@ -4,6 +4,7 @@ const User = require('../models/userModel');
 const Balance = require('../models/balanceModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const crypto = require('crypto');
 
 const sgMail = require('@sendgrid/mail');
 //sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -275,6 +276,49 @@ exports.testSendMail = async (req, res) => {
     sgMail.send(msg);
     //console.log(sgMail);
 
+}
+
+//forgot-password
+exports.forgotPassword = async (req, res) => {
+
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+    const { email } = req.body;
+
+    try {
+        const user = await User.findOne({ email });
+
+        const token = crypto.randomBytes(20).toString('hex');
+        const now = new Date();
+        now.setHours(now.getHours() + 1);
+
+        await User.findByIdAndUpdate(user.id, {
+            '$set': {
+                passwordResetToken: token,
+                passwordResetExpires: now,
+            }
+        });
+
+        const msg = {
+            to: email,
+            from: 'apitest@api.com',     //    'apinet@gmail.com'
+            subject: 'Sending with Twilio SendGrid is Fun',
+            text: 'and easy to do anywhere, even with Node.js',
+            html: token  //'<strong>and easy to do anywhere fd, even with Node.js {token} </strong> {token}',
+        };
+        // async (sgMail.send(msg));
+
+        sgMail.send(msg);
+
+        //res.send({ Successfully: true, user: req.userId }); 
+
+        console.log(sgMail);
+        console.log(token);
+
+    } catch (err) {
+
+        res.status(400).send({ error: 'Error on recover password, try again!' });
+    }
 }
 
 

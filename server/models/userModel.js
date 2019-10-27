@@ -20,6 +20,14 @@ const UserSchema = new Schema({
  accessToken: {
   type: String
  },
+ passwordResetToken: {
+    type: String,
+    select: false,
+},
+passwordResetExpires: {
+    type: Date,
+    select: false,
+},
  createdAt: {
     type: Date,
     default: Date.now,
