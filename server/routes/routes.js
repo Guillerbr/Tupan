@@ -12,6 +12,9 @@ router.post('/login', userController.login);
 
 router.post('/forgot-password', userController.forgotPassword);
 
+router.post('/reset-password', userController.resetPassword);
+
+
 
 //routers user 
 router.get('/user/:userId', userController.allowIfLoggedin, userController.getUser);
