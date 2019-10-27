@@ -197,42 +197,6 @@ exports.userInfo = async (req, res, next) => {
 }
 
 
-
-
-/*
-//coment implement block
-//reset password
-exports.resetPass = async (req, res, next) => {
-    try {
-        const { password } = req.body
-
-       // if (await User.findOne({ email }))
-        //    return res.status(400).send({ error: 'User already registered' });
-        const hashedPassword = await hashPassword(password);
-
-        const newPassword = await User.findOne({ password: hashedPassword });
-        //console.log(newPassword);
-
-        await newPassword.save();
-        res.json({
-            //  data: newUser,                    
-            accessToken
-        })
-
-       // console.log(newPassword);
-
-
-    } catch (error) {
-        //console.log(error);
-        // next(error)
-        return res.status(400).send({ error: 'Error update password' });
-    }
-}
-
-*/
-
-
-
 //register users roles admin for admin
 exports.signupAdmin = async (req, res, next) => {
     try {
@@ -279,9 +243,8 @@ exports.testSendMail = async (req, res) => {
 }
 
 
-
 //forgot-password
-exports.forgotPassword = async (req, res, next) => {
+exports.forgotPassword = async (req, res) => {
 
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
@@ -306,10 +269,10 @@ exports.forgotPassword = async (req, res, next) => {
             from: 'apitest@api.com',     //    'apinet@gmail.com'
             subject: 'Sending with Twilio SendGrid is Fun',
             text: 'and easy to do anywhere, even with Node.js',
-            html: token , email,         //'<strong>and easy to do anywhere fd, even with Node.js {token} </strong> {token}',
+            html: token, email,         //'<strong>and easy to do anywhere fd, even with Node.js {token} </strong> {token}',
         };
 
-        sgMail.send(msg); 
+        sgMail.send(msg);
 
         //res.send({ Successfully: true, user: req.userId });      
         console.log(sgMail);
@@ -317,11 +280,9 @@ exports.forgotPassword = async (req, res, next) => {
 
     } catch (err) {
 
-        res.status(400).send({ error: 'Error on recover password, try again!' });
+        res.status(400).send({ error: 'E-mail does not exist!' });
     }
 }
-
-
 
 
 //ping get status api public
