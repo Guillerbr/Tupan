@@ -278,8 +278,10 @@ exports.testSendMail = async (req, res) => {
 
 }
 
+
+
 //forgot-password
-exports.forgotPassword = async (req, res) => {
+exports.forgotPassword = async (req, res, next) => {
 
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
@@ -304,14 +306,12 @@ exports.forgotPassword = async (req, res) => {
             from: 'apitest@api.com',     //    'apinet@gmail.com'
             subject: 'Sending with Twilio SendGrid is Fun',
             text: 'and easy to do anywhere, even with Node.js',
-            html: token  //'<strong>and easy to do anywhere fd, even with Node.js {token} </strong> {token}',
+            html: token , email,         //'<strong>and easy to do anywhere fd, even with Node.js {token} </strong> {token}',
         };
-        // async (sgMail.send(msg));
 
-        sgMail.send(msg);
+        sgMail.send(msg); 
 
-        //res.send({ Successfully: true, user: req.userId }); 
-
+        //res.send({ Successfully: true, user: req.userId });      
         console.log(sgMail);
         console.log(token);
 
@@ -320,6 +320,8 @@ exports.forgotPassword = async (req, res) => {
         res.status(400).send({ error: 'Error on recover password, try again!' });
     }
 }
+
+
 
 
 //ping get status api public
