@@ -268,7 +268,7 @@ exports.testSendMail = async (req, res) => {
     const msg = {
         to: 'fociyesac@netmail8.com',
         from: 'guillerbrasilrj@gmail.com',
-        subject: 'Sending with Twilio SendGrid is Fun',
+        subject: 'Test api sendgrid status',
         text: 'Test ping API Sendgrid',
         html: '<strong>API service send email sendgrid is success!</strong>',
     };

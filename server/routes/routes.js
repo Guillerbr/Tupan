@@ -38,6 +38,10 @@ router.delete('/balance/:balanceId', userController.allowIfLoggedin, userControl
 //test status api
 router.get('/ping', userController.pingme);
 
+//test send api email sendgrid
+router.get('/testmail', userController.testSendMail);
+
+
 //admin signup user role register
 router.post('/signupadmin', userController.allowIfLoggedin, userController.grantAccess('readAny', 'profile'), userController.signupAdmin);
 
