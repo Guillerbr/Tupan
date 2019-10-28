@@ -2,9 +2,9 @@
 
 -IMPLEMENT
 
-Create route function for password reset
+Do password encryption in reset-password function
 
-Create route function to recover lost password
+
 
 
 
