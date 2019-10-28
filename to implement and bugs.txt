@@ -18,6 +18,8 @@ When the token is sent in the request header of a route without authentication t
 
 Forgot-password function does not return error or success to user.
 
+After reset-password there is an error logging in with the new password registered.
+
 
 
 
