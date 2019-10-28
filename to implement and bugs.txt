@@ -1,5 +1,7 @@
 -TO DO IMPLEMENT AND BUGS-
 
+
+
 -IMPLEMENT
 
 Do password encryption in reset-password function
@@ -11,7 +13,6 @@ Do password encryption in reset-password function
 
 
 -BUGS
-
 
 When the token is sent in the request header of a route without authentication the token error is reported.
 
