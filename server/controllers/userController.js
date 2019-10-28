@@ -285,6 +285,40 @@ exports.forgotPassword = async (req, res) => {
 }
 
 
+//reset-password
+exports.resetPassword = async (req, res) => {
+
+    const { email, token, password } = req.body;
+
+    try {
+        const user = await User.findOne({ email })
+            .select('+passwordResetToken passwordResetExpires');
+
+        if (!user)
+            return res.status(400).send({ error: 'User not found' });
+
+        if (token !== user.passwordResetToken)
+            return res.status(400).send({ error: 'Token invalid' });
+
+        const now = new Date();
+
+        if (now > user.passwordResetExpires)
+            return res.status(400).send({ error: 'Token expired, generate new token' });
+
+        user.password = password;
+
+        await user.save();
+        res.send({ Successfully: true, user: req.userId });     //ok return user id,alter response sucess mensage
+
+
+    } catch (err) {
+        //console.log(err);
+        res.status(400).send({ error: 'Cannot reset password, try again' });
+
+    }
+}
+
+
 //ping get status api public
 exports.pingme = async (req, res) => {
     res.status(200).json({
