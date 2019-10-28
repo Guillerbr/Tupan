@@ -140,7 +140,7 @@ exports.deleteUser = async (req, res, next) => {
 }
 
 
-//grantAccess executes permission if user has authorization                //IMPORTANT
+//grantAccess executes permission if user has authorization                      //IMPORTANT
 exports.grantAccess = function (action, resource) {
     return async (req, res, next) => {
         try {
@@ -289,6 +289,7 @@ exports.forgotPassword = async (req, res) => {
 exports.resetPassword = async (req, res) => {
 
     const { email, token, password } = req.body;
+
 
     try {
         const user = await User.findOne({ email })

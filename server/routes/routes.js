@@ -15,7 +15,6 @@ router.post('/forgot-password', userController.forgotPassword);
 router.post('/reset-password', userController.resetPassword);
 
 
-
 //routers user 
 router.get('/user/:userId', userController.allowIfLoggedin, userController.getUser);
 
@@ -43,15 +42,15 @@ router.delete('/balance/:balanceId', userController.allowIfLoggedin, userControl
 //test status api
 router.get('/ping', userController.pingme);
 
-//test send api email sendgrid
+
+//test send api email sendgrid-for dev-not use production-
 router.get('/testmail', userController.testSendMail);
 
 
 //admin signup user role register
 router.post('/signupadmin', userController.allowIfLoggedin, userController.grantAccess('readAny', 'profile'), userController.signupAdmin);
 
-//resetpassword
-//router.post('/resetpassword', userController.allowIfLoggedin, userController.grantAccess('updateAny', 'profile'), userController.resetPass);
+
 
 
 module.exports = router;
