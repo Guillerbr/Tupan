@@ -80,7 +80,7 @@ exports.login = async (req, res, next) => {
 }
 
 
-//function get total users
+//function admin get total users and info
 exports.getUsers = async (req, res, next) => {
     const users = await User.find({});
     res.status(200).json({

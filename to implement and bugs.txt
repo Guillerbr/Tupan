@@ -16,6 +16,8 @@ Do password encryption in reset-password function
 
 When the token is sent in the request header of a route without authentication the token error is reported.
 
+Forgot-password function does not return error or success to user.
+
 
 
 
