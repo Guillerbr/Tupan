@@ -286,6 +286,8 @@ exports.forgotPassword = async (req, res) => {
 
 
 //reset-password
+//add bcrypt function so the new password is encrypted
+//The password arrives in the database, but not encrypted.
 exports.resetPassword = async (req, res) => {
 
     const { email, token, password } = req.body;
