@@ -278,7 +278,7 @@ exports.forgotPassword = async (req, res) => {
         console.log(sgMail);
         console.log(token);
         res.status(200).json({
-            Message: "Request sent successfully,check token in your email!"
+            Success: "Request sent successfully,check token in your email!"
 
         });
 
