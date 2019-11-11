@@ -315,11 +315,13 @@ exports.resetPassword = async (req, res) => {
         user.password = password;
 
         await user.save();
-        //  res.send({ Successfully: true, user: req.userId });     //ok return user id,alter response sucess mensage
+         res.send({ Successfully: true, user: req.userId });     //ok return user id,alter response sucess mensage
+        
+        /*
         res.status(200).json({
             message: "Password changed successfully"
 
-        });
+        }); */
 
     } catch (err) {
         //console.log(err);
