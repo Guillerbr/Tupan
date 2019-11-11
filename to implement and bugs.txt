@@ -6,7 +6,7 @@
 
 Do password encryption in reset-password function
 
-In the forgot-password route, printing a return to the user, whether right or not, inform token was sent to the email correctly.
+
 
 
 
@@ -17,8 +17,6 @@ In the forgot-password route, printing a return to the user, whether right or no
 -BUGS
 
 When the token is sent in the request header of a route without authentication the token error is reported.
-
-Forgot-password function does not return error or success to user.
 
 After reset-password there is an error logging in with the new password registered.
 
