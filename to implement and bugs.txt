@@ -10,12 +10,14 @@ Verify that after encryption the new password can be used at login.
 
 Implement an api cielo payment route, using axes in http requests.
 
+Use enhanced authentication with firebase device module.
 
 
 
 ----------------------------------------
 Install the web-socket-io library
 Install the firebase library
+
 
 
 
