@@ -4,18 +4,25 @@
 
 -IMPLEMENT
 
-Do password encryption in reset-password function bcrypt function
+Do password encryption in reset-password function bcrypt function.
 
-Verify that after encryption the new password can be used at login
+Verify that after encryption the new password can be used at login.
+
+Implement an api cielo payment route, using axes in http requests.
 
 
+
+
+----------------------------------------
 Install the web-socket-io library
+Install the firebase library
 
 
 
 
 
 
+-----------------------------------------
 
 -BUGS
 
