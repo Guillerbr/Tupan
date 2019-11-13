@@ -7,9 +7,11 @@ Do password encryption in reset-password function bcrypt function.
 
 Verify that after encryption the new password can be used at login.
 
-Implement an api cielo payment route, using axes in http requests.
+Implement an api cielo payment route, using axios in http requests.
 
 Use redis for queue caching and server optimization.
+
+Use websocket to chat and book bitcoin offers or currency quotes.
 
 Use enhanced authentication with firebase device module.
 
