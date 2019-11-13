@@ -9,6 +9,7 @@ Do password encryption in reset-password function bcrypt function
 Verify that after encryption the new password can be used at login
 
 
+Install the axios library
 
 
 
@@ -21,6 +22,8 @@ Verify that after encryption the new password can be used at login
 When the token is sent in the request header of a route without authentication the token error is reported.
 
 After reset-password there is an error logging in with the new password registered.
+
+
 
 
 
