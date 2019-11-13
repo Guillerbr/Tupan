@@ -17,6 +17,7 @@ Use enhanced authentication with firebase device module.
 ----------------------------------------
 Install the web-socket-io library
 Install the firebase library
+Install the Redis library
 
 
 
