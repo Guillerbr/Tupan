@@ -9,7 +9,7 @@ Do password encryption in reset-password function bcrypt function
 Verify that after encryption the new password can be used at login
 
 
-Install the axios library
+Install the web-socket-io library
 
 
 
