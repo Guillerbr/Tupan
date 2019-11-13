@@ -1,7 +1,6 @@
 -TO DO IMPLEMENT AND BUGS-
 
 
-
 -IMPLEMENT
 
 Do password encryption in reset-password function bcrypt function.
@@ -10,7 +9,10 @@ Verify that after encryption the new password can be used at login.
 
 Implement an api cielo payment route, using axes in http requests.
 
+Use redis for queue caching and server optimization.
+
 Use enhanced authentication with firebase device module.
+
 
 
 
@@ -18,9 +20,6 @@ Use enhanced authentication with firebase device module.
 Install the web-socket-io library
 Install the firebase library
 Install the Redis library
-
-
-
 
 
 
