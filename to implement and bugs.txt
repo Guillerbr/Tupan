@@ -4,7 +4,9 @@
 
 -IMPLEMENT
 
-Do password encryption in reset-password function
+Do password encryption in reset-password function bcrypt function
+
+Verify that after encryption the new password can be used at login
 
 
 
