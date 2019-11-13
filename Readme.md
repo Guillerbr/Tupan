@@ -44,7 +44,10 @@
 ## Use Sendgrid Api email service
      Automated Email Sending Provider.
      Create your sendgrid account, customize your private API key.
-     Add the you private key to the .env file at SENDGRID_API_KEY.   
+     Add the you private key to the .env file at SENDGRID_API_KEY.  
+
+## Use E-mail token 
+     Use email verification token for password re-registration.           
 
 
 ## Access token and requirement headers
