@@ -11,6 +11,20 @@ const { roles } = require('../roles');
 
 exports.cieloPayment = async (req, res, next) => {
 
+    //  const MerchantId = 'b17ac0ba-ff14-408a-93d7-dbcba07363b0'
+    //  const MerchantKey = 'XKSPPVZAZGAXATFPYBLNLKDHMLDMUENYIYJJXJUC'
+
+    /*
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                MerchantId: "b17ac0ba-ff14-408a-93d7-dbcba07363b0",
+                MerchantKey: "XKSPPVZAZGAXATFPYBLNLKDHMLDMUENYIYJJXJUC"
+                // 'RequestId': 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+            }
+        };
+    */
+
     try {
         const { CardNumber, Holder, ExpirationDate, SecurityCode, amount } = req.body
 
