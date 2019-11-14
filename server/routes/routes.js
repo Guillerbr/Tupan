@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
 const balanceController = require('../controllers/balanceController');
+const paycieloController = require('../controllers/pay-cieloController');
 
 
 //routers auth
@@ -25,6 +26,9 @@ router.put('/user/:userId', userController.allowIfLoggedin, userController.grant
 router.delete('/user/:userId', userController.allowIfLoggedin, userController.grantAccess('deleteAny', 'profile'), userController.deleteUser);
 
 router.get('/userinfo', userController.userInfo);
+
+//routers payment credit card cielo gateway
+router.post('/payment', paycieloController.cieloPayment);
 
 
 //router Balances in balanceController.js
