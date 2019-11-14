@@ -1,5 +1,5 @@
 const User = require('../models/userModel');
-const Balance = require('../models/balanceModel');
+const Paycielo = require('../models/paymentModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
@@ -21,3 +21,5 @@ exports.cieloPayment = async (req, res, next) => {
     }
 
 }
+
+
