@@ -6,42 +6,45 @@ const PaymentSchema = new Schema({
     /*
         user: {
             type: mongoose.Schema.Types.ObjectId,     //ref user id, moogoose
-            ref: 'user',                             //user schema ref
+            ref: 'user',                              //user schema ref
             require: true
     
         },
         
         */
-    number_card: {
+    CardNumber: {
         type: Number,
         required: true
         //select: false,
     },
-    name_card: {
+    Holder: {
         type: String,
         required: true
         //select: false,
     },
-    date_card: {
-        type: String,
+    ExpirationDate: {                      //exemple 12/2021
+        type: Number,
         required: true
         //select: false,
     },
-    cvv_card: {
-        type: String,
+    SecurityCode: {
+        type: Number,
         required: true
         //select: false,
     },
+    amount: {
+        type: Number,
+        required: true
+        //select: false,
+    },
+
 
     createdAt: {
         type: Date,
         default: Date.now,
     },
-    updatedAt: {
-        type: Date,
-        default: Date.now,
-    },
-    
+
+
 
 
 

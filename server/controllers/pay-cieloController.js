@@ -1,23 +1,37 @@
 const User = require('../models/userModel');
-const Paycielo = require('../models/paymentModel');
+const Payment = require('../models/paymentModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-// Add this to the top of the file
+const axios = require('axios');
+
+// Add this to the top of the file-roles acl file logic
 const { roles } = require('../roles');
 
 
 exports.cieloPayment = async (req, res, next) => {
+
     try {
-        const balanceId = req.params.balanceId;
-        const balance = await Balance.findById(balanceId);
-        if (!balance) return res.status(400).json({ error: 'Balance does not exist' });
-        res.status(200).json({
-            data: balance
+        const { CardNumber, Holder, ExpirationDate, SecurityCode, amount } = req.body
+
+        const newPayment = new Payment({ CardNumber, Holder, ExpirationDate, SecurityCode, amount })
+
+       // await axios();
+
+        await newPayment.save();
+
+
+        res.json({
+            data: newPayment
+
+
         });
-    } catch (error) {
-        // next(error)
-        return res.status(400).send({ error: 'Error finding user' });
+
+
+    } catch (err) {
+        return res.status(400).send({ error: 'Payment failed' });
+
+
     }
 
 }
