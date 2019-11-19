@@ -11,8 +11,13 @@ const { roles } = require('../roles');
 
 exports.cieloPayment = async (req, res, next) => {
 
-    //  const MerchantId = 'b17ac0ba-ff14-408a-93d7-dbcba07363b0'
-    //  const MerchantKey = 'XKSPPVZAZGAXATFPYBLNLKDHMLDMUENYIYJJXJUC'
+    //const MerchantId = 'b17ac0ba-ff14-408a-93d7-dbcba07363b0'
+    //const MerchantKey = 'XKSPPVZAZGAXATFPYBLNLKDHMLDMUENYIYJJXJUC'
+    //const Content-Type = "application/json"
+
+    //  let MerchantId = 'b17ac0ba-ff14-408a-93d7-dbcba07363b0'
+    //  let MerchantKey = 'XKSPPVZAZGAXATFPYBLNLKDHMLDMUENYIYJJXJUC'
+    //  let Content-Type = "application/json"
 
     /*
         const config = {
@@ -27,17 +32,24 @@ exports.cieloPayment = async (req, res, next) => {
 
     try {
         const { CardNumber, Holder, ExpirationDate, SecurityCode, amount } = req.body
-
         const newPayment = new Payment({ CardNumber, Holder, ExpirationDate, SecurityCode, amount })
 
-        // await axios();
+
+        MerchantId = 'b17ac0ba-ff14-408a-93d7-dbcba07363b0'
+        MerchantKey = 'XKSPPVZAZGAXATFPYBLNLKDHMLDMUENYIYJJXJUC'
+
+        const { MerchantId, MerchantKey } = req.headers;
+
+        await axios.post('https://apisandbox.cieloecommerce.cielo.com.br')
+            .then(response => (this.info = response))
+
 
         await newPayment.save();
 
 
+
         res.json({
             data: newPayment
-
 
         });
 
