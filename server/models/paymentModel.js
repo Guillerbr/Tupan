@@ -23,7 +23,7 @@ const PaymentSchema = new Schema({
         //select: false,
     },
     ExpirationDate: {                      //exemple 12/2021
-        type: Number,
+        type: String,
         required: true
         //select: false,
     },
