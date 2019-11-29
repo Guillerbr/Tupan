@@ -3,6 +3,8 @@ const Payment = require('../models/paymentModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
+
+
 const axios = require('axios');
 
 //const URL = 'https://apisandbox.cieloecommerce.cielo.com.br'
@@ -39,9 +41,9 @@ exports.cieloPayment = async (req, res, next) => {
     */
 
     try {
-        const { CardNumber, Holder, ExpirationDate, SecurityCode, amount } = req.body
+        const { CardNumber, Holder, ExpirationDate, SecurityCode, Amount } = req.body
 
-        const newPayment = new Payment({ CardNumber, Holder, ExpirationDate, SecurityCode, amount })
+        const newPayment = new Payment({ CardNumber, Holder, ExpirationDate, SecurityCode, Amount })
 
 
         // let = MerchantId = 'b17ac0ba-ff14-408a-93d7-dbcba07363b0'
@@ -64,10 +66,12 @@ exports.cieloPayment = async (req, res, next) => {
                 { headers: { MerchantId, MerchantKey, } })        // "Content-Type": "application/json", "application/x-www-form-urlencoded",
             .then(response => {
                 // If request is good...
+
                 console.log(response.data)
             })
             .catch((error) => {
                 console.log(error)
+                //console.log(response.data)
             })
 
 
@@ -92,7 +96,7 @@ exports.cieloPayment = async (req, res, next) => {
 
     } catch (err) {
         return res.status(400).send({ error: 'Payment failed' });
-
+        //console.log(response.data)
 
     }
 

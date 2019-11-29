@@ -27,10 +27,20 @@ mongoose
         console.log('Connected to the Database successfully');
     });
 
-//set cors and bodyparser  
-//cors setting to receive all origins  
-app.use(bodyParser.urlencoded({ extended: true })).use(cors());      //implement in cors, connect to specifically configured origin domain
 
+//cors setting to receive all origins  
+//support parsing of application/x-www-form-urlencoded post data
+
+// support parsing of application/json type post data
+app.use(bodyParser.json()).use(cors());
+
+//support parsing of application/x-www-form-urlencoded post data
+app.use(bodyParser.urlencoded({ extended: true })).use(cors()); 
+
+//implement in cors, connect to specifically configured origin domain-feature
+
+
+   
 
 //define default type headers 
 //x-access-token use token

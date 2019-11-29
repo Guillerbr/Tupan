@@ -32,7 +32,7 @@ const PaymentSchema = new Schema({
         required: true
         //select: false,
     },
-    amount: {
+    Amount: {
         type: Number,
         required: true
         //select: false,
