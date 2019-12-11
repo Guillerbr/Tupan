@@ -63,15 +63,19 @@ exports.cieloPayment = async (req, res, next) => {
 
         axios
             .post('https://apisandbox.cieloecommerce.cielo.com.br/1/sales/',
-                { headers: { MerchantId, MerchantKey, } })        // "Content-Type": "application/json", "application/x-www-form-urlencoded",
+                { headers: { MerchantId, MerchantKey } }) ,
+               { body: newPayment }       // "Content-Type": "application/json", "application/x-www-form-urlencoded",
             .then(response => {
                 // If request is good...
 
                 console.log(response.data)
+               // res.json(response.data)
+               //res.json(response.data)
             })
             .catch((error) => {
                 console.log(error)
                 //console.log(response.data)
+               // res.json(response.data)
             })
 
 

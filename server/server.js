@@ -4,8 +4,11 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const path = require('path')
+
+
 const User = require('./models/userModel')
 const routes = require('./routes/routes.js');
+
 
 //import cors
 const cors = require('cors');
@@ -32,7 +35,7 @@ mongoose
 //support parsing of application/x-www-form-urlencoded post data
 
 // support parsing of application/json type post data
-app.use(bodyParser.json()).use(cors());
+app.use(bodyParser.json());
 
 //support parsing of application/x-www-form-urlencoded post data
 app.use(bodyParser.urlencoded({ extended: true })).use(cors()); 
@@ -40,7 +43,7 @@ app.use(bodyParser.urlencoded({ extended: true })).use(cors());
 //implement in cors, connect to specifically configured origin domain-feature
 
 
-   
+
 
 //define default type headers 
 //x-access-token use token

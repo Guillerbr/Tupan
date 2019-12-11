@@ -15,6 +15,8 @@
      cors
      sendgrid/mail
      crypto
+     speakeasy
+     axios
 
 
 
