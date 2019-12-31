@@ -2,12 +2,15 @@
 const BodyParser = require("body-parser");
 const Speakeasy = require("speakeasy");
 const Express = require("express");
+const axios = require('axios');
+var qs = require("qs");
+
+var url = 'https://api.authy.com/protected/json/users/new'
 
 var app = Express();
 
 //authy twillo sms 2fa
-//var keytwilio = process.env.TWILIO_API_KEY
-var authy = require('authy')('');    //TWILIO_API_KEY
+var authy = require('authy')('');    //AUTHY-TWILIO_API_KEY
 
 
 app.use(BodyParser.json());
@@ -107,25 +110,63 @@ exports.twilioauthy = async (req, res, next) => {
 
 
 
+};
 
 
+//register cell phone client 2fa
+exports.twilioregistersmsauthy = async (req, res, next) => {
+
+
+    var data = {
+        user: {
+            email: "jj33@gmail.com",
+            cellphone: "24-9995-11789",
+            country_code: "55"
+        }
+    };
+
+    axios.post(url, qs.stringify(data), {
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            'X-Authy-API-Key': 'ZvvPp3x9CuxcdLiDiO47mdUaGOUig1Sl'
+        }
+    }).then((data) => {
+        console.log("data", data)
+    }).catch((e) => {
+        console.log("error", e)
+    })
 
 
 
 };
 
-exports.twilioregistersmsauthy  = async (req, res, next) => {
-
-    /*
-
+/*       ------- INFORMATION --------
 
 curl -XPOST "https://api.authy.com/protected/json/users/new" \
 -H "X-Authy-API-Key: xicDBI3OL8bRtsSO6TVT5waoczzh6bAw" \
 --data-urlencode user[email]="user@domain.com" \
 --data-urlencode user[cellphone]="24-9995-11090" \
 --data-urlencode user[country_code]="55"
-   
+
+
+curl -i "https://api.authy.com/protected/json/sms/220479801" \
+    -H "X-Authy-API-Key: xicDBI3OL8bRtsSO6TVT5waoczzh6bAw"
+
+
+
+curl -X POST https://verify.twilio.com/v2/Services \
+--data-urlencode "FriendlyName=My First Verify Service" \
+-u ACc9e8a16ec4b344a6577767bb401025c6:2d503735899cc2a15a16b48d972bc37e
+
+
+
+
+
+
+doc:
+
+https://www.twilio.com/docs/verify
+
+https://www.twilio.com/docs/authy
 
 */
-
-};

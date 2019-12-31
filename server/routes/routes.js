@@ -29,7 +29,7 @@ router.post('/2fa-validate', userController.allowIfLoggedin, userController.gran
 //twilio 2fa
 //router.get('/twilio', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.twilioauthy);
 router.get('/twilio', twofactorController.twilioauthy);
-router.post('/register-sms', twofactorController.twilioregistersmsauthy);
+router.get('/register-sms', twofactorController.twilioregistersmsauthy);
 
 
 

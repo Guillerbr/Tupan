@@ -17,6 +17,7 @@
      sendgrid/mail
      crypto
      axios
+     qs
      authy -twillo
 
 
