@@ -3,14 +3,19 @@ const Payment = require('../models/paymentModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
+const BodyParser = require("body-parser");
+const Express = require("express");
+
+var app = Express();
+
+app.use(BodyParser.json());
+app.use(BodyParser.urlencoded({ extended: true }));
+
 
 
 const axios = require('axios');
 
 //const URL = 'https://apisandbox.cieloecommerce.cielo.com.br'
-
-// Add this to the top of the file-roles acl file logic
-const { roles } = require('../roles');
 
 
 exports.cieloPayment = async (req, res, next) => {
@@ -24,7 +29,7 @@ exports.cieloPayment = async (req, res, next) => {
 
 
 
-
+       
     //  let MerchantId = 'b17ac0ba-ff14-408a-93d7-dbcba07363b0'
     //  let MerchantKey = 'XKSPPVZAZGAXATFPYBLNLKDHMLDMUENYIYJJXJUC'
     //  let Content-Type = "application/json"
@@ -41,6 +46,11 @@ exports.cieloPayment = async (req, res, next) => {
     */
 
     try {
+
+        const MerchantId = process.env.MERCHANTID
+        const MerchantKey = process.env.MERCHANTKEY
+
+
         const { CardNumber, Holder, ExpirationDate, SecurityCode, Amount } = req.body
 
         const newPayment = new Payment({ CardNumber, Holder, ExpirationDate, SecurityCode, Amount })
@@ -68,14 +78,18 @@ exports.cieloPayment = async (req, res, next) => {
             .then(response => {
                 // If request is good...
 
-                console.log(response.data)
-               // res.json(response.data)
+               // console.log(response.data)
+                res.json(response.data)
                //res.json(response.data)
+               //console.log(MerchantId)
+               //console.log(MerchantKey)
             })
             .catch((error) => {
                 console.log(error)
                 //console.log(response.data)
                // res.json(response.data)
+               //console.log(MerchantId)
+              // console.log(MerchantKey)
             })
 
 

@@ -17,6 +17,10 @@ Use enhanced authentication with firebase device module.
 
 Use online payment method with bitcoin transaction,QRCODE PAYMENTS.
 
+U2F authentication for super admin 
+
+Authentication biometrics-fingerprint,voice and face recognition
+
 
 
 

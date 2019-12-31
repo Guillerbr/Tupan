@@ -43,10 +43,24 @@
      get('/userinfo')
 
 
+
+## Roles ACL-RBAC accesscontrol lib module Accesscontrol
+    
+     in /server/roles.js    
+     We can configure the crud access level rules per user
+     Admin user type has to control CRUD over system
+
+
+## Use 2fa TOTP token module Speakeasy  
+     Use two-factor authentication for node.js.Speakeasy in Google Authenticator.
+     2FA in a Node.js API with time-based one-time passwords.
+
+
 ## Use Sendgrid Api email service
      Automated Email Sending Provider.
      Create your sendgrid account, customize your private API key.
      Add the you private key to the .env file at SENDGRID_API_KEY.  
+
 
 ## Use E-mail token 
      Use email verification token for password re-registration.           
@@ -57,12 +71,6 @@
      x-access-token     header
      content-Type:      application/x-www-form-urlencoded  
 
-
-## Roles accesscontrol lib module
-    
-     in /server/roles.js    
-     We can configure the crud access level rules per user
-     Admin user type has to control CRUD over system
 
 ## Creating your admin account
 

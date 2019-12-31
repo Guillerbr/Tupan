@@ -42,8 +42,7 @@ app.use(bodyParser.urlencoded({ extended: true })).use(cors());
 
 //implement in cors, connect to specifically configured origin domain-feature
 
-
-
+//  app.use(Cors({ origin: [APP_ID], credentials: true }));
 
 //define default type headers 
 //x-access-token use token
