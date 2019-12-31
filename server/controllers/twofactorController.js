@@ -7,7 +7,7 @@ var app = Express();
 
 //authy twillo sms 2fa
 //var keytwilio = process.env.TWILIO_API_KEY
-var authy = require('authy')('xicDBI3OL8bRtsSO6TVT5waoczzh6bAw');    //TWILIO_API_KEY
+var authy = require('authy')('');    //TWILIO_API_KEY
 
 
 app.use(BodyParser.json());
