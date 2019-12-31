@@ -44,7 +44,7 @@
 
 
 
-## Roles ACL-RBAC accesscontrol lib module Accesscontrol
+## Roles ACL_RBAC accesscontrol lib module Accesscontrol
     
      in /server/roles.js    
      We can configure the crud access level rules per user

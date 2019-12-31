@@ -3,23 +3,32 @@
 
 -IMPLEMENT
 
-Do password encryption in reset-password function bcrypt function.
+Do password encryption in reset-password function bcrypt function.  *Working
 
 Verify that after encryption the new password can be used at login.
 
-Implement an api cielo payment route, using axios in http requests.
+Implement an api cielo payment route, using axios in http requests.  *Working
 
 Use redis for queue caching and server optimization.
 
 Use websocket to chat and book bitcoin offers or currency quotes.
 
-Use enhanced authentication with firebase device module.
+Use enhanced authentication with firebase device id module.
 
-Use online payment method with bitcoin transaction,QRCODE PAYMENTS.
+Use online payment method with bitcoin transaction,QRCODE PAYMENTS.https://btcpayserver.org/
 
-U2F authentication for super admin 
+U2F authentication for super admin. 
 
-Authentication biometrics-fingerprint,voice and face recognition
+Authentication biometrics-fingerprint,voice and face recognition.
+
+Security level layer for login,sending authentication token to email.
+
+Payment getways like visa, mastercard, stripe.And other credit card payment slips.
+
+2FA-Two-step authentication with sms, sending totp.Twillo token SMS Authy Verify API.  *Working
+
+
+
 
 
 
