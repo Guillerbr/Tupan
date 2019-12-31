@@ -5,7 +5,8 @@
 
 ## Dependencies used
 
-     accesscontrol 
+     accesscontrol
+     speakeasy 
      bcrypt 
      body-parser
      dotenv 
@@ -15,8 +16,8 @@
      cors
      sendgrid/mail
      crypto
-     speakeasy
      axios
+     authy -twillo
 
 
 
@@ -44,7 +45,7 @@
 
 
 
-## Roles ACL_RBAC accesscontrol lib module Accesscontrol
+## Roles ACL-RBAC accesscontrol lib module Accesscontrol
     
      in /server/roles.js    
      We can configure the crud access level rules per user
@@ -72,7 +73,7 @@
      content-Type:      application/x-www-form-urlencoded  
 
 
-## Creating your admin account
+## Creating your frist seed admin account
 
      post ('/signup')
      Headers

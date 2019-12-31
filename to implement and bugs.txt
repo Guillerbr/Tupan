@@ -1,6 +1,6 @@
 -TO DO IMPLEMENT AND BUGS-
 
-
+-------------------------------------------------------------------------------------------------------------
 -IMPLEMENT
 
 Do password encryption in reset-password function bcrypt function.  *Working
@@ -25,23 +25,16 @@ Security level layer for login,sending authentication token to email.
 
 Payment getways like visa, mastercard, stripe.And other credit card payment slips.
 
+Document a backend API in SwaggerHub.
+
 2FA-Two-step authentication with sms, sending totp.Twillo token SMS Authy Verify API.  *Working
 
 
 
+-------------------------------------------------------------------------------------------------------------
 
 
-
-
-----------------------------------------
-Install the web-socket-io library
-Install the firebase library
-Install the Redis library
-
-
-
-
------------------------------------------
+_____________________________________________________________________________________________________________
 
 -BUGS
 
@@ -55,4 +48,4 @@ After reset-password there is an error logging in with the new password register
 
 
 
-
+______________________________________________________________________________________________________________
