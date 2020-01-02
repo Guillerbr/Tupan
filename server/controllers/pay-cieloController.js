@@ -2,6 +2,7 @@ const User = require('../models/userModel');
 const Payment = require('../models/paymentModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+var qs = require("qs");
 
 const BodyParser = require("body-parser");
 const Express = require("express");

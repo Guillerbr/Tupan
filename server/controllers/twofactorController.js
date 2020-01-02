@@ -5,6 +5,7 @@ const Express = require("express");
 const axios = require('axios');
 var qs = require("qs");
 
+//url twilio authy api post register
 var url = 'https://api.authy.com/protected/json/users/new'
 
 var app = Express();
@@ -67,6 +68,8 @@ exports.tokenvalidate = async (req, res, next) => {
 
 };
 
+
+//twilio modules
 
 
 //twillo 2fa sms auth
