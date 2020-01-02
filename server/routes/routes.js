@@ -46,7 +46,8 @@ router.get('/userinfo', userController.userInfo);
 
 
 //routers payment credit card cielo gateway
-router.post('/payment', paycieloController.cieloPayment);
+//router.post('/payment', paycieloController.cieloPayment);
+router.get('/payment', paycieloController.cieloPayment);
 
 
 //router Balances in balanceController.js

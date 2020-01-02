@@ -2,10 +2,11 @@ const User = require('../models/userModel');
 const Payment = require('../models/paymentModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-var qs = require("qs");
+
 
 const BodyParser = require("body-parser");
 const Express = require("express");
+const axios = require('axios');
 
 var app = Express();
 
@@ -13,112 +14,105 @@ app.use(BodyParser.json());
 app.use(BodyParser.urlencoded({ extended: true }));
 
 
+//cielo endpoint url API
+var url = 'https://apisandbox.cieloecommerce.cielo.com.br/1/sales/'
 
-const axios = require('axios');
-
-//const URL = 'https://apisandbox.cieloecommerce.cielo.com.br'
 
 
 exports.cieloPayment = async (req, res, next) => {
 
-    //const MerchantId = 'b17ac0ba-ff14-408a-93d7-dbcba07363b0'
-    //const MerchantKey = 'XKSPPVZAZGAXATFPYBLNLKDHMLDMUENYIYJJXJUC'
-    //const Content-Type = "application/json"
+    var data = {
 
-    const MerchantId = process.env.MERCHANTID
-    const MerchantKey = process.env.MERCHANTKEY
-
-
-
-       
-    //  let MerchantId = 'b17ac0ba-ff14-408a-93d7-dbcba07363b0'
-    //  let MerchantKey = 'XKSPPVZAZGAXATFPYBLNLKDHMLDMUENYIYJJXJUC'
-    //  let Content-Type = "application/json"
-
-    /*
-        const config = {
-            headers: {
-                "Content-Type": "application/json",
-                MerchantId: "b17ac0ba-ff14-408a-93d7-dbcba07363b0",
-                MerchantKey: "XKSPPVZAZGAXATFPYBLNLKDHMLDMUENYIYJJXJUC"
-                // 'RequestId': 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
-            }
-        };
-    */
-
-    try {
-
-        const MerchantId = process.env.MERCHANTID
-        const MerchantKey = process.env.MERCHANTKEY
+        "MerchantOrderId": "2014111703",
+        "Customer": {
+            "Name": "Comprador crédito simples"
+        },
+        "Payment": {
+            "Type": "CreditCard",
+            "Amount": 15700,
+            "Installments": 1,
+            "SoftDescriptor": "123456789ABCD",
+            "CreditCard": {
+                "CardNumber": "1234123412341231",
+                "Holder": "Teste Holder",
+                "ExpirationDate": "12/2030",
+                "SecurityCode": "123",
+                "Brand": "Visa",
+                "CardOnFile": {
+                    "Usage": "Used",
+                    "Reason": "Unscheduled"
+                }
+            },
+            "IsCryptoCurrencyNegotiation": true
+        }
 
 
-        const { CardNumber, Holder, ExpirationDate, SecurityCode, Amount } = req.body
-
-        const newPayment = new Payment({ CardNumber, Holder, ExpirationDate, SecurityCode, Amount })
-
-
-        // let = MerchantId = 'b17ac0ba-ff14-408a-93d7-dbcba07363b0'
-        // let = MerchantKey = 'XKSPPVZAZGAXATFPYBLNLKDHMLDMUENYIYJJXJUC'
-
-        // const { MerchantId, MerchantKey } = req.headers;
-
-
-        /*
-                axios.post('https://apisandbox.cieloecommerce.cielo.com.br')
-                    // .then(response => (this.info = response))
-                    .then(function (data) {
-                        console.log(data.headers);
-                    });
-        
-          */
-
-        axios
-            .post('https://apisandbox.cieloecommerce.cielo.com.br/1/sales/',
-                { headers: { MerchantId, MerchantKey } }) ,
-               { body: newPayment }       // "Content-Type": "application/json", "application/x-www-form-urlencoded",
-            .then(response => {
-                // If request is good...
-
-               // console.log(response.data)
-                res.json(response.data)
-               //res.json(response.data)
-               //console.log(MerchantId)
-               //console.log(MerchantKey)
-            })
-            .catch((error) => {
-                console.log(error)
-                //console.log(response.data)
-               // res.json(response.data)
-               //console.log(MerchantId)
-              // console.log(MerchantKey)
-            })
-
-
-
-
-        await newPayment.save();
-
-
-
-
-
-        res.json({
-            data: newPayment
-
-        });
-
-
-        //  console.log(info)
-        //console.log(response)
-        //  console.log(newPayment)
-
-
-    } catch (err) {
-        return res.status(400).send({ error: 'Payment failed' });
-        //console.log(response.data)
 
     }
+
+
+    axios.post(url, (data), {
+        headers: {
+            "Content-Type": "application/json",
+            MerchantId: "b17ac0ba-ff14-408a-93d7-dbcba07363b0",
+            MerchantKey: "XKSPPVZAZGAXATFPYBLNLKDHMLDMUENYIYJJXJUC"
+        }
+
+    }).then((data) => {
+        console.log("data", data)
+    }).catch((e) => {
+        console.log("error", e)
+    })
+
+
+
+
 
 }
 
 
+/*
+
+Cielo doc: https://developercielo.github.io/manual/cielo-ecommerce
+
+SANDBOX
+Requisições	     https://apisandbox.cieloecommerce.cielo.com.br
+Consultas	     https://apiquerysandbox.cieloecommerce.cielo.com.br
+
+
+PRODUÇÃO
+Requisições		https://api.cieloecommerce.cielo.com.br/
+Consultas		https://apiquery.cieloecommerce.cielo.com.br/
+
+
+
+Json body data exemple:
+
+{
+   "MerchantOrderId":"2014111703",
+   "Customer":{
+      "Name":"Comprador crédito simples"
+   },
+   "Payment":{
+     "Type":"CreditCard",
+     "Amount":15700,
+     "Installments":1,
+     "SoftDescriptor":"123456789ABCD",
+     "CreditCard":{
+         "CardNumber":"1234123412341231",
+         "Holder":"Teste Holder",
+         "ExpirationDate":"12/2030",
+         "SecurityCode":"123",
+         "Brand":"Visa",
+         "CardOnFile":{
+            "Usage": "Used",
+            "Reason":"Unscheduled"
+         }
+     },
+     "IsCryptoCurrencyNegotiation": true
+   }
+}
+
+
+
+*/
