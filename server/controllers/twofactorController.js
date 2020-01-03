@@ -120,29 +120,37 @@ exports.twilioauthy = async (req, res, next) => {
 exports.twilioregistersmsauthy = async (req, res, next) => {
 
 
+    const { email, cellphone, country_code } = req.body
+
+
     var data = {
         user: {
-            email: "jj33@gmail.com",
-            cellphone: "24-9995-11789",
-            country_code: "55"
+            email: email,
+            cellphone: cellphone,
+            country_code: country_code
         }
     };
 
     axios.post(url, qs.stringify(data), {
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
-            'X-Authy-API-Key': 'ZvvPp3x9CuxcdLiDiO47mdUaGOUig1Sl'
+            'X-Authy-API-Key': ''      // PRODUCTION API KEY-AUTHY
         }
     }).then((data) => {
         console.log("data", data)
+        res.json({
+            Message: "Successfully registered"
+        })
     }).catch((e) => {
         console.log("error", e)
+        res.json({
+            Message: "Error registering"
+        })
     })
 
 
 
 };
-
 
 
 

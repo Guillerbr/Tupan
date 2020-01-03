@@ -8,6 +8,7 @@ const paycieloController = require('../controllers/pay-cieloController');
 const twofactorController = require('../controllers/twofactorController');
 
 
+
 //routers auth
 router.post('/signup', userController.signup);
 
@@ -18,6 +19,7 @@ router.post('/forgot-password', userController.forgotPassword);
 router.post('/reset-password', userController.resetPassword);
 
 
+
 //auth 2fa
 router.post('/2fa-generate', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.tokengenerate);
 
@@ -26,10 +28,13 @@ router.post('/totp-generate', userController.allowIfLoggedin, userController.gra
 router.post('/2fa-validate', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.tokenvalidate);
 
 
+
 //twilio 2fa
 //router.get('/twilio', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.twilioauthy);
 router.get('/twilio', twofactorController.twilioauthy);
-router.get('/register-sms', twofactorController.twilioregistersmsauthy);
+//router.post('/register-sms', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.twilioregistersmsauthy);
+router.post('/register-sms', twofactorController.twilioregistersmsauthy);
+
 
 
 
@@ -45,9 +50,11 @@ router.delete('/user/:userId', userController.allowIfLoggedin, userController.gr
 router.get('/userinfo', userController.userInfo);
 
 
+
 //routers payment credit card cielo gateway
 //router.post('/payment', paycieloController.cieloPayment);
 router.get('/payment', paycieloController.cieloPayment);
+
 
 
 //router Balances in balanceController.js
@@ -62,12 +69,15 @@ router.put('/balance/:balanceId', userController.allowIfLoggedin, userController
 router.delete('/balance/:balanceId', userController.allowIfLoggedin, userController.grantAccess('deleteAny', 'profile'), balanceController.deleteBalance);
 
 
+
 //test status api
 router.get('/ping', userController.pingme);
 
 
+
 //test send api email sendgrid-for dev-not use production-
 router.get('/testmail', userController.testSendMail);
+
 
 
 //admin signup user role register

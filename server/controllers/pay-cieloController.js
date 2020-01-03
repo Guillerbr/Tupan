@@ -18,7 +18,6 @@ app.use(BodyParser.urlencoded({ extended: true }));
 var url = 'https://apisandbox.cieloecommerce.cielo.com.br/1/sales/'
 
 
-
 exports.cieloPayment = async (req, res, next) => {
 
     var data = {
@@ -46,10 +45,7 @@ exports.cieloPayment = async (req, res, next) => {
             "IsCryptoCurrencyNegotiation": true
         }
 
-
-
     }
-
 
     axios.post(url, (data), {
         headers: {
@@ -63,9 +59,6 @@ exports.cieloPayment = async (req, res, next) => {
     }).catch((e) => {
         console.log("error", e)
     })
-
-
-
 
 
 }
