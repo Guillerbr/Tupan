@@ -11,8 +11,7 @@ var url = 'https://api.authy.com/protected/json/users/new'
 var app = Express();
 
 //authy twillo sms 2fa
-var authy = require('authy')('');    //AUTHY-TWILIO_API_KEY
-
+var authy = require('authy')('');    // PRODUCTION API KEY-AUTHY
 
 app.use(BodyParser.json());
 app.use(BodyParser.urlencoded({ extended: true }));
@@ -73,23 +72,32 @@ exports.tokenvalidate = async (req, res, next) => {
 
 
 //twillo 2fa sms auth
-exports.twilioauthy = async (req, res, next) => {
+exports.twilioauthy = async (req, res) => {
 
 
 
-    //authy_id =  TOKEN APP AUTHY
+
 
     /*
-        authy.register_user('new_user@email.com', '5524999511090', function (err, res) {
-            console.log(res.user.id);
-            // console.log(err);
     
-        });
-  
+        //authy_id =  TOKEN APP AUTHY
+    
+        
+            authy.register_user('g2@gmail.com', '5524999511090', function (err, res) {
+               // console.log(res.user.id);
+                 console.log(err);
+        
+            });
+      
+        
     */
 
 
 
+
+
+
+    
 
     /*
     var authy_id = 48952;
@@ -98,22 +106,70 @@ exports.twilioauthy = async (req, res, next) => {
         console.log(res.message);
     });
   
-*/
+   */
 
 
 
-    var authy_id = 220479801;
 
-    authy.verify(authy_id, token = '6727463', function (err, res) {
-        //console.log(res.message);
-        console.log(err);
+
+
+
+
+
+
+    const { authy_id_client, token_client } = req.body
+
+    var authy_id = authy_id_client;
+
+    authy.verify(authy_id, token = token_client, function (err, res, send) {
+         console.log(res.message);
+
+        // console.log(res.authy_id_client);
+        // console.log(res.err);
+        // res.status(200).send({ error: 'Cannot reset password, try again' });
+        // res.send({ error: 'Cannot reset password, try again' });
+
+
+
+
+
+
+
+
     });
 
 
 
 
 
+
+    /*
+    
+    //const { authy_id, token_client } = req.body
+    
+        var authy_id = 220479801;
+    
+        authy.verify(authy_id, token = '4863699', function (err, res) {
+            console.log(res.message);
+            //console.log(err);
+            
+    
+        });
+    
+    
+    */
+
+
 };
+
+
+
+
+
+
+
+
+
 
 
 //register cell phone client 2fa
@@ -137,12 +193,12 @@ exports.twilioregistersmsauthy = async (req, res, next) => {
             'X-Authy-API-Key': ''      // PRODUCTION API KEY-AUTHY
         }
     }).then((data) => {
-        console.log("data", data)
+        console.log("data", data)       //Withdraw on production
         res.json({
             Message: "Successfully registered"
         })
     }).catch((e) => {
-        console.log("error", e)
+        console.log("error", e)         //Withdraw on production
         res.json({
             Message: "Error registering"
         })
