@@ -38,6 +38,8 @@ Payment getways like visa, mastercard, stripe.And other credit card payment slip
 Trading station simulator broker in cryptocurrencies, forex, stock exchanges, other assets.
 Trader simulator with margin and leverage.
 
+Trading algorithms, customized by the user.Robots trading for indicator parameters.
+
 
 
 
