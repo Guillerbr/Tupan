@@ -79,10 +79,12 @@ exports.tokenvalidate = async (req, res, next) => {
 
 
 //twilio modules
+//twilio modules
+
 
 
 //twillo 2fa token authy app
-exports.twilioauthy = async (req, res,) => {
+exports.twilioauthy = async (req, res) => {
 
 
     try {  
@@ -96,10 +98,35 @@ const { authy_id_client, token_client } = req.body
        
        console.log(res.message);
 
+
+       /*
+       const remessage = await res.message;
+       res.status(200).json({
+        // data: user,
+       // success: 'User has been updated'
+        remessage
+    });
+
+    */   
+
+
+
+/*
+      
+       if (res.message == true){
+        res.status(200).send({ error: 'OK' });
+       }else{ res.status(400).send({ error: 'NOT' });}
+
+*/
+
+
+    //   authy.valid(res.message)
+    //   authy.phones.create({  : '' ,})
+
       
 
          
-      // res.status(200).send({ error: 'Cannot reset password' });
+        // res.status(200).send({ error: 'Cannot reset password' });
         // console.log(res.authy_id_client);
         // console.log(res.err);
         // res.status(200).send({ error: 'Cannot reset password, try again' });
@@ -114,7 +141,7 @@ const { authy_id_client, token_client } = req.body
 }
 
 
-      // res.status(200).send({ error: 'Cannot reset password, try again' });
+     //  res.status(200).send({ message: 'Success' });
 
       
       

@@ -11,11 +11,15 @@ Implement an api cielo payment route, using axios in http requests.  *Working
 
 Use redis for queue caching and server optimization.
 
+Use RabbitMQ or others.Messaging server for order receipts.
+
 Use websocket to chat and book bitcoin offers or currency quotes.
 
 Use enhanced authentication with firebase device id module.
 
 Use online payment method with bitcoin transaction,QRCODE PAYMENTS.https://btcpayserver.org/
+
+Pricing and information on trading cryptocurrencies, binance, bitmex, coinbase, etc.
 
 U2F authentication for super admin. 
 
@@ -25,7 +29,7 @@ Security level layer for login,sending authentication token to email.
 
 Payment getways like visa, mastercard, stripe.And other credit card payment slips.
 
-Document a backend API in SwaggerHub.
+Document a backend API in SwaggerHub Postman.
 
 2FA-Two-step authentication with sms, sending totp.Twillo token SMS Authy Verify API.  *Working
 
