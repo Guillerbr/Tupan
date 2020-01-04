@@ -5,9 +5,11 @@
 
 Do password encryption in reset-password function bcrypt function.  *Working
 
-Verify that after encryption the new password can be used at login.
+2FA-Two-step authentication with sms, sending totp.Twillo token SMS Authy Verify API.  *Working
 
 Implement an api cielo payment route, using axios in http requests.  *Working
+
+Verify that after encryption the new password can be used at login.
 
 Use redis for queue caching and server optimization.
 
@@ -21,6 +23,8 @@ Use online payment method with bitcoin transaction,QRCODE PAYMENTS.https://btcpa
 
 Pricing and information on trading cryptocurrencies, binance, bitmex, coinbase, etc.
 
+User TradingView API.
+
 U2F authentication for super admin. 
 
 Authentication biometrics-fingerprint,voice and face recognition.
@@ -29,9 +33,13 @@ Security level layer for login,sending authentication token to email.
 
 Payment getways like visa, mastercard, stripe.And other credit card payment slips.
 
-Document a backend API in SwaggerHub Postman.
+Document a backend API in SwaggerHub,Postman.
 
-2FA-Two-step authentication with sms, sending totp.Twillo token SMS Authy Verify API.  *Working
+
+Trading station simulator broker in cryptocurrencies, forex, stock exchanges, other assets.
+Trader simulator with margin and leverage.
+
+
 
 
 
