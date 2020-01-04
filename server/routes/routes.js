@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 
+//import controllers
 const userController = require('../controllers/userController');
 const balanceController = require('../controllers/balanceController');
 const paycieloController = require('../controllers/pay-cieloController');
@@ -20,7 +21,7 @@ router.post('/reset-password', userController.resetPassword);
 
 
 
-//auth 2fa
+//auth 2fa google authentication
 router.post('/2fa-generate', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.tokengenerate);
 
 router.post('/totp-generate', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.totptokengenerate);
@@ -29,11 +30,13 @@ router.post('/2fa-validate', userController.allowIfLoggedin, userController.gran
 
 
 
-//twilio 2fa
+//twilio 2fa authy and sms 
 //router.get('/twilio', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.twilioauthy);
 router.post('/twilio', twofactorController.twilioauthy);
 //router.post('/register-sms', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.twilioregistersmsauthy);
 router.post('/register-sms', twofactorController.twilioregistersmsauthy);
+//router.post('/twilio-push-app', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.twiliopushnotficationauthapp);
+router.post('/twilio-push-app', twofactorController.twiliopushnotficationauthapp);
 
 
 

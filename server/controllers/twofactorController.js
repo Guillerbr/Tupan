@@ -68,111 +68,96 @@ exports.tokenvalidate = async (req, res, next) => {
 };
 
 
+
+
+
+
+
+
+
+
+
+
 //twilio modules
 
 
-//twillo 2fa sms auth
-exports.twilioauthy = async (req, res) => {
+//twillo 2fa token authy app
+exports.twilioauthy = async (req, res,) => {
 
 
+    try {  
 
 
-
-    /*
-    
-        //authy_id =  TOKEN APP AUTHY
-    
-        
-            authy.register_user('g2@gmail.com', '5524999511090', function (err, res) {
-               // console.log(res.user.id);
-                 console.log(err);
-        
-            });
-      
-        
-    */
-
-
-
-
-
-
-    
-
-    /*
-    var authy_id = 48952;
-
-    authy.request_sms(authy_id, function (err, res) {
-        console.log(res.message);
-    });
-  
-   */
-
-
-
-
-
-
-
-
-
-
-    const { authy_id_client, token_client } = req.body
+const { authy_id_client, token_client } = req.body
 
     var authy_id = authy_id_client;
 
-    authy.verify(authy_id, token = token_client, function (err, res, send) {
-         console.log(res.message);
+    authy.verify(authy_id, token = token_client, function (err, res) {
+       
+       console.log(res.message);
 
+      
+
+         
+      // res.status(200).send({ error: 'Cannot reset password' });
         // console.log(res.authy_id_client);
         // console.log(res.err);
         // res.status(200).send({ error: 'Cannot reset password, try again' });
         // res.send({ error: 'Cannot reset password, try again' });
 
-
-
-
-
-
-
-
     });
-
-
-
-
-
-
-    /*
     
-    //const { authy_id, token_client } = req.body
-    
-        var authy_id = 220479801;
-    
-        authy.verify(authy_id, token = '4863699', function (err, res) {
-            console.log(res.message);
-            //console.log(err);
-            
-    
-        });
-    
-    
-    */
+}catch (err) {
+    //console.log(err);
+    res.status(400).send({ error: 'Authentication Token Error' });
 
+}
+
+
+      // res.status(200).send({ error: 'Cannot reset password, try again' });
+
+      
+      
 
 };
 
 
 
+//push notification authy app client
+exports.twiliopushnotficationauthapp  = async (req, res, next) => {
+
+
+    const { authy_id_client } = req.body  
+
+    var authy_id = authy_id_client;
+    
+    authy.request_sms(authy_id, function (err, res) {
+      console.log(res.message);
+     });
+    
 
 
 
+/*
+ //You can override this behavior and force sending an SMS or Voice call. 
+ //This is a useful override if a user is specifically selecting "Send SMS"
+
+   const { authy_id_client } = req.body  
+
+   var authy_id = authy_id_client;
+
+   authy.request_sms(authy_id, force=true, function (err, res) {
+    console.log(res.message);
+  });
+
+*/
+
+
+}
 
 
 
-
-
-//register cell phone client 2fa
+//register cellphone sms for authy download client 2fa
 exports.twilioregistersmsauthy = async (req, res, next) => {
 
 
@@ -241,3 +226,74 @@ https://www.twilio.com/docs/verify
 https://www.twilio.com/docs/authy
 
 */
+
+
+
+
+
+/*
+    
+    //const { authy_id, token_client } = req.body
+    
+        var authy_id = 220479801;
+    
+        authy.verify(authy_id, token = '4863699', function (err, res) {
+            console.log(res.message);
+            //console.log(err);
+            
+    
+        });
+    
+    
+    */
+
+
+
+
+    
+    /*
+    var authy_id = 48952;
+
+    authy.request_sms(authy_id, function (err, res) {
+        console.log(res.message);
+    });
+  
+   */
+/*
+
+  authy.request_sms(authy_id, function (err, res) {
+  console.log(res.message);
+ });
+*/
+
+
+   /*
+   
+curl -X POST https://verify.twilio.com/v2/Services/a7e675547a014b689462ad5189e975bd/Verifications --data-urlencode "To=+5524999511090" --data-urlencode "Channel=sms"
+
+*/
+
+    /*
+    
+        //authy_id =  TOKEN APP AUTHY
+    
+        
+            authy.register_user('g2@gmail.com', '5524999511090', function (err, res) {
+               // console.log(res.user.id);
+                 console.log(err);
+        
+            });
+      
+        
+    */
+
+
+
+    /*
+    var authy_id = 48952;
+
+    authy.request_sms(authy_id, function (err, res) {
+        console.log(res.message);
+    });
+  
+   */

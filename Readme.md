@@ -53,10 +53,14 @@
      Admin user type has to control CRUD over system
 
 
-## Use 2fa TOTP token module Speakeasy  
+## Use 2fa TOTP token module Speakeasy- Google Authentication Client  
      Use two-factor authentication for node.js.Speakeasy in Google Authenticator.
      2FA in a Node.js API with time-based one-time passwords.
 
+
+## Use 2fa TOTP token module Atuhy- Authy Twilio Client and API
+     Use two-factor authentication for node.js.Authy npm module in Authy app 2fa.
+     Use two-factor authentication for node.js.Twilio npm module in SMS 2fa.
 
 ## Use Sendgrid Api email service
      Automated Email Sending Provider.
@@ -65,7 +69,8 @@
 
 
 ## Use E-mail token 
-     Use email verification token for password re-registration.           
+     Use email verification token for password re-registration.
+     Use email verification token 2fa login or other verification.           
 
 
 ## Access token and requirement headers
