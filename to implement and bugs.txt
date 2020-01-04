@@ -9,6 +9,8 @@ Do password encryption in reset-password function bcrypt function.  *Working
 
 Implement an api cielo payment route, using axios in http requests.  *Working
 
+Document a backend API in SwaggerHub,Postman.   *Working
+
 Verify that after encryption the new password can be used at login.
 
 Use redis for queue caching and server optimization.
@@ -32,9 +34,6 @@ Authentication biometrics-fingerprint,voice and face recognition.
 Security level layer for login,sending authentication token to email.
 
 Payment getways like visa, mastercard, stripe.And other credit card payment slips.
-
-Document a backend API in SwaggerHub,Postman.
-
 
 Trading station simulator broker in cryptocurrencies, forex, stock exchanges, other assets.
 Trader simulator with margin and leverage.
