@@ -3,9 +3,9 @@
 -------------------------------------------------------------------------------------------------------------
 -IMPLEMENT
 
-Do password encryption in reset-password function bcrypt function.  *Working
+Do password encryption in reset-password function bcrypt-compare function.  *Working
 
-2FA-Two-step authentication with sms, sending totp.Twillo token SMS Authy Verify API.  *Working
+2FA-Two-step authentication with sms,authy,google authentication,sending totp.Twillo token SMS Authy Verify API.  *Working
 
 Implement an api cielo payment route, using axios in http requests.  *Working
 
@@ -33,12 +33,14 @@ Authentication biometrics-fingerprint,voice and face recognition.
 
 Security level layer for login,sending authentication token to email.
 
-Payment getways like visa, mastercard, stripe.And other credit card payment slips.
+Payment getways like Visa, Mastercard, Stripe.And other credit card payment slips.
 
 Trading station simulator broker in cryptocurrencies, forex, stock exchanges, other assets.
 Trader simulator with margin and leverage.
 
 Trading algorithms, customized by the user.Robots trading for indicator parameters.
+
+Trading algorithms cryptocurrency arbitration modules.
 
 
 

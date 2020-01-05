@@ -78,6 +78,8 @@ Requisições		https://api.cieloecommerce.cielo.com.br/
 Consultas		https://apiquery.cieloecommerce.cielo.com.br/
 
 
+MerchantId: "b17ac0ba-ff14-408a-93d7-dbcba07363b0"
+MerchantKey: "XKSPPVZAZGAXATFPYBLNLKDHMLDMUENYIYJJXJUC"
 
 Json body data exemple:
 

@@ -41,6 +41,14 @@
      put('/balance/:balanceId')
      delete('/balance/:balanceId')
 
+     post('/2fa-generate')
+     post('/totp-generate')
+     post('/2fa-validate')
+
+     post('/twilio')
+     post('/register-sms')
+     post('/twilio-push-app')
+     
      post('/signupadmin')
      get('/userinfo')
 
