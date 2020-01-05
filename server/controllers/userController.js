@@ -231,14 +231,14 @@ exports.testSendMail = async (req, res) => {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
     const msg = {
-        to: 'fociyesac@netmail8.com',
+        to: 'guillerbrasilrj@gmail.com',
         from: 'guillerbrasilrj@gmail.com',
         subject: 'Test api sendgrid status',
         text: 'Test ping API Sendgrid',
         html: '<strong>API service send email sendgrid is success!</strong>',
     };
     sgMail.send(msg);
-    //console.log(sgMail);
+    console.log(sgMail);
 
 }
 
@@ -315,13 +315,13 @@ exports.resetPassword = async (req, res) => {
         user.password = password;
 
         await user.save();
-         res.send({ Successfully: true, user: req.userId });     //ok return user id,alter response sucess mensage
+        // res.send({ Successfully: true, user: req.userId });     //ok return user id,alter response sucess mensage
         
-        /*
+        
         res.status(200).json({
             message: "Password changed successfully"
 
-        }); */
+        }); 
 
     } catch (err) {
         //console.log(err);
