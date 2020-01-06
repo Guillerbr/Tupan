@@ -57,10 +57,7 @@ When the token is sent in the request header of a route without authentication t
 
 Does not inform when JWT access-token is expired.
 
-After reset-password there is an error logging in with the new password registered.
 
-The new password is not converted with the bcrypt function, it is not encrypted. 
-When you try to login with the new password changed,the login gives an error.
 
 
 

@@ -295,9 +295,9 @@ exports.forgotPassword = async (req, res) => {
 exports.resetPassword = async (req, res) => {
 
     const { email, token, password } = req.body;
+    const hashedPassword = await hashPassword(password);       //call function hashedPassword
 
-
-    try {
+      try {
         const user = await User.findOne({ email })
             .select('+passwordResetToken passwordResetExpires');
 
@@ -312,7 +312,9 @@ exports.resetPassword = async (req, res) => {
         if (now > user.passwordResetExpires)
             return res.status(400).send({ error: 'Token expired, generate new token' });
 
-        user.password = password;
+        //user.password = password;         //not encrypt password// delete line
+        user.password = hashedPassword;     //hash used in password
+        
 
         await user.save();
         // res.send({ Successfully: true, user: req.userId });     //ok return user id,alter response sucess mensage
