@@ -11,7 +11,7 @@ var url = 'https://api.authy.com/protected/json/users/new'
 var app = Express();
 
 //authy twillo sms 2fa
-var authy = require('authy')('');    // PRODUCTION API KEY-AUTHY
+var authy = require('authy')(process.env.TWILIO_API_KEY);    // PRODUCTION API KEY-AUTHY
 
 app.use(BodyParser.json());
 app.use(BodyParser.urlencoded({ extended: true }));
@@ -202,7 +202,7 @@ exports.twilioregistersmsauthy = async (req, res, next) => {
     axios.post(url, qs.stringify(data), {
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
-            'X-Authy-API-Key': ''      // PRODUCTION API KEY-AUTHY
+            'X-Authy-API-Key': process.env.TWILIO_API_KEY      // PRODUCTION API KEY-AUTHY
         }
     }).then((data) => {
         console.log("data", data)       //Withdraw on production
