@@ -3,7 +3,6 @@
 -------------------------------------------------------------------------------------------------------------
 -IMPLEMENT
 
-Do password encryption in reset-password function bcrypt-compare function.  *Working
 
 2FA-Two-step authentication with sms,authy,google authentication,sending totp.Twillo token SMS Authy Verify API.  *Working
 
@@ -11,9 +10,9 @@ Implement an api cielo payment route, using axios in http requests.  *Working
 
 Document a backend API in SwaggerHub,Postman.   *Working
 
-Verify that after encryption the new password can be used at login.
-
 Use redis for queue caching and server optimization.
+
+User Jest Test Framework.
 
 Use RabbitMQ or others.Messaging server for order receipts.
 
@@ -27,13 +26,15 @@ Pricing and information on trading cryptocurrencies, binance, bitmex, coinbase, 
 
 User TradingView API.
 
-U2F authentication for super admin. 
+U2F authentication for super admin.
+
+UUID - Implement device verification by client, apply to administrator.
 
 Authentication biometrics-fingerprint,voice and face recognition.
 
 Security level layer for login,sending authentication token to email.
 
-Payment getways like Visa, Mastercard, Stripe.And other credit card payment slips.
+Payment gateways like Visa, Mastercard, Stripe.And other credit card payment slips.
 
 Trading station simulator broker in cryptocurrencies, forex, stock exchanges, other assets.
 Trader simulator with margin and leverage.

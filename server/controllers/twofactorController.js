@@ -10,8 +10,12 @@ var url = 'https://api.authy.com/protected/json/users/new'
 
 var app = Express();
 
+//const authToken = process.env.TWILIO_API_KEY;
+//var authtoken = process.env.TWILIO_API_KEY;
+
 //authy twillo sms 2fa
-var authy = require('authy')(process.env.TWILIO_API_KEY);    // PRODUCTION API KEY-AUTHY
+var authy = require('authy')('');    // PRODUCTION API KEY-AUTHY
+//var authy = require('authy')('');
 
 app.use(BodyParser.json());
 app.use(BodyParser.urlencoded({ extended: true }));
@@ -90,13 +94,17 @@ exports.twilioauthy = async (req, res) => {
     try {  
 
 
-const { authy_id_client, token_client } = req.body
+    const { authy_id_client, token_client } = req.body
 
     var authy_id = authy_id_client;
+
+    //if (await User.findOne({ authy_id_client }))
+    //return res.status(400).send({ error: 'User already registered' });
 
     authy.verify(authy_id, token = token_client, function (err, res) {
        
        console.log(res.message);
+      // console.log(res.error);
 
 
        /*
@@ -202,7 +210,7 @@ exports.twilioregistersmsauthy = async (req, res, next) => {
     axios.post(url, qs.stringify(data), {
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
-            'X-Authy-API-Key': process.env.TWILIO_API_KEY      // PRODUCTION API KEY-AUTHY
+            'X-Authy-API-Key': process.env.TWILIO_API_KEY      // 'X-Authy-API-Key': ''
         }
     }).then((data) => {
         console.log("data", data)       //Withdraw on production
@@ -248,9 +256,14 @@ curl -X POST https://verify.twilio.com/v2/Services \
 
 doc:
 
+https://www.twilio.com/docs/authy/tutorials/account-verification-node-express
+
+https://www.twilio.com/docs/authy/tutorials/two-factor-authentication-node-express
+
 https://www.twilio.com/docs/verify
 
 https://www.twilio.com/docs/authy
+
 
 */
 

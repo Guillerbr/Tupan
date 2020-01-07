@@ -14,7 +14,7 @@ const UserSchema = new Schema({
  },
  role: {
   type: String,
-  default: 'basic',                                    //config acesscontrol-important
+  default: 'basic',                                                 //config acesscontrol-important
   enum: ["basic", "supervisor", "admin", "manager","final_user"]    //config acesscontrol-important
  },
  accessToken: {
