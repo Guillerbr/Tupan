@@ -14,8 +14,8 @@ const UserSchema = new Schema({
  },
  role: {
   type: String,
-  default: 'basic',                                                 //config acesscontrol-important
-  enum: ["basic", "supervisor", "admin", "manager","final_user"]    //config acesscontrol-important
+  default: 'basic',                                                  //config acesscontrol-important
+  enum: ["basic", "supervisor", "admin", "manager", "final_user"]    //config acesscontrol-important
  },
  accessToken: {
   type: String
@@ -32,11 +32,11 @@ passwordResetExpires: {
     type: String,
     required: true,
 },
- countryCode: {
+ country_code: {
     type: String,
     required: true,
 },
- phone: {
+ cellphone: {
     type: String,
     required: true,
 },

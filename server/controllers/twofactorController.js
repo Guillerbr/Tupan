@@ -201,6 +201,8 @@ exports.twilioregistersmsauthy = async (req, res, next) => {
 
     const { email, cellphone, country_code } = req.body
 
+    const user = await User.findOne({ email });
+
 
     var data = {
         user: {
@@ -216,19 +218,23 @@ exports.twilioregistersmsauthy = async (req, res, next) => {
             'X-Authy-API-Key': process.env.TWILIO_API_KEY      // 'X-Authy-API-Key': ''
         }
     }).then((data) => {
+
         console.log("data", data)       //Withdraw on production
         res.json({
             Message: "Successfully registered"
         })
     }).catch((e) => {
+        
         console.log("error", e)         //Withdraw on production
         res.json({
             Message: "Error registering"
         })
     })
 
-
-
+    
+     await User.findByIdAndUpdate(user._id, { cellphone, country_code  })
+    // await User.findByIdAndUpdate(user._id, {$set: { cellphone, country_code } })
+     
 };
 
 
