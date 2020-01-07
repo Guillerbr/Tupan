@@ -1,4 +1,7 @@
 // 2FA TOTP MODULE
+const User = require('../models/userModel');
+const bcrypt = require('bcrypt');
+
 const BodyParser = require("body-parser");
 const Speakeasy = require("speakeasy");
 const Express = require("express");
