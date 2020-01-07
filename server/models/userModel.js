@@ -24,21 +24,21 @@ const UserSchema = new Schema({
     type: String,
     select: false,
 },
-passwordResetExpires: {
+ passwordResetExpires: {
     type: Date,
     select: false,
 },
  fullName: {
     type: String,
-    required: true,
+    //required: true,
 },
  country_code: {
     type: String,
-    required: true,
+    //required: true,
 },
  cellphone: {
     type: String,
-    required: true,
+    //required: true,
 },
  verified: {
     type: Boolean,
@@ -47,7 +47,7 @@ passwordResetExpires: {
  authyId: String,
   email: {
     type: String,
-    required: true,
+    //required: true,
     unique: true,
 },
  createdAt: {
