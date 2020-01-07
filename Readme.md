@@ -66,7 +66,7 @@
      2FA in a Node.js API with time-based one-time passwords.
 
 
-## Use 2fa TOTP token module Atuhy- Authy Twilio Client and API
+## Use 2fa TOTP token module Authy- Authy Twilio Client and API
      Use two-factor authentication for node.js.Authy npm module in Authy app 2fa.
      Use two-factor authentication for node.js.Twilio npm module in SMS 2fa.
 

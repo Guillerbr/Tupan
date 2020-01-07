@@ -28,12 +28,45 @@ passwordResetExpires: {
     type: Date,
     select: false,
 },
+ fullName: {
+    type: String,
+    required: true,
+},
+ countryCode: {
+    type: String,
+    required: true,
+},
+ phone: {
+    type: String,
+    required: true,
+},
+ verified: {
+    type: Boolean,
+    default: false,
+},
+ authyId: String,
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+},
  createdAt: {
     type: Date,
     default: Date.now,
-}
+},
+ updatedAt: {
+    type: Date,
+    default: Date.now,
+},   
+
 });
 
 const User = mongoose.model('user', UserSchema);
 
 module.exports = User;
+
+
+
+
+
+
