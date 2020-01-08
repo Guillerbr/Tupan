@@ -36,6 +36,8 @@ Security level layer for login,sending authentication token to email.
 
 Payment gateways like Visa, Mastercard, Stripe.And other credit card payment slips.
 
+Price information, Forex Currency Conversion API.
+
 Trading station simulator broker in cryptocurrencies, forex, stock exchanges, other assets.
 Trader simulator with margin and leverage.
 
