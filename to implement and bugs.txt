@@ -52,6 +52,9 @@ Trading algorithms, customized by the user.Robots trading for indicator paramete
 
 Trading algorithms cryptocurrency arbitration modules.
 
+Anti-fraud consultation module for credit cards and other payment methods.
+clearsale,visa-cybersourcer
+
 
 
 
