@@ -20,7 +20,8 @@ Use websocket to chat and book bitcoin offers or currency quotes.
 
 Use enhanced authentication with firebase device id module.
 
-Use online payment method with bitcoin transaction,QRCODE PAYMENTS.https://btcpayserver.org/
+Use online payment method with bitcoin transaction,QRCODE PAYMENTS.
+https://btcpayserver.org/
 
 Pricing and information on trading cryptocurrencies, binance, bitmex, coinbase, etc.
 
@@ -29,6 +30,9 @@ User TradingView API.
 U2F authentication for super admin.
 
 UUID - Implement device verification by client, apply to administrator.
+
+JavaScript API for face detection and face recognition in the browser and nodejs with tensorflow.js.
+https://github.com/justadudewhohacks/face-api.js/
 
 Authentication biometrics-fingerprint,voice and face recognition.
 
