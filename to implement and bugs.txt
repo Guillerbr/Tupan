@@ -34,6 +34,9 @@ UUID - Implement device verification by client, apply to administrator.
 JavaScript API for face detection and face recognition in the browser and nodejs with tensorflow.js.
 https://github.com/justadudewhohacks/face-api.js/
 
+Fingerprinting identifying a web browser with accuracy of up to 94%.
+https://github.com/Valve/fingerprintjs2
+
 Authentication biometrics-fingerprint,voice and face recognition.
 
 Security level layer for login,sending authentication token to email.
