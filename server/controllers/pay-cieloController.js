@@ -1,10 +1,6 @@
 //CIELO GATEWAY
 const User = require('../models/userModel');
 const Payment = require('../models/paymentModel');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
-
-
 const BodyParser = require("body-parser");
 const Express = require("express");
 const axios = require('axios');
@@ -20,6 +16,8 @@ var url = 'https://apisandbox.cieloecommerce.cielo.com.br/1/sales/'
 
 
 exports.cieloPayment = async (req, res, next) => {
+
+  //  const { CardNumber, ExpirationDate, SecurityCode } = req.body
 
     var data = {
 
@@ -53,6 +51,12 @@ exports.cieloPayment = async (req, res, next) => {
             "Content-Type": "application/json",
             MerchantId: "b17ac0ba-ff14-408a-93d7-dbcba07363b0",
             MerchantKey: "XKSPPVZAZGAXATFPYBLNLKDHMLDMUENYIYJJXJUC"
+            
+            /*
+            'MerchantId': process.env.MERCHANTID,
+            'MerchantKey': process.env.MERCHANTKEY  
+            */
+
         }
 
     }).then((data) => {
