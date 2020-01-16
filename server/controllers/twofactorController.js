@@ -195,7 +195,7 @@ exports.twiliopushnotficationauthapp  = async (req, res, next) => {
 
 
 
-//register cellphone sms for authy download client 2fa
+//register cellphone sms for authy twilio download client 2fa
 exports.twilioregistersmsauthy = async (req, res, next) => {
 
 

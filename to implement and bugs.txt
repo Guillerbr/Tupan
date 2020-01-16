@@ -14,7 +14,7 @@ Use redis for queue caching and server optimization.
 
 User Jest Test Framework.
 
-Use RabbitMQ or others.Messaging server for order receipts.
+Use RabbitMQ or others.Messaging broker server for order receipts.
 
 Use websocket to chat and book bitcoin offers or currency quotes.
 
