@@ -1,6 +1,7 @@
 // server/server.js
 const express = require('express');
 const mongoose = require('mongoose');
+const Sequelize  = require('sequelize');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const path = require('path')
@@ -27,11 +28,28 @@ require("dotenv").config({
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-//mongoose connect function
+
+//mysql sequelize connect function
+const sequelize = new Sequelize('database', 'username', 'password', {
+    host: 'localhost',
+    dialect: 'mysql',
+    
+  });
+
+  
+     sequelize.authenticate().then(function(){
+        console.log('Connection Mysql DB successfully!');
+    }).catch(function(err) {
+    console.error('Connection Mysql DB failed!');
+  });
+
+  
+
+//mongoose mongo connect function
 mongoose
     .connect(process.env.MONGO_SECRET)
     .then(() => {
-        console.log('Connected to the Database successfully');
+        console.log('Connected Mongo DB to the Database successfully');
     });
 
 
