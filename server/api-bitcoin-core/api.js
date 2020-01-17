@@ -2,21 +2,24 @@ const express = require("express");
 const router = express.Router();
 var request = require("request");
 
+
 const dotenv = require("dotenv");
 dotenv.config();
 
+
 const USER = process.env.RPC_USER;
 const PASS = process.env.RPC_PASSWORD;
+
 
 const headers = {
   "content-type": "text/plain;"
 };
 
-//API CHECK
+//API CHECK 
 router.get("/test", (req, res) => res.json({ msg: "backend works" }));
 
 
-//BLOCKCOUNT
+//BLOCKCOUNT COUNT BLOCK
 router.get("/getblockcount", (req, res) => {
     var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getblockcount","params":[]}`;
     var options = {

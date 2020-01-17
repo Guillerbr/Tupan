@@ -7,6 +7,7 @@ const path = require('path')
 
 //API RPC BITCOIN-CORE JSON RDP
 const rpcMethods = require("./api-bitcoin-core/api");
+//const routerapibitcoin = require("./api-bitcoin-core/api")
 
 
 const User = require('./models/userModel')
@@ -44,10 +45,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })).use(cors()); 
 
 //implement in cors, connect to specifically configured origin domain-feature
-
-
-app.use("/api", rpcMethods);
-
 //  app.use(Cors({ origin: [APP_ID], credentials: true }));
 
 //define default type headers 
@@ -87,8 +84,11 @@ app.use(async (req, res, next) => {
 
 });
 
+//json rpc api
+app.use("/api-bitcoin-core", rpcMethods);
 
-//reposnse server connect
+
+//response server connect
 app.use('/', routes); app.listen(PORT, () => {
     console.log('Server is listening on Port:', PORT)
 })

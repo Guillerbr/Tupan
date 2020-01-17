@@ -73,6 +73,14 @@ router.delete('/balance/:balanceId', userController.allowIfLoggedin, userControl
 
 
 
+//bitcoin core json rdp api
+//router.post('/getblockchaininfo', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), balanceController.postBalance);
+
+
+
+
+
+
 //test status api
 router.get('/ping', userController.pingme);
 
