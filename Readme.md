@@ -19,6 +19,9 @@
      axios
      qs
      authy -twillo
+     request
+     mysql2
+     sequelize
 
 
 
