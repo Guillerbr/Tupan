@@ -22,6 +22,7 @@
      request
      mysql2
      sequelize
+     redis
 
 
 

@@ -1,5 +1,6 @@
 // server/server.js
 const express = require('express');
+const redis = require('redis');
 const Sequelize  = require('sequelize');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -10,7 +11,11 @@ const path = require('path');
 const rpcMethods = require("./api-bitcoin-core/api");
 //const routerapibitcoin = require("./api-bitcoin-core/api")
 
+//redis configs
+const REDIS_PORT = process.env.REDIS_PORT;
+const client = redis.createClient(REDIS_PORT);
 
+//mongo config
 const User = require('./models/mongo/userModel');
 const routes = require('./routes/routes.js');
 
