@@ -1,5 +1,5 @@
 // 2FA TOTP MODULE
-const User = require('../models/userModel');
+const User = require('../models/mongo/userModel');
 const bcrypt = require('bcrypt');
 
 const BodyParser = require("body-parser");

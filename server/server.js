@@ -11,9 +11,7 @@ const rpcMethods = require("./api-bitcoin-core/api");
 //const routerapibitcoin = require("./api-bitcoin-core/api")
 
 
-//const User = require('./models/mongo/userModel');
-
-const User = require('./models/userModel');
+const User = require('./models/mongo/userModel');
 const routes = require('./routes/routes.js');
 
 

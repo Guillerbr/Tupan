@@ -1,6 +1,6 @@
 //CIELO GATEWAY
-const User = require('../models/userModel');
-const Payment = require('../models/paymentModel');
+const User = require('../models/mongo/userModel');
+const Payment = require('../models/mongo/paymentModel');
 const BodyParser = require("body-parser");
 const Express = require("express");
 const axios = require('axios');

@@ -1,5 +1,5 @@
-const User = require('../models/userModel');
-const Balance = require('../models/balanceModel');
+const User = require('../models/mongo/userModel');
+const Balance = require('../models/mongo/balanceModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
