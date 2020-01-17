@@ -1,23 +1,24 @@
 // server/server.js
 const express = require('express');
-const mongoose = require('mongoose');
 const Sequelize  = require('sequelize');
+const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
-const path = require('path')
+const path = require('path');
 
 //API RPC BITCOIN-CORE JSON RDP
 const rpcMethods = require("./api-bitcoin-core/api");
 //const routerapibitcoin = require("./api-bitcoin-core/api")
 
 
-const User = require('./models/userModel')
+//const User = require('./models/mongo/userModel');
+
+const User = require('./models/userModel');
 const routes = require('./routes/routes.js');
 
 
 //import cors
 const cors = require('cors');
-
 
 //dir path env set
 require("dotenv").config({
@@ -29,8 +30,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 
+
+
 //mysql sequelize connect function
-const sequelize = new Sequelize('database', 'username', 'password', {
+const sequelize = new Sequelize('node-acl-sequelize-test', 'root', '', {
     host: 'localhost',
     dialect: 'mysql',
     
@@ -43,14 +46,16 @@ const sequelize = new Sequelize('database', 'username', 'password', {
     console.error('Connection Mysql DB failed!');
   });
 
-  
+
 
 //mongoose mongo connect function
 mongoose
-    .connect(process.env.MONGO_SECRET)
-    .then(() => {
-        console.log('Connected Mongo DB to the Database successfully');
-    });
+.connect(process.env.MONGO_SECRET)
+.then(() => {
+    console.log('Connected Mongo DB to the Database successfully');
+}); 
+
+
 
 
 //cors setting to receive all origins  
@@ -102,7 +107,7 @@ app.use(async (req, res, next) => {
 
 });
 
-//json rpc api
+//json rpc api bitcoin core
 app.use("/api-bitcoin-core", rpcMethods);
 
 
