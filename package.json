@@ -23,6 +23,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.1",
     "qs": "^6.9.1",
+    "request": "^2.88.0",
     "speakeasy": "^2.0.0"
   }
 }

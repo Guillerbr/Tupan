@@ -5,6 +5,9 @@ const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const path = require('path')
 
+//API RPC BITCOIN-CORE JSON RDP
+const rpcMethods = require("./api-bitcoin-core/api");
+
 
 const User = require('./models/userModel')
 const routes = require('./routes/routes.js');
@@ -41,6 +44,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })).use(cors()); 
 
 //implement in cors, connect to specifically configured origin domain-feature
+
+
+app.use("/api", rpcMethods);
 
 //  app.use(Cors({ origin: [APP_ID], credentials: true }));
 
