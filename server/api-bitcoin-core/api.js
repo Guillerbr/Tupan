@@ -203,7 +203,8 @@ module.exports = router;
 
 /*
 
-DOC
+DOCS:
+
 https://github.com/Guillerbr/opendax/blob/master/docs/commands-list-bitcoin-wallet.txt
 
 https://medium.com/@peterjd42/build-your-own-bitcoin-api-using-node-js-and-bitcoin-core-251e613623db
