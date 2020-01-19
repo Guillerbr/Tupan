@@ -15,10 +15,16 @@ const rpcMethods = require("./api-bitcoin-core/api");
 const REDIS_PORT = process.env.REDIS_PORT;
 const client = redis.createClient(REDIS_PORT);
 
-//mongo config
-const User = require('./models/mongo/userModel');
+//routes config set
 const routes = require('./routes/routes.js');
 
+
+//mongo config
+//const User = require('./models/mongo/userModel');
+
+
+//mysql config
+const User = require('./models/mysql/userModel');
 
 //import cors
 const cors = require('cors');
@@ -31,8 +37,6 @@ require("dotenv").config({
 //express and set port
 const app = express();
 const PORT = process.env.PORT || 3000;
-
-
 
 
 //mysql sequelize connect function
