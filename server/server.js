@@ -11,20 +11,24 @@ const path = require('path');
 const rpcMethods = require("./api-bitcoin-core/api");
 //const routerapibitcoin = require("./api-bitcoin-core/api")
 
+/* IMPLEMENTATION
 //redis configs
+
 const REDIS_PORT = process.env.REDIS_PORT;
 const client = redis.createClient(REDIS_PORT);
 
-//routes config set
+*/
+
+//routes config path
 const routes = require('./routes/routes.js');
 
 
-//mongo config
-//const User = require('./models/mongo/userModel');
+//mongo config model
+const User = require('./models/mongo/userModel');
 
 
-//mysql config
-const User = require('./models/mysql/userModel');
+//mysql config model
+//const User = require('./models/mysql/userModel');
 
 //import cors
 const cors = require('cors');

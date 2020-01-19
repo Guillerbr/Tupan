@@ -1,6 +1,7 @@
 // server/controllers/userController.js
 
 const User = require('../models/mongo/userModel');
+//const User = require('../models/mysql/userModel');
 const Balance = require('../models/mongo/balanceModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
@@ -68,7 +69,7 @@ exports.login = async (req, res, next) => {
         const accessToken = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
             expiresIn: "1d"
         });
-        await User.findByIdAndUpdate(user._id, { accessToken })
+        await User.findByIdAndUpdate(user._id, { accessToken })     
         res.status(200).json({
             data: { email: user.email, role: user.role },
             accessToken
