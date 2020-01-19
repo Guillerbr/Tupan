@@ -1,7 +1,7 @@
 // server/controllers/userController.js
 
-const User = require('../models/mongo/userModel');
-//const User = require('../models/mysql/userModel');
+//const User = require('../models/mongo/userModel');
+const User = require('../models/mysql/userModel');
 const Balance = require('../models/mongo/balanceModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
@@ -32,7 +32,7 @@ exports.signup = async (req, res, next) => {
         const { email, password, role } = req.body
 
         //  check if email exist in db,if yes,returns or error
-        if (await User.findOne({ email }))
+        if (await User.findOne({ where: {email} }))       //mysql: where: {email}
             return res.status(400).send({ error: 'User already registered' });
 
         const hashedPassword = await hashPassword(password);
@@ -61,7 +61,7 @@ exports.signup = async (req, res, next) => {
 exports.login = async (req, res, next) => {
     try {
         const { email, password } = req.body;
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ where: {email} });    //mysql: where: {email}
         if (!user) return res.status(400).send({ error: 'Email does not exist' });
         const validPassword = await validatePassword(password, user.password);
         if (!validPassword) return res.status(400).send({ error: 'Password incorrect' });
@@ -69,7 +69,7 @@ exports.login = async (req, res, next) => {
         const accessToken = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
             expiresIn: "1d"
         });
-        await User.findByIdAndUpdate(user._id, { accessToken })     
+        await User.findAll({ where: user.id,  accessToken })      //method error
         res.status(200).json({
             data: { email: user.email, role: user.role },
             accessToken

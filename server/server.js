@@ -44,7 +44,7 @@ const PORT = process.env.PORT || 3000;
 
 
 //mysql sequelize connect function
-const sequelize = new Sequelize('node-acl-sequelize-test', 'root', '', {
+const sequelize = new Sequelize('node-acl-sequelize-test', 'root', 'root', {
     host: 'localhost',
     dialect: 'mysql',
     

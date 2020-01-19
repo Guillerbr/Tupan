@@ -4,7 +4,7 @@
 
 const Sequelize = require("sequelize");
 
-const sequelize = new Sequelize("node-acl-sequelize-test", "root", "", {
+const sequelize = new Sequelize("node-acl-sequelize-test", "root", "root", {
   host: "localhost",
   dialect: "mysql"
 });
@@ -71,7 +71,7 @@ const User = sequelize.define("users", {
   }
 });
 
-User.sync({ force: true });
+//User.sync({ force: true });
 
 module.exports = User;
 
