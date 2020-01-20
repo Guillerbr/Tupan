@@ -39,7 +39,7 @@ exports.signup = async (req, res, next) => {
         const newUser = new User({ email, password: hashedPassword, role: role || "basic" });   //important config role signup
         //option function role :   role: "basic"      or     role: role || "basic" }); 
 
-        const accessToken = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, {         //to implement return 400 message expiration token 
+        const accessToken = jwt.sign({ userId: newUser.id }, process.env.JWT_SECRET, {         //to implement return 400 message expiration token 
             expiresIn: "1d"
         });
 
@@ -66,7 +66,7 @@ exports.login = async (req, res, next) => {
         const validPassword = await validatePassword(password, user.password);
         if (!validPassword) return res.status(400).send({ error: 'Password incorrect' });
 
-        const accessToken = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+        const accessToken = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
             expiresIn: "1d"
         });
         await User.findAll({ where: user.id,  accessToken })      //method error
@@ -83,7 +83,7 @@ exports.login = async (req, res, next) => {
 
 //function admin get total users and info
 exports.getUsers = async (req, res, next) => {
-    const users = await User.find({});
+    const users = await User.findAll({});
     res.status(200).json({
         data: users
     });
@@ -145,7 +145,7 @@ exports.deleteUser = async (req, res, next) => {
 exports.grantAccess = function (action, resource) {
     return async (req, res, next) => {
         try {
-            const permission = roles.can(req.user.role)[action](resource);       //IMPORTANT
+            const permission = roles.can(req.users.role)[action](resource);       //IMPORTANT SET TABLE DB ROLE USERS
             if (!permission.granted) {
                 return res.status(401).json({
                     error: "You don't have enough permission to perform this action"
@@ -163,12 +163,12 @@ exports.grantAccess = function (action, resource) {
 exports.allowIfLoggedin = async (req, res, next) => {
     try {
 
-        const user = res.locals.loggedInUser;
-        if (!user)
+        const users = res.locals.loggedInUser;
+        if (!users)
             return res.status(401).json({
                 error: "You need to be logged in to access this route"
             });
-        req.user = user;
+        req.users = users;                      //IMPORTANT SET TABLE DB USERS
         next();
     } catch (error) {
         return res.status(400).json({ error: 'Registration failed' });

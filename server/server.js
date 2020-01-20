@@ -24,11 +24,11 @@ const routes = require('./routes/routes.js');
 
 
 //mongo config model
-const User = require('./models/mongo/userModel');
+//const User = require('./models/mongo/userModel');
 
 
 //mysql config model
-//const User = require('./models/mysql/userModel');
+const User = require('./models/mysql/userModel');
 
 //import cors
 const cors = require('cors');
@@ -101,7 +101,7 @@ app.use(async (req, res, next) => {
                 return res.status(401).send({ error: "JWT token has expired, please login to obtain a new one" });
             }
 
-            res.locals.loggedInUser = await User.findById(userId);
+            res.locals.loggedInUser = await User.findByPk( userId );
             next();
 
         }

@@ -1,4 +1,4 @@
-// server/models/userModel.js
+// server/models/mongo/userModel.js
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
