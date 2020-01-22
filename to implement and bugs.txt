@@ -18,6 +18,8 @@ Use redis for queue caching and server optimization.
 
 User Jest Test Framework.
 
+2FA send email sendgrid token hash 2fa email pass login.
+
 Use RabbitMQ or others.Messaging broker server for order receipts.
 
 Use websocket to chat and book bitcoin offers or currency quotes.

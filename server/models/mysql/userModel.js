@@ -73,7 +73,10 @@ const User = sequelize.define("users", {
   }
 });
 
+
+//force create new table
 //User.sync({ force: true });
+
 
 module.exports = User;
 

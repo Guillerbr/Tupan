@@ -69,7 +69,7 @@ exports.login = async (req, res, next) => {
         const accessToken = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
             expiresIn: "1d"
         });
-        await User.findAll({ where: user.id,  accessToken })      //method error
+        await User.findAll({ where: user.id,  accessToken })      //mongo function:  findByIdAndUpdate
         res.status(200).json({
             data: { email: user.email, role: user.role },
             accessToken
@@ -77,6 +77,96 @@ exports.login = async (req, res, next) => {
     } catch (error) {
         next(error);
         //return res.status(400).send({ error: 'Acess Token invalid go to login' });
+    }
+}
+
+
+//forgot-password
+exports.forgotPassword = async (req, res) => {
+
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+    const { email } = req.body;
+
+    try {
+        const user = await User.findOne({ where: {email} });            //users table
+
+        const token = crypto.randomBytes(20).toString('hex');
+        const now = new Date();
+        now.setHours(now.getHours() + 1);
+
+        await User.findByPk( user.id, {          //findByIdAndUpdate--mongo method - users table   
+            '$set': { 
+                passwordResetToken: token,
+                passwordResetExpires: now,
+            }
+        });
+
+        const msg = {
+            to: email,
+            from: 'apitest@api.com',     //    'apinet@gmail.com'
+            subject: 'Sending with Twilio SendGrid is Fun',
+            text: 'and easy to do anywhere, even with Node.js',
+            html: token, email,         //'<strong>and easy to do anywhere fd, even with Node.js {token} </strong> {token}',
+        };
+
+        sgMail.send(msg);
+
+        //res.send({ Successfully: true, user: req.token });      
+        console.log(sgMail);
+        console.log(token);
+        res.status(200).json({
+            Success: "Request sent successfully,check token in your email!"
+
+        });
+
+    } catch (err) {
+        //console.log(err);
+        res.status(400).send({ error: 'E-mail does not exist!' });
+    }
+}
+
+
+//reset-password
+//add bcrypt function so the new password is encrypted
+//The password arrives in the database, but not encrypted.
+exports.resetPassword = async (req, res) => {
+
+    const { email, token, password } = req.body;
+    const hashedPassword = await hashPassword(password);       //call function hashedPassword
+
+      try {
+        const user = await User.findOne({ where: {email} })           //error: select is not a function mysql sequeli
+            .select('+passwordResetToken passwordResetExpires');
+
+        if (!user)
+            return res.status(400).send({ error: 'User not found' });
+
+        if (token !== user.passwordResetToken)
+            return res.status(400).send({ error: 'Token invalid' });
+
+        const now = new Date();
+
+        if (now > user.passwordResetExpires)
+            return res.status(400).send({ error: 'Token expired, generate new token' });
+
+        //user.password = password;         //not encrypt password// delete line
+        user.password = hashedPassword;     //hash used in password
+        
+
+        await user.save();
+        // res.send({ Successfully: true, user: req.userId });     //ok return user id,alter response sucess mensage
+        
+        
+        res.status(200).json({
+            message: "Password changed successfully"
+
+        }); 
+
+    } catch (err) {
+        console.log(err);
+        res.status(400).send({ error: 'Cannot reset password, try again' });
+
     }
 }
 
@@ -245,94 +335,7 @@ exports.testSendMail = async (req, res) => {
 }
 
 
-//forgot-password
-exports.forgotPassword = async (req, res) => {
 
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
-    const { email } = req.body;
-
-    try {
-        const user = await User.findOne({ email });
-
-        const token = crypto.randomBytes(20).toString('hex');
-        const now = new Date();
-        now.setHours(now.getHours() + 1);
-
-        await User.findByIdAndUpdate(user.id, {
-            '$set': {
-                passwordResetToken: token,
-                passwordResetExpires: now,
-            }
-        });
-
-        const msg = {
-            to: email,
-            from: 'apitest@api.com',     //    'apinet@gmail.com'
-            subject: 'Sending with Twilio SendGrid is Fun',
-            text: 'and easy to do anywhere, even with Node.js',
-            html: token, email,         //'<strong>and easy to do anywhere fd, even with Node.js {token} </strong> {token}',
-        };
-
-        sgMail.send(msg);
-
-        //res.send({ Successfully: true, user: req.userId });      
-        console.log(sgMail);
-        console.log(token);
-        res.status(200).json({
-            Success: "Request sent successfully,check token in your email!"
-
-        });
-
-    } catch (err) {
-
-        res.status(400).send({ error: 'E-mail does not exist!' });
-    }
-}
-
-
-//reset-password
-//add bcrypt function so the new password is encrypted
-//The password arrives in the database, but not encrypted.
-exports.resetPassword = async (req, res) => {
-
-    const { email, token, password } = req.body;
-    const hashedPassword = await hashPassword(password);       //call function hashedPassword
-
-      try {
-        const user = await User.findOne({ email })
-            .select('+passwordResetToken passwordResetExpires');
-
-        if (!user)
-            return res.status(400).send({ error: 'User not found' });
-
-        if (token !== user.passwordResetToken)
-            return res.status(400).send({ error: 'Token invalid' });
-
-        const now = new Date();
-
-        if (now > user.passwordResetExpires)
-            return res.status(400).send({ error: 'Token expired, generate new token' });
-
-        //user.password = password;         //not encrypt password// delete line
-        user.password = hashedPassword;     //hash used in password
-        
-
-        await user.save();
-        // res.send({ Successfully: true, user: req.userId });     //ok return user id,alter response sucess mensage
-        
-        
-        res.status(200).json({
-            message: "Password changed successfully"
-
-        }); 
-
-    } catch (err) {
-        //console.log(err);
-        res.status(400).send({ error: 'Cannot reset password, try again' });
-
-    }
-}
 
 
 //ping get status api public
