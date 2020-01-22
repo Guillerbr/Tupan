@@ -11,6 +11,7 @@ const path = require('path');
 const rpcMethods = require("./api-bitcoin-core/api");
 //const routerapibitcoin = require("./api-bitcoin-core/api")
 
+
 /* IMPLEMENTATION
 //redis configs
 
@@ -18,6 +19,7 @@ const REDIS_PORT = process.env.REDIS_PORT;
 const client = redis.createClient(REDIS_PORT);
 
 */
+
 
 //routes config path
 const routes = require('./routes/routes.js');
@@ -76,7 +78,7 @@ mongoose
 app.use(bodyParser.json());
 
 //support parsing of application/x-www-form-urlencoded post data
-app.use(bodyParser.urlencoded({ extended: true })).use(cors()); 
+app.use(bodyParser.urlencoded({ extended: false })).use(cors()); 
 
 //implement in cors, connect to specifically configured origin domain-feature
 //  app.use(Cors({ origin: [APP_ID], credentials: true }));
@@ -120,8 +122,9 @@ app.use(async (req, res, next) => {
 
 });
 
+
 //json rpc api bitcoin core
-app.use("/api-bitcoin-core", rpcMethods);
+app.use("/api", rpcMethods);
 
 
 //response server connect
