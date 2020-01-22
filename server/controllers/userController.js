@@ -46,7 +46,7 @@ exports.signup = async (req, res, next) => {
         newUser.accessToken = accessToken;
         await newUser.save();
         res.json({
-            //  data: newUser,                    //return of sensitive user data //      IMPORTANT BLOK 
+            //data: newUser,                    //return of sensitive user data //      IMPORTANT BLOK 
             accessToken
         })
     } catch (error) {
@@ -94,13 +94,14 @@ exports.getUsers = async (req, res, next) => {
 exports.getUser = async (req, res, next) => {
     try {
         const userId = req.params.userId;
-        const user = await User.findById(userId);
+        const user = await User.findByPk(userId);            //({ where: userId });
         if (!user) return res.status(400).json({ error: 'User does not exist' });
         res.status(200).json({
             data: user
         });
     } catch (error) {
         // next(error)
+        console.log(error)
         return res.status(400).send({ error: 'Error finding user' });
     }
 

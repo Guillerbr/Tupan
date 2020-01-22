@@ -5,6 +5,7 @@
 
 const Sequelize = require("sequelize");
 
+//sequelize connection data base
 const sequelize = new Sequelize("node-acl-sequelize-test", "root", "root", {
   host: "localhost",
   dialect: "mysql"
@@ -12,14 +13,14 @@ const sequelize = new Sequelize("node-acl-sequelize-test", "root", "root", {
 
 
 
-/*
 
+/*
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
   host: process.env.DB_HOST,
   dialect: "mysql"
 });
-
 */
+
 
 
 const User = sequelize.define("users", {

@@ -52,9 +52,9 @@ const sequelize = new Sequelize('node-acl-sequelize-test', 'root', 'root', {
 
   
      sequelize.authenticate().then(function(){
-        console.log('Connection Mysql DB successfully!');
+        console.log('Connected Mysql DB to the Database successfully!');
     }).catch(function(err) {
-    console.error('Connection Mysql DB failed!');
+    console.error('Connected Mysql DB to the Database failed!');
   });
 
 
@@ -63,7 +63,7 @@ const sequelize = new Sequelize('node-acl-sequelize-test', 'root', 'root', {
 mongoose
 .connect(process.env.MONGO_SECRET)
 .then(() => {
-    console.log('Connected Mongo DB to the Database successfully');
+    console.log('Connected Mongo DB to the Database successfully!');
 }); 
 
 
@@ -80,6 +80,8 @@ app.use(bodyParser.urlencoded({ extended: true })).use(cors());
 
 //implement in cors, connect to specifically configured origin domain-feature
 //  app.use(Cors({ origin: [APP_ID], credentials: true }));
+
+
 
 //define default type headers 
 //x-access-token use token
