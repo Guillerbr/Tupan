@@ -1,6 +1,7 @@
 //server/models/mysql/userModel.js
 
 //const Mysqlconnect = require('../server');
+'use strict';
 
 const Sequelize = require("sequelize");
 

@@ -40,7 +40,7 @@ exports.signup = async (req, res, next) => {
         //option function role :   role: "basic"      or     role: role || "basic" }); 
 
         const accessToken = jwt.sign({ userId: newUser.id }, process.env.JWT_SECRET, {         //to implement return 400 message expiration token 
-            expiresIn: "1d"
+            expiresIn: "1d"                                                                    // error token x access token does not work
         });
 
         newUser.accessToken = accessToken;

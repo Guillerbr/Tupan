@@ -70,6 +70,10 @@ ________________________________________________________________________________
 
 -BUGS
 
+When registering the token x-access-token does not work, only generating a new one when you login.Token invalid.   signup
+
+It is possible to create a new user with the empty email field. singup
+
 When the token is sent in the request header of a route without authentication the token error is reported.
 
 Does not inform when JWT access-token is expired.
