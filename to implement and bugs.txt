@@ -24,7 +24,9 @@ Use RabbitMQ or others.Messaging broker server for order receipts.
 
 Use Websocket (socket.io) to chat and book bitcoin offers or currency quotes.
 
-User Hashcorp Vault and Consul for passwords hash.
+Use Hashcorp Vault and Consul for passwords hash.
+
+Use Traefik proxy. 
 
 Use enhanced authentication with firebase device id module.
 

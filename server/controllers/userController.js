@@ -133,11 +133,11 @@ exports.forgotPassword = async (req, res) => {
 exports.resetPassword = async (req, res) => {
 
     const { email, token, password } = req.body;
-    const hashedPassword = await hashPassword(password);       //call function hashedPassword
+    const hashedPassword = await hashPassword(password);              //call function hashedPassword
 
       try {
         const user = await User.findOne({ where: {email} })           //error: select is not a function mysql sequeli
-            .select('+passwordResetToken passwordResetExpires');
+            .select('+passwordResetToken passwordResetExpires');      //using sequelize use corresponding method
 
         if (!user)
             return res.status(400).send({ error: 'User not found' });
@@ -150,8 +150,8 @@ exports.resetPassword = async (req, res) => {
         if (now > user.passwordResetExpires)
             return res.status(400).send({ error: 'Token expired, generate new token' });
 
-        //user.password = password;         //not encrypt password// delete line
-        user.password = hashedPassword;     //hash used in password
+        //user.password = password;             //not encrypt password// delete line
+        user.password = hashedPassword;         //hash used in password
         
 
         await user.save();

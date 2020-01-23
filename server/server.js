@@ -40,10 +40,10 @@ require("dotenv").config({
     path: path.join(__dirname, "../.env")
 });
 
+
 //express and set port
 const app = express();
-const PORT = process.env.PORT || 3000;
-
+//const PORT = process.env.PORT || 3000;
 
 //mysql sequelize connect function
 const sequelize = new Sequelize('node-acl-sequelize-test', 'root', 'root', {
@@ -78,7 +78,7 @@ mongoose
 app.use(bodyParser.json());
 
 //support parsing of application/x-www-form-urlencoded post data
-app.use(bodyParser.urlencoded({ extended: false })).use(cors()); 
+app.use(bodyParser.urlencoded({ extended: true })).use(cors()); 
 
 //implement in cors, connect to specifically configured origin domain-feature
 //  app.use(Cors({ origin: [APP_ID], credentials: true }));
@@ -122,10 +122,10 @@ app.use(async (req, res, next) => {
 
 });
 
-
+/*
 //json rpc api bitcoin core
 app.use("/api", rpcMethods);
-
+*/
 
 //response server connect
 app.use('/', routes); app.listen(PORT, () => {
