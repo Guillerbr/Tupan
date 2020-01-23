@@ -90,17 +90,26 @@ exports.forgotPassword = async (req, res) => {
 
     try {
         const user = await User.findOne({ where: {email} });            //users table
+        
 
         const token = crypto.randomBytes(20).toString('hex');
         const now = new Date();
         now.setHours(now.getHours() + 1);
 
-        await User.findByPk( user.id, {          //findByIdAndUpdate--mongo method - users table   
+        //await User.findOne({ attributes: ['passwordResetToken','passwordResetExpires'], where: {email} }) 
+        //await User.findAll({ where: user.id,  passwordResetToken, passwordResetExpires }) 
+        
+        
+       //error save datas in db  
+        
+        await User.findByPk( user.id, {          //error-findByIdAndUpdate--mongo method - users table   
             '$set': { 
                 passwordResetToken: token,
                 passwordResetExpires: now,
             }
         });
+
+        
 
         const msg = {
             to: email,
@@ -116,6 +125,7 @@ exports.forgotPassword = async (req, res) => {
         console.log(sgMail);
         console.log(token);
         res.status(200).json({
+            
             Success: "Request sent successfully,check token in your email!"
 
         });
@@ -136,13 +146,19 @@ exports.resetPassword = async (req, res) => {
     const hashedPassword = await hashPassword(password);              //call function hashedPassword
 
       try {
-        const user = await User.findOne({ where: {email} })           //error: select is not a function mysql sequeli
-            .select('+passwordResetToken passwordResetExpires');      //using sequelize use corresponding method
+
+        //const user = await User.findOne({ where: {email} })         //error: select is not a function mysql sequeli
+        const user = await User.findOne({ attributes: ['passwordResetToken','passwordResetExpires'], where: {email} }) 
+        
+        //  .select('+passwordResetToken passwordResetExpires');      //using sequelize use corresponding method
+                    
+
 
         if (!user)
             return res.status(400).send({ error: 'User not found' });
 
         if (token !== user.passwordResetToken)
+            // console.log(user.passwordResetToken)
             return res.status(400).send({ error: 'Token invalid' });
 
         const now = new Date();
@@ -154,8 +170,13 @@ exports.resetPassword = async (req, res) => {
         user.password = hashedPassword;         //hash used in password
         
 
-        await user.save();
-        // res.send({ Successfully: true, user: req.userId });     //ok return user id,alter response sucess mensage
+        
+        //save new password sequelize methods
+        
+        await user.save()            //error: You attempted to save an instance with no primary key, this is not allowed since it would result in a global update
+
+                                             
+        //res.send({ Successfully: true, user: req.userId });     //ok return user id,alter response sucess mensage
         
         
         res.status(200).json({
