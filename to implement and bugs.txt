@@ -26,7 +26,11 @@ Use Websocket (socket.io) to chat and book bitcoin offers or currency quotes.
 
 Use Hashcorp Vault and Consul for passwords hash.
 
-Use Traefik proxy. 
+Use Traefik proxy.
+
+Use Docker.
+
+Use Elasticsearch and Kibana.
 
 Use enhanced authentication with firebase device id module.
 
