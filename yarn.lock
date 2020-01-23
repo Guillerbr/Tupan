@@ -18,7 +18,7 @@
     chalk "^2.0.1"
     deepmerge "^2.1.1"
 
-"@sendgrid/mail@^6.4.0":
+"@sendgrid/mail@^6.5.0":
   version "6.5.0"
   resolved "https://registry.yarnpkg.com/@sendgrid/mail/-/mail-6.5.0.tgz#6630b9ed775725dec3b598d9719b4ddd6428c56d"
   integrity sha512-KH8fh08gAWrEdY0XwOfRpjgf0vCj1vpzEfA2p0QRgMKbPyni6uZQm4oxuJasPdZVNmy2W16F33uG1mDRWLCJKw==
