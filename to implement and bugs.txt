@@ -16,7 +16,7 @@ Document a backend API in SwaggerHub,Postman.   *Working
 
 Use redis for queue caching and server optimization.
 
-User Jest Test Framework.
+User Jest Mocha Chai Test Framework.
 
 2FA send email sendgrid token hash 2fa email pass login.
 
@@ -28,7 +28,9 @@ Use Hashcorp Vault and Consul for passwords hash.
 
 Use Traefik proxy.
 
-Use Docker.
+Use Docker Kubernets.
+
+Use Terraform.
 
 Use Elasticsearch and Kibana.
 
@@ -82,7 +84,8 @@ ________________________________________________________________________________
 
 When registering the token x-access-token does not work, only generating a new one when you login.Token invalid.   signup
 
-It is possible to create a new user with the empty email field. singup
+It is possible to create a new user with the email field without an @ .email.com
+Any string is accepted, should only accept email, default @ .com. singup
 
 When the token is sent in the request header of a route without authentication the token error is reported.
 

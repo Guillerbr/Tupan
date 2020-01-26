@@ -30,6 +30,10 @@ exports.signup = async (req, res, next) => {
     try {
 
         const { email, password, role } = req.body
+        
+        //check fild email filled
+        if (!email)
+            return res.status(400).send({ error: 'Email field must be filled' });
 
         //  check if email exist in db,if yes,returns or error
         if (await User.findOne({ where: {email} }))       //mysql: where: {email}
@@ -90,26 +94,34 @@ exports.forgotPassword = async (req, res) => {
 
     try {
         const user = await User.findOne({ where: {email} });            //users table
-        
-
         const token = crypto.randomBytes(20).toString('hex');
         const now = new Date();
-        now.setHours(now.getHours() + 1);
+        now.setHours(now.getHours() + 1);                             //1 HR valid token
 
         //await User.findOne({ attributes: ['passwordResetToken','passwordResetExpires'], where: {email} }) 
         //await User.findAll({ where: user.id,  passwordResetToken, passwordResetExpires }) 
         
+        //const newTokenResetUser = new User({passwordResetToken, passwordResetExpires})
+        //await newTokenResetUser.save();
+        //await user.save(passwordResetToken,passwordResetExpires);
+
         
-       //error save datas in db  
+
+
         
-        await User.findByPk( user.id, {          //error-findByIdAndUpdate--mongo method - users table   
+        //error sequelize save datas in db
+        await User.findByPk( user.id, {          //error-findByIdAndUpdate--mongo method - users table   { where: {email} } 
             '$set': { 
                 passwordResetToken: token,
                 passwordResetExpires: now,
             }
         });
+      
+         
+        //await User.findOrCreate({ attributes: ['passwordResetToken','passwordResetExpires'], where: {email} })
+        //await user.save(user.id )
 
-        
+       
 
         const msg = {
             to: email,
@@ -124,6 +136,8 @@ exports.forgotPassword = async (req, res) => {
         //res.send({ Successfully: true, user: req.token });      
         console.log(sgMail);
         console.log(token);
+        console.log(now);
+
         res.status(200).json({
             
             Success: "Request sent successfully,check token in your email!"
@@ -145,12 +159,20 @@ exports.resetPassword = async (req, res) => {
     const { email, token, password } = req.body;
     const hashedPassword = await hashPassword(password);              //call function hashedPassword
 
-      try {
+      if(email == null)
+      return res.status(400).send({ error: 'User email should be sent'})
 
-        //const user = await User.findOne({ where: {email} })         //error: select is not a function mysql sequeli
-        const user = await User.findOne({ attributes: ['passwordResetToken','passwordResetExpires'], where: {email} }) 
+      if(token == null)
+      return res.status(400).send({ error: 'Token should be sent'})
+
+      
+
+        try {
+
+           //const user = await User.findOne({ where: {email} })         //error: select is not a function mysql sequeli
+           const user = await User.findOne({ attributes: ['passwordResetToken','passwordResetExpires'], where: {email} }) 
         
-        //  .select('+passwordResetToken passwordResetExpires');      //using sequelize use corresponding method
+           //  .select('+passwordResetToken passwordResetExpires');      //using sequelize use corresponding method
                     
 
 
@@ -164,17 +186,21 @@ exports.resetPassword = async (req, res) => {
         const now = new Date();
 
         if (now > user.passwordResetExpires)
+           
             return res.status(400).send({ error: 'Token expired, generate new token' });
+            
+            
 
         //user.password = password;             //not encrypt password// delete line
         user.password = hashedPassword;         //hash used in password
         
-
+        //console.log(user.password);
+        //console.log(user);
         
         //save new password sequelize methods
         
-        await user.save()            //error: You attempted to save an instance with no primary key, this is not allowed since it would result in a global update
-
+        await user.save();         //error: You attempted to save an instance with no primary key, this is not allowed since it would result in a global update
+       
                                              
         //res.send({ Successfully: true, user: req.userId });     //ok return user id,alter response sucess mensage
         
