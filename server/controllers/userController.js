@@ -149,16 +149,10 @@ exports.resetPassword = async (req, res) => {
       return res.status(400).send({ error: 'Token should be sent'})
 
       
-
         try {
-
-           //const user = await User.findOne({ where: {email} })         //error: select is not a function mysql sequeli
-           const user = await User.findOne({ attributes: ['passwordResetToken','passwordResetExpires'], where: {email} }) 
-        
-           //  .select('+passwordResetToken passwordResetExpires');      //using sequelize use corresponding method
-                    
-
-
+         
+           const user = await User.findOne({ attributes: ['passwordResetToken','passwordResetExpires','id'], where: {email} }) 
+           
         if (!user)
             return res.status(400).send({ error: 'User not found' });
 
@@ -173,29 +167,13 @@ exports.resetPassword = async (req, res) => {
             return res.status(400).send({ error: 'Token expired, generate new token' });
             
             
+            user.password = hashedPassword;         //hash used in password       
 
-        //user.password = password;             //not encrypt password// delete line
-        user.password = hashedPassword;         //hash used in password
-        
-        //console.log(user.password);
-        //console.log(user);
-        
-        //save new password sequelize methods
-
-    
-
-           
-        
-
-           await user.save({
-            password: hashedPassword,
+           await user.update({
+            password: hashedPassword
         
              })
-
-                 
-       // await user.save();         //error: You attempted to save an instance with no primary key, this is not allowed since it would result in a global update
-       
-                                             
+                                                 
        //res.send({ Successfully: true, user: req.userId });     //ok return user id,alter response sucess mensage
         
         
@@ -205,8 +183,8 @@ exports.resetPassword = async (req, res) => {
         }); 
 
     } catch (err) {
-        console.log(err);
-        console.log(hashedPassword);
+        //console.log(err);
+        //console.log(hashedPassword);
         res.status(400).send({ error: 'Cannot reset password, try again' });
 
     }
