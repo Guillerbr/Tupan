@@ -24,6 +24,14 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
 
 
 const User = sequelize.define("users", {
+
+  /*
+    id: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+  */
   email: {
     type: Sequelize.STRING,
     required: true,

@@ -93,37 +93,19 @@ exports.forgotPassword = async (req, res) => {
     const { email } = req.body;
 
     try {
-        const user = await User.findOne({ where: {email} });            //users table
+        const user = await User.findOne({ where: {email} });            
         const token = crypto.randomBytes(20).toString('hex');
         const now = new Date();
         now.setHours(now.getHours() + 1);                             //1 HR valid token
 
-        //await User.findOne({ attributes: ['passwordResetToken','passwordResetExpires'], where: {email} }) 
-        //await User.findAll({ where: user.id,  passwordResetToken, passwordResetExpires }) 
-        
-        //const newTokenResetUser = new User({passwordResetToken, passwordResetExpires})
-        //await newTokenResetUser.save();
-        //await user.save(passwordResetToken,passwordResetExpires);
+ 
+            await user.update({
+            passwordResetToken: token,
+            passwordResetExpires: now
+             })
+             
 
-        
-
-
-        
-        //error sequelize save datas in db
-        await User.findByPk( user.id, {          //error-findByIdAndUpdate--mongo method - users table   { where: {email} } 
-            '$set': { 
-                passwordResetToken: token,
-                passwordResetExpires: now,
-            }
-        });
-      
-         
-        //await User.findOrCreate({ attributes: ['passwordResetToken','passwordResetExpires'], where: {email} })
-        //await user.save(user.id )
-
-       
-
-        const msg = {
+         const msg = {
             to: email,
             from: 'apitest@api.com',     //    'apinet@gmail.com'
             subject: 'Sending with Twilio SendGrid is Fun',
@@ -137,6 +119,7 @@ exports.forgotPassword = async (req, res) => {
         console.log(sgMail);
         console.log(token);
         console.log(now);
+        //console.log(error);
 
         res.status(200).json({
             
@@ -198,11 +181,22 @@ exports.resetPassword = async (req, res) => {
         //console.log(user);
         
         //save new password sequelize methods
+
+    
+
+           
         
-        await user.save();         //error: You attempted to save an instance with no primary key, this is not allowed since it would result in a global update
+
+           await user.save({
+            password: hashedPassword,
+        
+             })
+
+                 
+       // await user.save();         //error: You attempted to save an instance with no primary key, this is not allowed since it would result in a global update
        
                                              
-        //res.send({ Successfully: true, user: req.userId });     //ok return user id,alter response sucess mensage
+       //res.send({ Successfully: true, user: req.userId });     //ok return user id,alter response sucess mensage
         
         
         res.status(200).json({
@@ -212,6 +206,7 @@ exports.resetPassword = async (req, res) => {
 
     } catch (err) {
         console.log(err);
+        console.log(hashedPassword);
         res.status(400).send({ error: 'Cannot reset password, try again' });
 
     }
