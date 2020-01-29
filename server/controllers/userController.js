@@ -10,8 +10,10 @@ const crypto = require('crypto');
 const sgMail = require('@sendgrid/mail');
 //sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
+
 // Add this to the top of the file
 const { roles } = require('../roles')
+
 
 //functions bcrypt pass
 async function hashPassword(password) {
@@ -24,6 +26,44 @@ async function validatePassword(plainPassword, hashedPassword) {
 }
 
 
+
+//grantAccess executes permission if user has authorization                       //IMPORTANT
+exports.grantAccess = function (action, resource) {
+    return async (req, res, next) => {
+        try {
+            const permission = roles.can(req.users.role)[action](resource);       //IMPORTANT SET TABLE DB ROLE USERS
+            if (!permission.granted) {
+                return res.status(401).json({
+                    error: "You don't have enough permission to perform this action"
+                });
+            }
+            next()
+        } catch (error) {
+            next(error)
+        }
+    }
+}
+
+
+//allows access if user is logged in
+exports.allowIfLoggedin = async (req, res, next) => {
+    try {
+
+        const users = res.locals.loggedInUser;
+        if (!users)
+            return res.status(401).json({
+                error: "You need to be logged in to access this route"
+            });
+        req.users = users;                      //IMPORTANT SET TABLE DB USERS
+        next();
+    } catch (error) {
+        return res.status(400).json({ error: 'Registration failed' });
+        // next(error);
+    }
+
+}
+
+//error jwt return not valid
 //function register basic user
 //role access control config 
 exports.signup = async (req, res, next) => {
@@ -135,8 +175,6 @@ exports.forgotPassword = async (req, res) => {
 
 
 //reset-password
-//add bcrypt function so the new password is encrypted
-//The password arrives in the database, but not encrypted.
 exports.resetPassword = async (req, res) => {
 
     const { email, token, password } = req.body;
@@ -217,7 +255,7 @@ exports.getUser = async (req, res, next) => {
 
 }
 
-
+//error
 //make user change update
 exports.updateUser = async (req, res, next) => {
     try {
@@ -235,7 +273,7 @@ exports.updateUser = async (req, res, next) => {
     }
 }
 
-
+//error
 //delete user
 exports.deleteUser = async (req, res, next) => {
     try {
@@ -249,43 +287,6 @@ exports.deleteUser = async (req, res, next) => {
         // next(error)
         return res.status(400).send({ error: 'Error delete user' });
     }
-}
-
-
-//grantAccess executes permission if user has authorization                      //IMPORTANT
-exports.grantAccess = function (action, resource) {
-    return async (req, res, next) => {
-        try {
-            const permission = roles.can(req.users.role)[action](resource);       //IMPORTANT SET TABLE DB ROLE USERS
-            if (!permission.granted) {
-                return res.status(401).json({
-                    error: "You don't have enough permission to perform this action"
-                });
-            }
-            next()
-        } catch (error) {
-            next(error)
-        }
-    }
-}
-
-
-//allows access if user is logged in
-exports.allowIfLoggedin = async (req, res, next) => {
-    try {
-
-        const users = res.locals.loggedInUser;
-        if (!users)
-            return res.status(401).json({
-                error: "You need to be logged in to access this route"
-            });
-        req.users = users;                      //IMPORTANT SET TABLE DB USERS
-        next();
-    } catch (error) {
-        return res.status(400).json({ error: 'Registration failed' });
-        // next(error);
-    }
-
 }
 
 
