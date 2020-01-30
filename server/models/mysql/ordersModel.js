@@ -18,78 +18,91 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
 });
 */
 
-const Markets = sequelize.define("markets", {
+const Orders = sequelize.define("orders", {
   id: {
-    type: DataTypes.STRING(20),
+    type: DataTypes.INTEGER(11),
     primaryKey: true,
     autoIncrement: true
   },
 
-  ask_unit: {
+  bid: {
     type: DataTypes.STRING(10),
     required: true,
     trim: true
-    //indice PK 
+    
   },
-  bid_unit: {
+  ask: {
     type: DataTypes.STRING(10),
     //required: true
+    
+  },
+  market_id: {
+    type: DataTypes.STRING(20),
+    //required: true
     //indice PK 
   },
-  ask_fee: {
-    type: DataTypes.DECIMAL(17, 16),
+  price: {
+    type: DataTypes.DECIMAL(32, 16),
     //required: true
   },
-  bid_fee: {
-    type: DataTypes.DECIMAL(17, 16),
-    //required: true
-  },
-  min_ask_price: {
+  volume: {
     type: DataTypes.DECIMAL(32,16),
     //required: true
   },
-  max_bid_price: {
+  origin_volume: {
     type: DataTypes.DECIMAL(32,16),
     //required: true
     
   },
-  min_ask_amount: {
+  fee: {
     type: DataTypes.DECIMAL(32,16),
     //required: true
     
   },
-  min_bid_amount: {
-    type: DataTypes.DECIMAL(32,16),
-    //required: true
-    
-  },
-  ask_precision: {
-    type: Sequelize.INTEGER(4),
-    //required: true
-    //tinyint
-  },
-  bid_precision: {
-    type: DataTypes.INTEGER(4),
-    //required: true
-    //tinyint
-  },
-  position: {
+  state: {
     type: DataTypes.INTEGER(11),
+    //required: true
+    //indice PK
+  },
+  type: {
+    type: Sequelize.STRING(8),
+    //required: true
+    //indice PK 
+    
+  },
+  member_id: {
+    type: DataTypes.INTEGER(4),
     //required: true
     //indice PK
     
   },
-  enabled: {
-    type: DataTypes.INTEGER(1),
+  ord_type: {
+    type: DataTypes.STRING(30),
     //required: true
-     //indice PK 
+  },
+  locked: {
+    type: DataTypes.DECIMAL(32,16),
+    //required: true
+    //indice PK 
+  },
+  origin_locked: {
+    type: DataTypes.DECIMAL(32,16),
+    //required: true
+  },
+  funds_received: {
+    type: DataTypes.DECIMAL(32,16),
+    //required: true
+  },
+  trades_count: {
+    type: DataTypes.INTEGER(11),
+    //required: true
   },
   created_at: {
-    type: DataTypes.DATETIME,
+    type: DataTypes.DATE,
     //required: true
   },
   updated_at: {
-    type: DataTypes.DATE,
+    type: DataTypes.DATETIME,
     //required: true
   },
 
@@ -100,5 +113,5 @@ const Markets = sequelize.define("markets", {
 //force create new table
 User.sync({ force: true });
 
-module.exports = Markets;
+module.exports = Orders;
 
