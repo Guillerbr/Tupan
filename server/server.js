@@ -29,6 +29,8 @@ const routes = require('./routes/routes.js');
 //mongo config model
 //const User = require('./models/mongo/userModel');
 
+//mysql config sequelize model
+//const User = require('../models/userModel');
 
 //mysql config model
 const User = require('./models/mysql/userModel');

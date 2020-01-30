@@ -103,3 +103,15 @@ const Wallets = sequelize.define("wallets", {
 User.sync({ force: true });
 
 module.exports = Wallets;
+
+
+/*
+
+sequelize model:generate --name Wallets --attributes id:integer,blockchain_key:string,currency_id:string,name:string,address:string,kind:integer,nsig:integer,gateway:string,setting:string,max_balance:decimal,parent:integer,status:string
+  
+npx sequelize-cli db:migrate
+
+
+
+
+*/

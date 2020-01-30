@@ -53,39 +53,11 @@ module.exports = Accounts;
 
 /*
 
-create config/ in
-config/databasemysql.js
+/*
 
-module.exports = {
+SEQUELIZE-CLI COMMANDS CREATE MODEL AND MIGRATIONS
 
-  dialect: "mysql"
-  host: "localhost",
-  username: "",
-  password: "",
-  database: "",
-  define: {
-    timestamps: true,
-    underscored: true,
-  },
-  
-};
-
-env exemple:
-
-module.exports = {
-
-  dialect: "mysql"
-  host:     process.env.DB_HOST,
-  username: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  define: {
-    timestamps: true,
-    underscored: true,
-  },
-  
-};
-  
+sequelize model:generate --name Accounts --attributes id:integer,member_id:integer,currency_id:string,balance:decimal,locked:decimal
 
 
 
