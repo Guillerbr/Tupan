@@ -8,9 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
-      },
       email: {
         type: Sequelize.STRING
       },
@@ -18,7 +15,9 @@ module.exports = {
         type: Sequelize.STRING
       },
       role: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+         default: "basic",                                                         //config acesscontrol-important
+          enum: ["basic", "supervisor", "admin", "manager", "final_user"]          //config acesscontrol-important
       },
       accessToken: {
         type: Sequelize.STRING

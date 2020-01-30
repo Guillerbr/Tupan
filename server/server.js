@@ -5,8 +5,12 @@ const redis = require('redis');
 const Sequelize  = require('sequelize');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const path = require('path');
+
+//routes config path
+const routes = require('./routes/routes.js');
 
 //API RPC BITCOIN-CORE JSON RDP
 //const rpcMethods = require("./api-bitcoin-core/api");
@@ -22,21 +26,15 @@ const client = redis.createClient(REDIS_PORT);
 */
 
 
-//routes config path
-const routes = require('./routes/routes.js');
-
-
 //mongo config model
 //const User = require('./models/mongo/userModel');
 
 //mysql config sequelize model
-//const User = require('../models/userModel');
+//const User = require('../models/users');
 
 //mysql config model
 const User = require('./models/mysql/userModel');
 
-//import cors
-const cors = require('cors');
 
 //dir path env set
 require("dotenv").config({
@@ -48,6 +46,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 
+/*
 //mysql sequelize connect function
 const sequelize = new Sequelize('node-acl-sequelize-test', 'root', 'root', {
     host: 'localhost',
@@ -62,6 +61,7 @@ const sequelize = new Sequelize('node-acl-sequelize-test', 'root', 'root', {
     console.error('Connected Mysql DB to the Database failed!');
   });
 
+*/
 
 
 //mongoose mongo connect function

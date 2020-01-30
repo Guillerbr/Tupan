@@ -92,3 +92,21 @@ const Trades = sequelize.define("trades", {
 User.sync({ force: true });
 
 module.exports = Trades;
+
+
+
+
+/*
+
+sequelize model:generate --name Trades --attributes id:integer,price:decimal,volume:decimal,ask_id:integer,bid_id:integer,trend:integer,market_id:string,ask_member_id:integer,bid_member_id:integer,funds:decimal
+  
+npx sequelize-cli db:migrate
+
+
+
+
+https://sequelize.org/master/class/lib/model.js~Model.html#updatevalues-options-promisearrayaffectedcount-affectedrows
+
+
+
+*/
