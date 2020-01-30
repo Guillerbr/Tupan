@@ -18,7 +18,7 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
 });
 */
 
-const Accounts = sequelize.define("accounts", {
+const Deposits = sequelize.define("deposits", {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -32,24 +32,67 @@ const Accounts = sequelize.define("accounts", {
     //indice PK user-id
   },
   currency_id: {
-    type: DataTypes.STRING(1234),
-    required: true
+    type: DataTypes.STRING(10),
+    //required: true
     //indice PK currency_id	
   },
-  balance: {
+  amount: {
     type: DataTypes.DECIMAL(32, 16),
     //required: true
   },
-  locked: {
+  fee: {
     type: DataTypes.DECIMAL(32, 16),
     //required: true
-  }
+  },
+  address: {
+    type: DataTypes.STRING(95),
+    //required: true
+  },
+  txid: {
+    type: DataTypes.STRING(128),
+    //required: true
+  },
+  txout: {
+    type: DataTypes.STRING(30),
+    //required: true
+  },
+  aasm_state: {
+    type: DataTypes.STRING(30),
+    //required: true
+  },
+  block_number: {
+    type: Sequelize.INTEGER(11),
+    //required: true
+  },
+  type: {
+    type: DataTypes.STRING(30),
+    //required: true
+  },
+  tid: {
+    type: DataTypes.STRING(64),
+    //required: true
+  },
+  created_at: {
+    type: DataTypes.DATETIME,
+    //required: true
+  },
+  updated_at: {
+    type: DataTypes.DATETIME,
+    //required: true
+  },
+  completed_at: {
+    type: DataTypes.DATE,
+    //required: true
+  },
+
+  //timestamps: true,
+
 });
 
 //force create new table
 User.sync({ force: true });
 
-module.exports = Accounts;
+module.exports = Deposits;
 
 /*
 

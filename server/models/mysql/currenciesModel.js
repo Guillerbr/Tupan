@@ -18,22 +18,22 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
 });
 */
 
-const Accounts = sequelize.define("accounts", {
+const Currencies = sequelize.define("currencies", {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
     autoIncrement: true
   },
 
-  member_id: {
-    type: Sequelize.INTEGER,
+  name: {
+    type: Sequelize.STRING(255),
     required: true,
     trim: true
     //indice PK user-id
   },
-  currency_id: {
-    type: DataTypes.STRING(1234),
-    required: true
+  blockchain_key: {
+    type: DataTypes.STRING(32),
+    //required: true
     //indice PK currency_id	
   },
   balance: {
@@ -49,7 +49,7 @@ const Accounts = sequelize.define("accounts", {
 //force create new table
 User.sync({ force: true });
 
-module.exports = Accounts;
+module.exports = Currencies;
 
 /*
 
