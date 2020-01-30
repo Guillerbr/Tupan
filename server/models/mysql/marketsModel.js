@@ -18,74 +18,78 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
 });
 */
 
-const Deposits = sequelize.define("deposits", {
+const Markets = sequelize.define("markets", {
   id: {
-    type: Sequelize.INTEGER,
+    type: DataTypes.STRING(20),
     primaryKey: true,
     autoIncrement: true
   },
 
-  member_id: {
-    type: Sequelize.INTEGER,
+  ask_unit: {
+    type: DataTypes.STRING(10),
     required: true,
     trim: true
-    //indice PK user-id
+    //indice PK 
   },
-  currency_id: {
+  bid_unit: {
     type: DataTypes.STRING(10),
     //required: true
-    //indice PK currency_id	
+    //indice PK 
   },
-  amount: {
-    type: DataTypes.DECIMAL(32, 16),
+  ask_fee: {
+    type: DataTypes.DECIMAL(17, 16),
     //required: true
   },
-  fee: {
-    type: DataTypes.DECIMAL(32, 16),
+  bid_fee: {
+    type: DataTypes.DECIMAL(17, 16),
     //required: true
   },
-  address: {
-    type: DataTypes.STRING(95),
+  min_ask_price: {
+    type: DataTypes.STRING(32,16),
     //required: true
   },
-  txid: {
-    type: DataTypes.STRING(128),
-    //required: true
-    //indice PK
-  },
-  txout: {
-    type: DataTypes.STRING(30),
+  max_bid_price: {
+    type: DataTypes.STRING(32,16),
     //required: true
     //indice PK
   },
-  aasm_state: {
-    type: DataTypes.STRING(30),
+  min_ask_amount: {
+    type: DataTypes.STRING(32,16),
     //required: true
     //indice PK
   },
-  block_number: {
-    type: Sequelize.INTEGER(11),
-    //required: true
-  },
-  type: {
-    type: DataTypes.STRING(30),
+  min_bid_amount: {
+    type: DataTypes.STRING(32,16),
     //required: true
     //indice PK
   },
-  tid: {
-    type: DataTypes.STRING(64),
+  ask_precision: {
+    type: Sequelize.INTEGER(4),
+    //required: true
+    //tinyint
+  },
+  bid_precision: {
+    type: DataTypes.STRING(4),
     //required: true
     //indice PK
+    //tinyint
+  },
+  position: {
+    type: DataTypes.STRING(11),
+    //required: true
+    //indice PK
+    //tinyint
+  },
+  enabled: {
+    type: DataTypes.DATETIME,
+    //required: true
+     //indice PK 
   },
   created_at: {
     type: DataTypes.DATETIME,
     //required: true
   },
   updated_at: {
-    type: DataTypes.DATETIME,
-    //required: true
-  },
-  completed_at: {
     type: DataTypes.DATE,
     //required: true
   },
@@ -97,5 +101,5 @@ const Deposits = sequelize.define("deposits", {
 //force create new table
 User.sync({ force: true });
 
-module.exports = Deposits;
+module.exports = Markets;
 
