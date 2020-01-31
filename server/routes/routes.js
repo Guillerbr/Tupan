@@ -55,7 +55,9 @@ router.get('/userinfo', userController.userInfo);
 
 
 //trades tradings
-router.get('/trades', tradesController.trades);
+router.get('/trades', tradesController.trades);     
+
+router.post('/order', tradesController.postTrade);
 
 
 

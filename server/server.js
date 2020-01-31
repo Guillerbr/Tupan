@@ -63,7 +63,6 @@ const sequelize = new Sequelize('node-acl-sequelize-test', 'root', 'root', {
 
 */
 
-
 //mongoose mongo connect function
 mongoose
 .connect(process.env.MONGO_SECRET)

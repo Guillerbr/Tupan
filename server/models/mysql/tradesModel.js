@@ -21,57 +21,48 @@ const Trades = sequelize.define("trades", {
    */
 
   price: {
-    type: DataTypes.DECIMAL(32, 16),
-    required: true,
+    type: Sequelize.DECIMAL,
+    //required: true,
     trim: true
   },
   volume: {
-    type: DataTypes.DECIMAL(32, 16)
+    type: Sequelize.DECIMAL,
     //required: true
   },
   ask_id: {
-    type: DataTypes.INTEGER(11)
+    type: Sequelize.INTEGER
     //required: true
     //indice PK
   },
   bid_id: {
-    type: DataTypes.INTEGER(11)
+    type: Sequelize.INTEGER
     //required: true
     //indice PK
   },
   trend: {
-    type: DataTypes.INTEGER(11)
+    type: Sequelize.INTEGER
     //required: true
   },
   market_id: {
-    type: DataTypes.STRING(20)
+    type: Sequelize.STRING
     //required: true
     //indice PK
   },
   ask_member_id: {
-    type: DataTypes.INTEGER(11)
+    type: Sequelize.INTEGER
     //required: true
     //indice PK
   },
   bid_member_id: {
-    type: DataTypes.INTEGER(11)
+    type: Sequelize.INTEGER
     //required: true
     //indice PK
   },
   funds: {
-    type: DataTypes.DECIMAL(32, 16)
+    type: Sequelize.DECIMAL
     //required: true
   },
-  created_at: {
-    type: DataTypes.DATE
-    //required: true
-    //indice PK
-  },
-  updated_at: {
-    type: DataTypes.DATETIME
-    //required: true
-  }
-
+  
   /*
   completed_at:{
     type: DataTypes.DATETIME,
@@ -82,7 +73,7 @@ const Trades = sequelize.define("trades", {
 });
 
 //force create new table
-User.sync({ force: true });
+//User.sync({ force: true });
 
 module.exports = Trades;
 
