@@ -1,7 +1,7 @@
 // server/controllers/userController.js
 
 //const User = require('../models/mongo/userModel');
-//const User = require('../models/users');
+//const User = require('../../models/users');
 const User = require('../models/mysql/userModel');
 const Balance = require('../models/mongo/balanceModel');
 const jwt = require('jsonwebtoken');
