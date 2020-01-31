@@ -11,71 +11,64 @@ const sequelize = new Sequelize("node-acl-sequelize-test", "root", "root", {
   dialect: "mysql"
 });
 
-/*
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
-  host: process.env.DB_HOST,
-  dialect: "mysql"
-});
-*/
-
 const Trades = sequelize.define("trades", {
+  /*
   id: {
     type: DataTypes.INTEGER(11),
     primaryKey: true,
     autoIncrement: true
   },
+   */
 
   price: {
-    type: DataTypes.DECIMAL(32,16),
+    type: DataTypes.DECIMAL(32, 16),
     required: true,
     trim: true
-    
   },
   volume: {
-    type: DataTypes.DECIMAL(32,16),
+    type: DataTypes.DECIMAL(32, 16)
     //required: true
-    
   },
   ask_id: {
-    type: DataTypes.INTEGER(11),
+    type: DataTypes.INTEGER(11)
     //required: true
     //indice PK
   },
   bid_id: {
-    type: DataTypes.INTEGER(11),
+    type: DataTypes.INTEGER(11)
     //required: true
     //indice PK
   },
   trend: {
-    type: DataTypes.INTEGER(11),
+    type: DataTypes.INTEGER(11)
     //required: true
   },
   market_id: {
-    type: DataTypes.STRING(20),
+    type: DataTypes.STRING(20)
     //required: true
     //indice PK
   },
   ask_member_id: {
-    type: DataTypes.INTEGER(11),
+    type: DataTypes.INTEGER(11)
     //required: true
     //indice PK
   },
   bid_member_id: {
-    type: DataTypes.INTEGER(11),
+    type: DataTypes.INTEGER(11)
     //required: true
     //indice PK
   },
   funds: {
-    type: DataTypes.DECIMAL(32, 16),
+    type: DataTypes.DECIMAL(32, 16)
     //required: true
   },
   created_at: {
-    type: DataTypes.DATE,
+    type: DataTypes.DATE
     //required: true
     //indice PK
   },
   updated_at: {
-    type: DataTypes.DATETIME,
+    type: DataTypes.DATETIME
     //required: true
   }
 
@@ -93,12 +86,9 @@ User.sync({ force: true });
 
 module.exports = Trades;
 
-
-
-
 /*
 
-sequelize model:generate --name Trades --attributes id:integer,price:decimal,volume:decimal,ask_id:integer,bid_id:integer,trend:integer,market_id:string,ask_member_id:integer,bid_member_id:integer,funds:decimal
+sequelize model:generate --name Trades --attributes price:decimal,volume:decimal,ask_id:integer,bid_id:integer,trend:integer,market_id:string,ask_member_id:integer,bid_member_id:integer,funds:decimal
   
 npx sequelize-cli db:migrate
 

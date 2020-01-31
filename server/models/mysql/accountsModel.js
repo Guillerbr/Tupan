@@ -57,7 +57,7 @@ module.exports = Accounts;
 
 SEQUELIZE-CLI COMMANDS CREATE MODEL AND MIGRATIONS
 
-sequelize model:generate --name Accounts --attributes id:integer,member_id:integer,currency_id:string,balance:decimal,locked:decimal
+sequelize model:generate --name Accounts --attributes member_id:integer,currency_id:string,balance:decimal,locked:decimal
 
 
 

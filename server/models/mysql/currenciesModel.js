@@ -53,46 +53,13 @@ module.exports = Currencies;
 
 /*
 
-create config/ in
-config/databasemysql.js
-
-module.exports = {
-
-  dialect: "mysql"
-  host: "localhost",
-  username: "",
-  password: "",
-  database: "",
-  define: {
-    timestamps: true,
-    underscored: true,
-  },
-  
-};
-
-env exemple:
-
-module.exports = {
-
-  dialect: "mysql"
-  host:     process.env.DB_HOST,
-  username: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  define: {
-    timestamps: true,
-    underscored: true,
-  },
-  
-};
-  
+sequelize model:generate --name Currencies --attributes name:integer,blockchain_key:string,balance:decimal,locked:decimal
 
 
 
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
-  host: process.env.DB_HOST,
-  dialect: process.env.DB_DIALECT
-});
+
+
+
 
 
 

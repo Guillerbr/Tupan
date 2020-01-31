@@ -8,9 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
-      },
       price: {
         type: Sequelize.DECIMAL
       },
@@ -52,13 +49,3 @@ module.exports = {
     return queryInterface.dropTable('Trades');
   }
 };
-
-/*
-
-sequelize model:generate --name Users --attributes email:string,password:string,role:string,
-accessToken:string,passwordResetToken:string,passwordResetExpires:date,fullName:string,country_code:string,
-cellphone:string,verified:boolean,authyId:string
-  
-npx sequelize-cli db:migrate
-
-*/
