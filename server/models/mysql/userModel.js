@@ -102,8 +102,6 @@ npx sequelize-cli db:migrate
 https://sequelize.org/master/class/lib/model.js~Model.html#updatevalues-options-promisearrayaffectedcount-affectedrows
 
 
-const fs = require('fs');
-const path = require('path');
-const dirPath = path.join(__dirname, '/models/user');
+
 
 */

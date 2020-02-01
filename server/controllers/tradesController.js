@@ -9,11 +9,11 @@ const Trades = path.join(__dirname, '/models/users.js');
 */
 
 
-
-//const Trades = require("../../models/trades");
+//const { Sequelize } = require('sequelize');
+//const Trades = require("../.././models/trades.js");
 
 //model mysql user
-const Trades = require("../models/mysql/tradesModel.js");   
+const Trades = require("../models/mysql/tradesModel");   
 
 exports.trades = async (req, res, next) => {
   try {
@@ -33,14 +33,14 @@ exports.trades = async (req, res, next) => {
   }
 };
 
-//post order
 
+//post order
 exports.postTrade = async (req, res, next) => {
   try {
     const { price, volume } = req.body;
     const newTrades = new Trades({
       price,
-      volume,
+      volume
       
     });
 
@@ -54,8 +54,33 @@ exports.postTrade = async (req, res, next) => {
     //console.log(trades);
   } catch (error) {
     // next(error)
-    //console.log(error);
+    console.log(error);
     return res.status(400).send({ error: "Error sending order" });
+  }
+};
+
+
+exports.deleteTrade = async (req, res, next) => {
+  try {
+    const {  } = req.body;
+    const newTrades = new Trades({
+      price,
+      volume
+      
+    });
+
+    await newTrades.save();
+    res.json({
+       
+        newTrades
+    })
+
+    
+    //console.log(trades);
+  } catch (error) {
+    // next(error)
+    console.log(error);
+    return res.status(400).send({ error: "Error delete order" });
   }
 };
 

@@ -26,7 +26,7 @@ const client = redis.createClient(REDIS_PORT);
 */
 
 
-//mongo config model
+//mongo set config model
 //const User = require('./models/mongo/userModel');
 
 //mysql config sequelize model
