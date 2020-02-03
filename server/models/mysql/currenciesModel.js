@@ -53,7 +53,7 @@ module.exports = Currencies;
 
 /*
 
-sequelize model:generate --name Currencies --attributes name:integer,blockchain_key:string,balance:decimal,locked:decimal
+sequelize model:generate --name Currencies --attributes name:string,blockchain_key:string,balance:decimal,locked:decimal
 
 
 

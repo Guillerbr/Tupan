@@ -115,3 +115,12 @@ User.sync({ force: true });
 
 module.exports = Orders;
 
+/*
+
+sequelize model:generate --name Orders --attributes bid:string,ask:string,market_id:string,price:decimal,volume:decimal,origin_volume:decimal,fee:decimal,state:integer,type:string,member_id:integer,ord_type:string,locked:decimal,origin_locked:decimal,funds_received:decimal,trades_count:integer
+  
+npx sequelize-cli db:migrate
+
+
+
+*/
