@@ -6,6 +6,7 @@ const Sequelize  = require('sequelize');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const path = require('path');
 
@@ -85,7 +86,8 @@ app.use(bodyParser.urlencoded({ extended: false })).use(cors());
 //implement in cors, connect to specifically configured origin domain-feature
 //  app.use(Cors({ origin: [APP_ID], credentials: true }));
 
-
+//cookie session
+server.use(cookieParser());
 
 //define default type headers 
 //x-access-token use token

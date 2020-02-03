@@ -1,14 +1,14 @@
 Arguments: 
-  C:\laragon\bin\nodejs\node-v10\node.exe C:\Users\USER\AppData\npm\node_modules\yarn\bin\yarn.js add path
+  C:\Program Files\nodejss\node.exe C:\Users\USER\AppData\npm\node_modules\yarn\bin\yarn.js add cookie-parser
 
 PATH: 
-  \Yarn\config\global\node_modules\.bin;C:\Users\USER\AppData\npm;C:\Users\USER\AppData\Composer\vendor\bin;;C:\laragon\bin\laragon\utils;C:\laragon\bin\mysql\mysql-5.7.24-win32\bin;C:\laragon\bin\php\php-7.2.11-Win32-VC15-x86;C:\laragon\bin\composer;C:\laragon\bin\apache\httpd-2.4.35-win32-VC15\bin;C:\laragon\bin\redis\redis-2.6.12;C:\laragon\bin\nodejs\node-v10;C:\laragon\bin\yarn\bin;C:\laragon\bin\nginx\nginx-1.14.0;C:\laragon\bin\notepad++;C:\laragon\bin\telnet;C:\laragon\bin\ngrok;C:\laragon\bin\git\bin;C:\laragon\bin\git\cmd;C:\laragon\bin\git\usr\bin;C:\laragon\bin\git\mingw32\bin;C:\laragon\bin;C:\laragon\usr\bin;C:\laragon\bin\putty;C:\laragon\bin\cmder\bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Intel\TXE Components\TCS\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\GtkSharp\2.12\bin;C:\Program Files\Git\cmd;C:\Program Files\Microchip\MPLAB C32 Suite\bin;C:\laragon\bin\php\php-7.1.1-Win32-VC14-x86;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\PuTTY\;C:\Program Files\nodejss\;C:\Users\USER\AppData\npm;C:\Program Files\Geth;C:\RailsInstaller\Git\cmd;C:\RailsInstaller\Ruby2.3.3\bin;C:\Users\USER\AppData\Local\Programs\Python\Python37-32\Scripts\;C:\Users\USER\AppData\Local\Programs\Python\Python37-32\;C:\Ruby26\bin;C:\Program Files\Microsoft VS Code\bin;C:\Users\USER\AppData\Roaming\Composer\vendor\bin;C:\Program Files\heroku\bin;C:\Users\USER\AppData\Roaming\npm;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\share\vim\vim74;C:\laragon\bin\cmder\;
+  C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Intel\TXE Components\TCS\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\GtkSharp\2.12\bin;C:\Program Files\Git\cmd;C:\Program Files\Microchip\MPLAB C32 Suite\bin;C:\laragon\bin\php\php-7.1.1-Win32-VC14-x86;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\PuTTY\;C:\Program Files\nodejss\;C:\Users\USER\AppData\npm;C:\Program Files\Geth;C:\RailsInstaller\Git\cmd;C:\RailsInstaller\Ruby2.3.3\bin;C:\Users\USER\AppData\Local\Programs\Python\Python37-32\Scripts\;C:\Users\USER\AppData\Local\Programs\Python\Python37-32\;C:\Ruby26\bin;C:\Program Files\Microsoft VS Code\bin;C:\Users\USER\AppData\Roaming\Composer\vendor\bin;C:\Program Files\heroku\bin;C:\Users\USER\AppData\Roaming\npm
 
 Yarn version: 
   1.17.3
 
 Node version: 
-  10.13.0
+  10.16.0
 
 Platform: 
   win32 ia32
@@ -39,6 +39,7 @@ npm manifest:
       "crypto": "^1.0.1",
       "dotenv": "^8.1.0",
       "express": "^4.17.1",
+      "fs": "^0.0.1-security",
       "jsonwebtoken": "^8.5.1",
       "mongoose": "^5.7.1",
       "mysql2": "^2.1.0",
@@ -1819,6 +1820,11 @@ Lockfile:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
     integrity sha1-FQStJSMVjKpA20onh8sBQRmU6k8=
+  
+  fs@^0.0.1-security:
+    version "0.0.1-security"
+    resolved "https://registry.yarnpkg.com/fs/-/fs-0.0.1-security.tgz#8a7bd37186b6dddf3813f23858b57ecaaf5e41d4"
+    integrity sha1-invTcYa23d84E/I4WLV+yq9eQdQ=
   
   fsevents@^2.1.2:
     version "2.1.2"
