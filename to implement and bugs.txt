@@ -6,6 +6,8 @@
 
 2FA-Two-step authentication with sms,authy,google authentication,sending totp.Twillo token SMS Authy Verify API.  *Working
 
+Protection against attacks CSRF, XSS, XSRF, JWT storage cookies HttpOnly.  *Working
+
 Implement an api cielo payment route, using axios in http requests.  *Working
 
 Mysql sequelize orm integration sql relational.  *Working
