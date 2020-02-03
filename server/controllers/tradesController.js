@@ -60,29 +60,97 @@ exports.postTrade = async (req, res, next) => {
 };
 
 
-exports.deleteTrade = async (req, res, next) => {
-  try {
-    const {  } = req.body;
-    const newTrades = new Trades({
-      price,
-      volume
-      
-    });
 
-    await newTrades.save();
-    res.json({
-       
-        newTrades
-    })
+exports.updateTrade = async (req, res) => {
+
+  const { price, volume } = req.body;
+
+  const trades = req.params.id;
+                
+
+    if(price == null)
+    return res.status(400).send({ error: 'Price should be sent'})
+
+    if(volume == null)
+    return res.status(400).send({ error: 'Volume should be sent'})
 
     
-    //console.log(trades);
-  } catch (error) {
-    // next(error)
-    console.log(error);
-    return res.status(400).send({ error: "Error delete order" });
+      try {
+       
+         const trade_update = await Trades.findOne({ attributes: ['price','volume','id'], where: {trades} }) 
+         
+      if (!trade_update)
+          return res.status(400).send({ error: 'Order not found' });
+
+        
+
+         await Trades.update({
+          //password: hashedPassword
+          price : price,
+          volume : volume 
+      
+           })
+                                               
+     //res.send({ Successfully: true, user: req.userId });     //ok return user id,alter response sucess mensage
+      
+      
+      res.status(200).json({
+          message: "Order changed successfully"
+
+      }); 
+
+  } catch (err) {
+      console.log(err);
+      
+      res.status(400).send({ error: 'Cannot update order, try again' });
+
   }
-};
+}
+
+
+
+
+//delete order
+exports.deleteTrade = async (req, res, next) => {
+  try {
+    const id = req.body
+    const update = id;
+    const tradesId = req.params.tradesId;
+    //await Trades.destroy(tradesId, update);
+
+    //({ attributes: ['price','volume'], where: {email} })
+/*
+    Trades.destroy('`name` LIKE "J%"').success(function() {
+      // We just deleted all rows that have a name starting with "J"
+  })
+
+  */
+   
+  
+    await Trades.destroy({
+      where: {
+          // criteria
+          //attributes: ['trades'], where: {id}
+          
+           attributes: ['id'],
+
+      }
+      
+  })      
+
+    //const balance = await Trades.findById(orderId)
+    res.status(200).json({
+        message: 'Order has been deleted'
+    });
+} catch (err) {
+   console.log(err)
+    return res.status(400).send({ error: 'Error delete order failed' });
+}
+}
+
+
+
+
 
 /*
 

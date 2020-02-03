@@ -59,6 +59,10 @@ router.get('/trades', tradesController.trades);
 
 router.post('/order', tradesController.postTrade);
 
+router.delete('/trades/:tradesId', tradesController.deleteTrade);
+
+router.put('/trades/:tradesId', tradesController.updateTrade); 
+
 
 
 //routers payment credit card cielo gateway

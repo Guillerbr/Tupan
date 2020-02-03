@@ -87,7 +87,10 @@ app.use(bodyParser.urlencoded({ extended: false })).use(cors());
 //  app.use(Cors({ origin: [APP_ID], credentials: true }));
 
 //cookie session
-server.use(cookieParser());
+app.use(cookieParser());
+
+
+
 
 //define default type headers 
 //x-access-token use token
@@ -99,7 +102,8 @@ app.use(async (req, res, next) => {
 
         if (req.headers["x-access-token"]) {
 
-            const accessToken = req.headers["x-access-token"];
+            const accessToken = req.cookies.headers["x-access-token"];
+            //const accessToken = req.headers["x-access-token"];
 
             const { userId, exp } = await jwt.verify(accessToken, process.env.JWT_SECRET);
 

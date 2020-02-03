@@ -1,3 +1,4 @@
+//mongo mongoose user controller
 const User = require('../models/mongo/userModel');
 const Balance = require('../models/mongo/balanceModel');
 const jwt = require('jsonwebtoken');
@@ -91,7 +92,7 @@ exports.deleteBalance = async (req, res) => {
         const update = req.body
         const balanceId = req.params.balanceId;
         await Balance.findByIdAndDelete(balanceId, update);
-        const balance = await Balance.findById(balanceId)
+        const balance = await Balance.findById(balanceId);
         res.status(200).json({
             message: 'Balance has been deleted'
         });
