@@ -23,6 +23,10 @@
      mysql2
      sequelize
      redis
+     cookie-parser
+     jest -dev
+     sequelize-cli -dev
+     
 
 
 
@@ -58,11 +62,22 @@
 
 
 
+## Use Mysql DataBase.
+     in /config/config.json
+     Change the credentials to those in your database mysql. 
+
+
+## Use Mongo DataBase.
+     in .env file
+     Change the credentials to those in your database.
+     Change the link to your Atlas online bank or enter the link to your local bank.     
+
+
 ## Roles ACL-RBAC accesscontrol lib module Accesscontrol
     
      in /server/roles.js    
-     We can configure the crud access level rules per user
-     Admin user type has to control CRUD over system
+     We can configure the crud access level rules per user.
+     Admin user type has to control CRUD over system.
 
 
 ## Use 2fa TOTP token module Speakeasy- Google Authentication Client  

@@ -110,7 +110,7 @@ app.use(async (req, res, next) => {
 
             // Check if token has expired
             if (exp < Date.now().valueOf() / 1000) {
-                return res.status(401).send({ error: "JWT token has expired, please login to obtain a new one" });
+                return res.status(401).send({ error: "JWT token has expired,please login to obtain a new one" });
             }
 
             res.locals.loggedInUser = await User.findByPk( userId );
@@ -123,7 +123,7 @@ app.use(async (req, res, next) => {
     }
     catch (error) {
         // next(error)
-        console.log(error)
+        //console.log(error)
         return res.status(401).json({ error: 'Acess Token invalid go to login' });
 
     }

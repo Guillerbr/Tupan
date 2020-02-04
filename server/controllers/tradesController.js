@@ -65,7 +65,9 @@ exports.updateTrade = async (req, res) => {
 
   const { price, volume } = req.body;
 
-  const tradesId = req.params.tradesId;
+  const tradesId = req.params.id;
+
+  //const tradesId = await Trades.findById(id)
                 
 
     if(price == null)
@@ -88,7 +90,7 @@ exports.updateTrade = async (req, res) => {
           
           price : price,
           volume : volume, 
-          //id : tradesId
+          id : tradesId
           
       
            })
