@@ -60,12 +60,12 @@ exports.postTrade = async (req, res, next) => {
 };
 
 
-
+//update trades
 exports.updateTrade = async (req, res) => {
 
   const { price, volume } = req.body;
 
-  const trades = req.params.id;
+  const tradesId = req.params.tradesId;
                 
 
     if(price == null)
@@ -77,17 +77,19 @@ exports.updateTrade = async (req, res) => {
     
       try {
        
-         const trade_update = await Trades.findOne({ attributes: ['price','volume','id'], where: {trades} }) 
+         const trade_update = await Trades.findOne({ attributes: ['price','volume','id'], where: {} }) 
          
       if (!trade_update)
           return res.status(400).send({ error: 'Order not found' });
 
         
 
-         await Trades.update({
-          //password: hashedPassword
+         await trade_update.update({
+          
           price : price,
-          volume : volume 
+          volume : volume, 
+          //id : tradesId
+          
       
            })
                                                
@@ -123,6 +125,8 @@ exports.deleteTrade = async (req, res, next) => {
     Trades.destroy('`name` LIKE "J%"').success(function() {
       // We just deleted all rows that have a name starting with "J"
   })
+
+
 
   */
    

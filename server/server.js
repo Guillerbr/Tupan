@@ -6,7 +6,7 @@ const Sequelize  = require('sequelize');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const cookieParser = require('cookie-parser');
+//const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const path = require('path');
 
@@ -86,9 +86,9 @@ app.use(bodyParser.urlencoded({ extended: false })).use(cors());
 //implement in cors, connect to specifically configured origin domain-feature
 //  app.use(Cors({ origin: [APP_ID], credentials: true }));
 
-//cookie session
-app.use(cookieParser());
 
+//cookie session
+//app.use(cookieParser());
 
 
 
@@ -102,8 +102,8 @@ app.use(async (req, res, next) => {
 
         if (req.headers["x-access-token"]) {
 
-            const accessToken = req.cookies.headers["x-access-token"];
-            //const accessToken = req.headers["x-access-token"];
+            //const accessToken = req.cookies.headers["x-access-token"];
+            const accessToken = req.headers["x-access-token"];
 
             const { userId, exp } = await jwt.verify(accessToken, process.env.JWT_SECRET);
 
@@ -123,6 +123,7 @@ app.use(async (req, res, next) => {
     }
     catch (error) {
         // next(error)
+        console.log(error)
         return res.status(401).json({ error: 'Acess Token invalid go to login' });
 
     }
