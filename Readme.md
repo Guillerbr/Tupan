@@ -103,7 +103,7 @@
 ## Access token and requirement headers
 
      x-access-token     header
-     content-Type:      application/x-www-form-urlencoded  
+     content-Type:      application/x-www-form-urlencoded  or  application/json
 
 
 ## Creating your frist seed admin account
