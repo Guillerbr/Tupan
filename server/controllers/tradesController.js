@@ -65,9 +65,10 @@ exports.updateTrade = async (req, res) => {
 
   const { price, volume } = req.body;
 
-  const tradesId = req.params.id;
+  const tradesId = req.params.tradesId;
 
   //const tradesId = await Trades.findById(id)
+  await Trades.findById(tradesId)
                 
 
     if(price == null)
@@ -90,7 +91,7 @@ exports.updateTrade = async (req, res) => {
           
           price : price,
           volume : volume, 
-          id : tradesId
+         // id : tradesId
           
       
            })
@@ -117,41 +118,53 @@ exports.updateTrade = async (req, res) => {
 //delete order
 exports.deleteTrade = async (req, res, next) => {
   try {
-    const id = req.body
-    const update = id;
+    //const id = req.body
+    //const update = id;
     const tradesId = req.params.tradesId;
-    //await Trades.destroy(tradesId, update);
-
-    //({ attributes: ['price','volume'], where: {email} })
-/*
-    Trades.destroy('`name` LIKE "J%"').success(function() {
-      // We just deleted all rows that have a name starting with "J"
-  })
-
-
-
-  */
-   
+    
   
-    await Trades.destroy({
-      where: {
-          // criteria
-          //attributes: ['trades'], where: {id}
-          
-           attributes: ['id'],
 
-      }
-      
-  })      
+/*
+  if (!tradesId)
+  {
+    res.status(400).json({
+      message: 'Trade does not exist'
+    });
+  }
+*/
 
-    //const balance = await Trades.findById(orderId)
+ await Trades.destroy({where: { id: tradesId } })
+  
     res.status(200).json({
         message: 'Order has been deleted'
     });
 } catch (err) {
    console.log(err)
     return res.status(400).send({ error: 'Error delete order failed' });
+     }
 }
+
+
+
+//get one trade for id
+exports.getOneTrade = async (req, res, next) => {
+
+try {
+  
+  const tradesId = req.params.tradesId;
+  
+
+//await Trades.findByPk({where: { tradesId } })
+await Trades.findByPk(tradesId)
+
+  res.status(200).json({
+      message: 'Success ' + tradesId,
+      
+  });
+} catch (err) {
+ console.log(err)
+  return res.status(400).send({ error: 'Error returning trader' });
+   }
 }
 
 
@@ -160,11 +173,14 @@ exports.deleteTrade = async (req, res, next) => {
 
 /*
 
-findAll({
-  attributes: ['foo', 'bar']
-});
+-Sequelize methods-
 
-const trades = await Trades.findOne({ attributes: ['price','volume'], where: {email} })
-
+create a new Tutorial: create(object)
+find a Tutorial by id: findByPk(id)
+get all Tutorials: findAll()
+update a Tutorial by id: update(data, where: { id: id })
+remove a Tutorial: destroy(where: { id: id })
+remove all Tutorials: destroy(where: {})
+find all Tutorials by title: findAll({ where: { title: ... } })
 
 */

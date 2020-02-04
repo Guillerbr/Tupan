@@ -55,13 +55,15 @@ router.get('/userinfo', userController.userInfo);
 
 
 //trades tradings
-router.get('/trades', tradesController.trades);     
+router.get('/trades', tradesController.trades);  
+
+router.get('/trades/:tradesId', tradesController.getOneTrade);
 
 router.post('/order', tradesController.postTrade);
 
 router.delete('/trades/:tradesId', tradesController.deleteTrade);
 
-router.put('/trades/:tradesId', tradesController.updateTrade); 
+router.put('/trades/:tradesId', tradesController.updateTrade);      
 
 
 

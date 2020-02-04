@@ -119,10 +119,10 @@
      Register with your email and password details
 
  
-## After creating your admin account
+## After creating your admin account-ALERT
     
-    
-     In the server/controllers file userController change line 33 to:
+     Change the "role" rule to basic, or anyone can register as an admin.
+     In the server/controllers file userController change line 85 to:
 
      const newUser = new User ({email, password: hashedPassword, role: "basic"});
 
