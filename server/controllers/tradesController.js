@@ -152,8 +152,23 @@ exports.getOneTrade = async (req, res, next) => {
 try {
   
   const tradesId = req.params.tradesId;
-  
+  const trades = await Trades.findByPk(tradesId);
 
+  await Trades.findAll({ where: trades.id })      
+        res.status(200).json({
+            data: { email: trades },
+            
+        });
+      } catch (err) {
+        console.log(err)
+         return res.status(400).send({ error: 'Error returning trader' });
+          }
+       }
+
+
+
+
+/*        
 //await Trades.findByPk({where: { tradesId } })
 await Trades.findByPk(tradesId)
 
