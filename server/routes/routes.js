@@ -55,7 +55,7 @@ router.delete('/user/:userId', userController.allowIfLoggedin, userController.gr
 router.get('/userinfo', userController.userInfo);
 
 
-//trades tradings
+//trades tradings    no auth
 router.get('/trades',  tradesController.trades);  
 
 router.get('/trades/:tradesId', tradesController.getOneTrade);
@@ -67,8 +67,10 @@ router.delete('/trades/:tradesId', tradesController.deleteTrade);
 router.put('/trades/:tradesId', tradesController.updateTrade);      
 
 
-//orders tradings
-router.get('/orders',  ordersController.postOrders);
+//orders tradings   no auth
+router.get('/orders', ordersController.getOrders);
+
+router.post('/orders', ordersController.postOrders);
 
 
 //routers payment credit card cielo gateway
