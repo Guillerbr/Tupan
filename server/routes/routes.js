@@ -70,7 +70,9 @@ router.put('/trades/:tradesId', tradesController.updateTrade);
 //orders tradings   no auth
 router.get('/orders', ordersController.getOrders);
 
-router.post('/orders', ordersController.postOrders);
+router.post('/orders', ordersController.postOrders); 
+
+router.put('/orders/:ordersId', ordersController.updateOrders);
 
 
 //routers payment credit card cielo gateway
