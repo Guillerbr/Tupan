@@ -106,9 +106,28 @@ exports.updateOrders = async (req, res) => {
   } catch (err) {
     console.log(err);
 
-    res.status(400).send({ error: "Cannot update order, try again" });
+    res.status(400).send({ error: "Cannot update order,try again" });
   }
 };
+
+
+
+exports.deleteOrders = async (req, res, next) => {
+    try {
+      const ordersId = req.params.ordersId;
+      const orders = await Orders.findByPk(ordersId);
+  
+      await orders.destroy({ ordersId });
+  
+      res.status(200).json({
+        message: "Order has been deleted",
+        orders
+      });
+    } catch (err) {
+      console.log(err);
+      return res.status(400).send({ error: "Error delete order failed" });
+    }
+  };
 
 /*
 

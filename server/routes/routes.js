@@ -74,6 +74,8 @@ router.post('/orders', ordersController.postOrders);
 
 router.put('/orders/:ordersId', ordersController.updateOrders);
 
+router.delete('/orders/:ordersId', ordersController.deleteOrders);     
+
 
 //routers payment credit card cielo gateway
 //router.post('/payment', paycieloController.cieloPayment);

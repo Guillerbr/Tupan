@@ -145,19 +145,7 @@ exports.getOneTrade = async (req, res, next) => {
   }
 };
 
-/*        
-//await Trades.findByPk({where: { tradesId } })
-await Trades.findByPk(tradesId)
 
-  res.status(200).json({
-      message: 'Success ' + tradesId,
-      
-  });
-} catch (err) {
- console.log(err)
-  return res.status(400).send({ error: 'Error returning trader' });
-   }
-}
 
 
 
