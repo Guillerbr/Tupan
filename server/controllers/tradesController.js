@@ -163,4 +163,10 @@ remove a Tutorial: destroy(where: { id: id })
 remove all Tutorials: destroy(where: {})
 find all Tutorials by title: findAll({ where: { title: ... } })
 
+The HasOne association   -  Tem um
+The BelongsTo association   -  Pertence a   
+The HasMany association   -  Tem muitos 
+The BelongsToMany association   -  Pertence a Muitos
+
+
 */
