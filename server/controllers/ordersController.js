@@ -2,7 +2,7 @@ const Orders = require("../models/mysql/ordersModel");
 
 
 
-
+//get all orders
 exports.getOrders = async (req, res, next) => {
   try {
     const trades = await Orders.findAll({});
@@ -23,7 +23,7 @@ exports.getOrders = async (req, res, next) => {
 
 
 
-//post create order
+//post create one order
 exports.postOrders = async (req, res, next) => {
   if (!req.body.price) {
     res.status(400).send({
@@ -73,7 +73,7 @@ exports.postOrders = async (req, res, next) => {
 
 
 
-//update trades
+//update one order by id
 exports.updateOrders = async (req, res) => {
   if (!req.body.price) {
     res.status(400).send({
@@ -111,6 +111,7 @@ exports.updateOrders = async (req, res) => {
 
 
 
+//delete one order by id
 exports.deleteOrders = async (req, res, next) => {
   try {
     const ordersId = req.params.ordersId;
@@ -130,6 +131,7 @@ exports.deleteOrders = async (req, res, next) => {
 
 
 
+//get one order by id
 exports.getOneOrders = async (req, res, next) => {
   try {
     const ordersId = req.params.ordersId;
