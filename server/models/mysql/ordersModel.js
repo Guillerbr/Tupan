@@ -19,99 +19,89 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
 */
 
 const Orders = sequelize.define("orders", {
-  id: {
-    type: DataTypes.INTEGER(11),
-    primaryKey: true,
-    autoIncrement: true
-  },
+ 
 
   bid: {
-    type: DataTypes.STRING(10),
+    type: Sequelize.STRING,
     required: true,
     trim: true
     
   },
   ask: {
-    type: DataTypes.STRING(10),
+    type: Sequelize.STRING,
     //required: true
     
   },
   market_id: {
-    type: DataTypes.STRING(20),
+    type: Sequelize.STRING,
     //required: true
     //indice PK 
   },
   price: {
-    type: DataTypes.DECIMAL(32, 16),
+    type: Sequelize.DECIMAL,
     //required: true
   },
   volume: {
-    type: DataTypes.DECIMAL(32,16),
+    type: Sequelize.DECIMAL,
     //required: true
   },
   origin_volume: {
-    type: DataTypes.DECIMAL(32,16),
+    type: Sequelize.DECIMAL,
     //required: true
     
   },
   fee: {
-    type: DataTypes.DECIMAL(32,16),
+    type: Sequelize.DECIMAL,
     //required: true
     
   },
   state: {
-    type: DataTypes.INTEGER(11),
+    type: Sequelize.INTEGER,
     //required: true
     //indice PK
   },
   type: {
-    type: Sequelize.STRING(8),
+    type: Sequelize.STRING,
     //required: true
     //indice PK 
     
   },
   member_id: {
-    type: DataTypes.INTEGER(4),
+    type: Sequelize.INTEGER,
     //required: true
     //indice PK
     
   },
   ord_type: {
-    type: DataTypes.STRING(30),
+    type: Sequelize.STRING,
     //required: true
   },
   locked: {
-    type: DataTypes.DECIMAL(32,16),
+    type: Sequelize.DECIMAL,
     //required: true
     //indice PK 
   },
   origin_locked: {
-    type: DataTypes.DECIMAL(32,16),
+    type: Sequelize.DECIMAL,
     //required: true
   },
   funds_received: {
-    type: DataTypes.DECIMAL(32,16),
+    type: Sequelize.DECIMAL,
     //required: true
   },
   trades_count: {
-    type: DataTypes.INTEGER(11),
+    type: Sequelize.INTEGER,
     //required: true
   },
-  created_at: {
-    type: DataTypes.DATE,
-    //required: true
-  },
-  updated_at: {
-    type: DataTypes.DATETIME,
-    //required: true
-  },
+ 
+ 
 
   //timestamps: true,
 
 });
 
 //force create new table
-User.sync({ force: true });
+//User.sync({ force: true });
 
 module.exports = Orders;
 

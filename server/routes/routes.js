@@ -8,6 +8,7 @@ const balanceController = require('../controllers/balanceController');
 const paycieloController = require('../controllers/pay-cieloController');
 const twofactorController = require('../controllers/twofactorController');
 const tradesController = require('../controllers/tradesController');
+const ordersController = require('../controllers/ordersController');
 
 
 
@@ -55,16 +56,19 @@ router.get('/userinfo', userController.userInfo);
 
 
 //trades tradings
-router.get('/trades', tradesController.trades);  
+router.get('/trades',  tradesController.trades);  
 
 router.get('/trades/:tradesId', tradesController.getOneTrade);
 
-router.post('/order', tradesController.postTrade);
+router.post('/trade', tradesController.postTrade);
 
 router.delete('/trades/:tradesId', tradesController.deleteTrade);
 
 router.put('/trades/:tradesId', tradesController.updateTrade);      
 
+
+//orders tradings
+router.get('/orders',  ordersController.postOrders);
 
 
 //routers payment credit card cielo gateway
