@@ -2,7 +2,7 @@
 
 const express = require('express');
 const redis = require('redis');
-const Sequelize  = require('sequelize');
+const sequelize  = require('sequelize');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -57,7 +57,7 @@ const sequelize = new Sequelize('node-acl-sequelize-test', 'root', 'root', {
   });
 
   
-     Sequelize.authenticate().then(function(){
+     sequelize.authenticate().then(function(){
         console.log('Connected Mysql DB to the Database successfully!');
     }).catch(function(err) {
     console.error('Connected Mysql DB to the Database failed!');
