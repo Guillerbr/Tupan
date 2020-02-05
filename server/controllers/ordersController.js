@@ -3,7 +3,6 @@ const Orders = require("../models/mysql/ordersModel");
 
 
 
-
 exports.getOrders = async (req, res, next) => {
   try {
     const trades = await Orders.findAll({});
@@ -113,21 +112,38 @@ exports.updateOrders = async (req, res) => {
 
 
 exports.deleteOrders = async (req, res, next) => {
-    try {
-      const ordersId = req.params.ordersId;
-      const orders = await Orders.findByPk(ordersId);
-  
-      await orders.destroy({ ordersId });
-  
-      res.status(200).json({
-        message: "Order has been deleted",
-        orders
-      });
-    } catch (err) {
-      console.log(err);
-      return res.status(400).send({ error: "Error delete order failed" });
-    }
-  };
+  try {
+    const ordersId = req.params.ordersId;
+    const orders = await Orders.findByPk(ordersId);
+
+    await orders.destroy({ ordersId });
+
+    res.status(200).json({
+      message: "Order has been deleted",
+      orders
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(400).send({ error: "Error delete order failed" });
+  }
+};
+
+
+
+exports.getOneOrders = async (req, res, next) => {
+  try {
+    const ordersId = req.params.ordersId;
+    const orders = await Orders.findByPk(ordersId);
+
+    await Orders.findAll({ where: orders.id });
+    res.status(200).json({
+      data: { email: orders }
+    });
+  } catch (err) {
+    //console.log(err)
+    return res.status(400).send({ error: "Error returning trader" });
+  }
+};
 
 /*
 

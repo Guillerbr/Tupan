@@ -70,11 +70,14 @@ router.put('/trades/:tradesId', tradesController.updateTrade);
 //orders tradings   no auth
 router.get('/orders', ordersController.getOrders);
 
+router.get('/orders/:ordersId', ordersController.getOneOrders);
+
 router.post('/orders', ordersController.postOrders); 
 
 router.put('/orders/:ordersId', ordersController.updateOrders);
 
-router.delete('/orders/:ordersId', ordersController.deleteOrders);     
+router.delete('/orders/:ordersId', ordersController.deleteOrders);
+    
 
 
 //routers payment credit card cielo gateway
