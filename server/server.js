@@ -9,6 +9,7 @@ const cors = require('cors');
 //const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const path = require('path');
+//const sequelize = require("./config/config.json");
 
 //routes config path
 const routes = require('./routes/routes.js');
@@ -56,13 +57,14 @@ const sequelize = new Sequelize('node-acl-sequelize-test', 'root', 'root', {
   });
 
   
-     sequelize.authenticate().then(function(){
+     Sequelize.authenticate().then(function(){
         console.log('Connected Mysql DB to the Database successfully!');
     }).catch(function(err) {
     console.error('Connected Mysql DB to the Database failed!');
   });
 
-*/
+  */
+
 
 //mongoose mongo connect function
 mongoose

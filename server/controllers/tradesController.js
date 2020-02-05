@@ -15,6 +15,8 @@ const Trades = path.join(__dirname, '/models/users.js');
 //model mysql user
 const Trades = require("../models/mysql/tradesModel");   
 
+
+//get all trades list
 exports.trades = async (req, res, next) => {
   try {
     const trades = await Trades.findAll({});
@@ -34,8 +36,22 @@ exports.trades = async (req, res, next) => {
 };
 
 
-//post order
+//post create order
 exports.postTrade = async (req, res, next) => {
+
+  if (!req.body.price) {
+    res.status(400).send({
+      error: "Price can not be empty!"
+    });
+  }  
+
+  
+  if (!req.body.volume) {
+    res.status(400).send({
+      error: "Volume can not be empty!"
+    });
+  } 
+
   try {
     const { price, volume } = req.body;
     const newTrades = new Trades({
@@ -63,19 +79,31 @@ exports.postTrade = async (req, res, next) => {
 //update trades
 exports.updateTrade = async (req, res) => {
 
+  /*
+  const id = req.params.id;
+  Trades.update(req.params, {
+    where: { id: id }
+  })
+
+  */
+
+  if (!req.body.price) {
+    res.status(400).send({
+      message: "Price can not be empty!"
+    });
+  }  
+
+  if (!req.body.volume) {
+    res.status(400).send({
+      message: "Price can not be empty!"
+    });
+  } 
+
   const { price, volume } = req.body;
 
-  const tradesId = req.params.tradesId;
-
   //const tradesId = await Trades.findById(id)
-  await Trades.findById(tradesId)
+  //await Trades.findById(tradesId)
                 
-
-    if(price == null)
-    return res.status(400).send({ error: 'Price should be sent'})
-
-    if(volume == null)
-    return res.status(400).send({ error: 'Volume should be sent'})
 
     
       try {
@@ -95,13 +123,11 @@ exports.updateTrade = async (req, res) => {
           
       
            })
-                                               
-     //res.send({ Successfully: true, user: req.userId });     //ok return user id,alter response sucess mensage
-      
-      
+                                                  
       res.status(200).json({
-          message: "Order changed successfully"
 
+          message: "Order changed successfully"+price+volume
+          
       }); 
 
   } catch (err) {
@@ -122,21 +148,13 @@ exports.deleteTrade = async (req, res, next) => {
     //const update = id;
     const tradesId = req.params.tradesId;
     
-  
-
-/*
-  if (!tradesId)
-  {
-    res.status(400).json({
-      message: 'Trade does not exist'
-    });
-  }
-*/
-
- await Trades.destroy({where: { id: tradesId } })
+    const trades = await Trades.findByPk(tradesId);
+    //await Trades.destroy({where: { id: tradesId } })
+    await Trades.destroy({ where: trades })
+ 
   
     res.status(200).json({
-        message: 'Order has been deleted'
+        message: 'Order has been deleted'+trades
     });
 } catch (err) {
    console.log(err)
@@ -149,6 +167,14 @@ exports.deleteTrade = async (req, res, next) => {
 //get one trade for id
 exports.getOneTrade = async (req, res, next) => {
 
+  /*
+  if (!req.body.tradesiD) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+      }
+  */    
+
 try {
   
   const tradesId = req.params.tradesId;
@@ -160,7 +186,7 @@ try {
             
         });
       } catch (err) {
-        console.log(err)
+         //console.log(err)
          return res.status(400).send({ error: 'Error returning trader' });
           }
        }
