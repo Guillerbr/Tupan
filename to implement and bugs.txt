@@ -42,6 +42,7 @@ Use online payment method with bitcoin transaction,QRCODE PAYMENTS.
 https://btcpayserver.org/
 
 Pricing and information on trading cryptocurrencies, binance, bitmex, coinbase, etc.
+https://www.alphavantage.co/
 
 User TradingView API.
 

@@ -62,16 +62,15 @@
 
 
 
-## Use Mysql DataBase.
+## Use Mysql DataBase
      in /config/config.json
      Change the credentials to those in your database mysql. 
 
 
-## Use Mongo DataBase.
+## Use Mongo DataBase
      in .env file
-     Change the credentials to those in your database.
-     Change the link to your Atlas online bank or enter the link to your local bank.     
-
+     Change the credentials to those in your database mongodb.
+        
 
 ## Roles ACL-RBAC accesscontrol lib module Accesscontrol
     
@@ -89,6 +88,7 @@
      Use two-factor authentication for node.js.Authy npm module in Authy app 2fa.
      Use two-factor authentication for node.js.Twilio npm module in SMS 2fa.
 
+
 ## Use Sendgrid Api email service
      Automated Email Sending Provider.
      Create your sendgrid account, customize your private API key.
@@ -100,9 +100,9 @@
      Use email verification token 2fa login or other verification.           
 
 
-## Access token and requirement headers
+## Access token and requirement Headers
 
-     x-access-token     header
+     x-access-token     Header: JWT Authentication
      content-Type:      application/x-www-form-urlencoded  or  application/json
 
 
@@ -161,6 +161,7 @@
      pm2 save
 
 
-## Use in Nodejs 10.16.3 and Npm 6.9.0
+## Use NodeJS 10/12 and NPM or YARN.
+
 
 ## Change the .env file with your credentials
