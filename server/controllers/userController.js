@@ -77,15 +77,14 @@ exports.signup = async (req, res, next) => {
 
         const { email, password, role } = req.body
         
-        //const user = await User.findOne({ where: {email} });
         
-        //check fild email filled
+        //check fild email and password filled
         if (!email)
             return res.status(400).send({ error: 'Email field must be filled' });
         if (!password)
             return res.status(400).send({ error: 'Password field must be filled' });    
 
-        // check if email exist in db,if yes,returns or error
+        // check if email user exist in db,if yes,returns or error.
         if (await User.findOne({ where: {email} }))       //mysql: where: {email}
             return res.status(400).send({ error: 'User already registered' });
 
@@ -94,10 +93,17 @@ exports.signup = async (req, res, next) => {
         //option function role :   role: "basic"      or     role: role || "basic" }); 
 
 
-
+        /*
         const accessToken = jwt.sign({ userId: newUser.id }, process.env.JWT_SECRET, {         //to implement return 400 message expiration token 
             expiresIn: "1d"                                                                    // error token x access token does not work
         });
+        */
+         
+        
+        const accessToken = jwt.sign({  where: {email} }, process.env.JWT_SECRET, {         //to implement return 400 message expiration token 
+            expiresIn: "1d"                                                                    // error token x access token does not work
+        });
+        
 
         
         newUser.accessToken = accessToken;
@@ -109,7 +115,7 @@ exports.signup = async (req, res, next) => {
             //accessToken
         })
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         // next(error)
         return res.status(400).json({ error: 'Acess Token invalid go to login' });
 
