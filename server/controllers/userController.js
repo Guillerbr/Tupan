@@ -89,30 +89,27 @@ exports.signup = async (req, res, next) => {
             return res.status(400).send({ error: 'User already registered' });
 
         const hashedPassword = await hashPassword(password);
-        const newUser = new User({ email, password: hashedPassword, role: role || "basic" });   //important config role signup
+        const newUser = new User({ email, password: hashedPassword, role: role || "basic" });  //important config role signup
         //option function role :   role: "basic"      or     role: role || "basic" }); 
 
-
-        /*
-        const accessToken = jwt.sign({ userId: newUser.id }, process.env.JWT_SECRET, {         //to implement return 400 message expiration token 
-            expiresIn: "1d"                                                                    // error token x access token does not work
-        });
-        */
          
-        
-        const accessToken = jwt.sign({  where: {email} }, process.env.JWT_SECRET, {         //to implement return 400 message expiration token 
+        /*
+
+        const accessToken = jwt.sign({  where: {email} }, process.env.JWT_SECRET, {            //to implement return 400 message expiration token 
             expiresIn: "1d"                                                                    // error token x access token does not work
         });
-        
 
-        
         newUser.accessToken = accessToken;
+
+        */
+
         await newUser.save();
         res.json({
 
-            Success: 'User created successfully!Go to login!'
-            //data: newUser,                                         //return of sensitive user data //      IMPORTANT BLOK 
+            Success: 'User created successfully!Go to login!',
+            //data: newUser,                                                                   //return of sensitive user data //IMPORTANT BLOK 
             //accessToken
+            data: { email: newUser.email, role: newUser.role },
         })
     } catch (error) {
         //console.log(error);

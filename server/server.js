@@ -98,6 +98,8 @@ app.use(bodyParser.urlencoded({ extended: false })).use(cors());
 //x-access-token use token
 //future possibility to implement authorization or bearer token
 //more efficient standards
+
+//x-access-token jwt header verify
 app.use(async (req, res, next) => {
 
     try {
