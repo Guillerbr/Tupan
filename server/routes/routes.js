@@ -9,6 +9,7 @@ const paycieloController = require('../controllers/pay-cieloController');
 const twofactorController = require('../controllers/twofactorController');
 const tradesController = require('../controllers/tradesController');
 const ordersController = require('../controllers/ordersController');
+const cotationsController = require('../controllers/cotationsController');
 
 
 
@@ -83,6 +84,14 @@ router.delete('/orders/:ordersId', ordersController.deleteOrders);
 //routers payment credit card cielo gateway
 //router.post('/payment', paycieloController.cieloPayment);
 router.get('/payment', paycieloController.cieloPayment);
+
+
+//cotations prices stocks,criptocurrency and others
+router.get('/cotations', cotationsController.getCotations); 
+
+router.get('/search', cotationsController.getSearch); 
+
+
 
 
 
