@@ -36,6 +36,7 @@ exports.getSearch = async (req, res) => {
       //return res.status(200).json( data ,data  );
       //res.status(data).json(data);
       //return res.status(data);
+      
 
     })
     .catch(e => {

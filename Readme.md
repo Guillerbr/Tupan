@@ -95,6 +95,12 @@
      Add the you private key to the .env file at SENDGRID_API_KEY.  
 
 
+## Use Alphavantage Api cotations service
+     Provider of free APIs for realtime and historical data on stocks, forex (FX), and digital/crypto currencies.
+     Create your alphavantage account,customize your private API key.
+     Add the you private key to the .env file.  
+
+
 ## Use E-mail token 
      Use email verification token for password re-registration.
      Use email verification token 2fa login or other verification.           
