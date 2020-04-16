@@ -1,9 +1,9 @@
 // server/controllers/userController.js
 
-//const User = require('../models/mongo/userModel');
+const User = require('../models/mongo/userModel');
 //const User = require('../../models/users.js');
 
-const User = require('../models/mysql/userModel');
+//const User = require('../models/mysql/userModel');
 const Balance = require('../models/mongo/balanceModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
@@ -114,7 +114,7 @@ exports.signup = async (req, res, next) => {
     } catch (error) {
         //console.log(error);
         // next(error)
-        return res.status(400).json({ error: 'Acess Token invalid go to login' });
+        return res.status(400).json({ error: 'Error creating user,try again!' });
 
     }
 }
