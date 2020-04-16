@@ -10,7 +10,7 @@ Protection Sessions against attacks CSRF, XSS, XSRF, JWT storage cookies HttpOnl
 
 Implement an api cielo payment route, using axios in http requests.  *Working
 
-
+2FA send email sendgrid token hash 2fa email pass login.
 
 API bitcoin core node json rpc,connect in blockchain RPC authentication.  *Working
 
@@ -20,8 +20,6 @@ Use redis for queue caching and server optimization.
 
 User Jest Mocha Chai Test Framework.
 
-2FA send email sendgrid token hash 2fa email pass login.
-
 Use RabbitMQ or others.Messaging broker server for order receipts.
 
 Use Websocket (socket.io) to chat and book bitcoin offers or currency quotes.
@@ -30,7 +28,7 @@ Use Hashcorp Vault and Consul for passwords hash.
 
 Use Traefik proxy.
 
-Use Docker Kubernets.
+Use Docker and Kubernets.
 
 Use Terraform.
 
@@ -76,6 +74,8 @@ Price information, Forex Currency Conversion API.
 
 Trading station simulator broker in cryptocurrencies, forex, stock exchanges, other assets.
 Trader simulator with margin and leverage.
+
+DEX- Exchange decentralized brokerage-Peer-to-peer exchange of assets on the ECR20 Ethereum blockchain.
 
 Trading algorithms, customized by the user.Robots trading for indicator parameters.
 
