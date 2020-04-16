@@ -14,7 +14,7 @@ Mysql sequelize orm integration sql relational.  *Working
 
 API bitcoin core node json rpc,connect in blockchain RPC authentication.  *Working
 
-Document a backend API in SwaggerHub,Postman.   *Working
+Public document test urls API in Postman.   *Working
 
 Use redis for queue caching and server optimization.
 
