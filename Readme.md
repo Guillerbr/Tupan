@@ -143,7 +143,15 @@
 ## Init project dev test
 
      npm install 
+     
      cd /server
+     
+     use nodemon tools:
+     
+     nodemon server.js
+     
+     or
+     
      npm server or
      yarn server or
      node server
