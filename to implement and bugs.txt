@@ -10,7 +10,7 @@ Protection Sessions against attacks CSRF, XSS, XSRF, JWT storage cookies HttpOnl
 
 Implement an api cielo payment route, using axios in http requests.  *Working
 
-Mysql sequelize orm integration sql relational.  *Working
+
 
 API bitcoin core node json rpc,connect in blockchain RPC authentication.  *Working
 
