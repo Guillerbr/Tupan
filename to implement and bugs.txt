@@ -43,6 +43,9 @@ API pricing and information on trading stocks,cryptocurrencies,forex,etc.
 https://www.alphavantage.co/
 
 API pricing and information on trading stocks,cryptocurrencies,forex,etc.
+https://finnhub.io/
+
+API pricing and information on trading stocks,cryptocurrencies,forex,etc.
 https://financialmodelingprep.com/developer/docs/
 https://financialmodelingprep.com
 
