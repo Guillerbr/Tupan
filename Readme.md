@@ -1,6 +1,6 @@
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FGuillerbr%2Frbac-node-acl-mongo.svg?type=small)](https://app.fossa.com/projects/git%2Bgithub.com%2FGuillerbr%2Frbac-node-acl-mongo?ref=badge_small)
 
-# Simple ACL RBAC Sistem use Nodejs use Mysql and MongoDB
+# Simple ACL-RBAC Backend Sistem use Nodejs,Mysql and MongoDB
 
 
 ## Dependencies used
@@ -89,7 +89,7 @@
      Use two-factor authentication for node.js.Twilio npm module in SMS 2fa.
 
 
-## Use Sendgrid Api email service
+## Use Sendgrid Api Email service
      Automated Email Sending Provider.
      Create your sendgrid account, customize your private API key.
      Add the you private key to the .env file at SENDGRID_API_KEY.  
