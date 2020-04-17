@@ -12,10 +12,8 @@ const crypto = require('crypto');
 const sgMail = require('@sendgrid/mail');
 //sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-
 // Add this to the top of the file
 const { roles } = require('../roles')
-
 
 //functions bcrypt pass
 async function hashPassword(password) {
