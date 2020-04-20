@@ -3,6 +3,8 @@ const router = express.Router();
 var request = require("request");
 
 
+//__dirname, 'server',' api.js'
+
 const dotenv = require("dotenv");
 dotenv.config();
 
