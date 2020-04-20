@@ -11,6 +11,11 @@ const tradesController = require('../controllers/tradesController');
 const ordersController = require('../controllers/ordersController');
 const cotationsController = require('../controllers/cotationsController');
 
+//RPC SERVICE
+const rpc = require('../api-bitcoin-core/api.js');
+
+router.get('/apirpc', rpc.getBlockcount);
+router.get('/getblockchaininfo', rpc.getBlockchaininfo);
 
 
 //routers auth

@@ -1,27 +1,68 @@
-const express = require("express");
-const router = express.Router();
-var request = require("request");
-
+//const express = require("express");
+//const router = express.Router();
+//var request = require("request");
 
 //__dirname, 'server',' api.js'
 
 const dotenv = require("dotenv");
 dotenv.config();
 
-
 const USER = process.env.RPC_USER;
 const PASS = process.env.RPC_PASSWORD;
 
 // const IP = process.env.RPC_IP
 
-
+/*
 const headers = {
   "content-type": "text/plain;"
 };
+*/
 
-//API CHECK 
-router.get("/test", (req, res) => res.json({ msg: "backend works" }));
+//API CHECK
+//router.get("/test", (req, res) => res.json({ msg: "backend works" }));
 
+exports.getBlockcount = async (req, res) => {
+  var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getblockcount","params":[]}`;
+  var options = {
+    url: `http://${USER}:${PASS}@3.17.181.129:8332/`, // `http://${USER}:${PASS}@${IP}/`
+    method: "POST",
+    headers: headers,
+    body: dataString
+  };
+
+  callback = (error, response, body) => {
+    if (!error && response.statusCode == 200) {
+      const data = JSON.parse(body);
+      res.send(data);
+    }
+    console.log(error);
+  };
+  request(options, callback);
+};
+
+
+
+exports.getBlockchaininfo = async (req, res) => {
+  try {
+    var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getblockchaininfo","params":[]}`;
+    var options = {
+      url: `http://${USER}:${PASS}@3.17.181.129:8332/`,      
+      method: "POST",
+      headers: headers,
+      body: dataString
+    };
+    if (!error && response.statusCode == 200) {
+      const data = JSON.parse(body);
+      res.send(data);
+    }
+  } catch (err) {
+    return res.status(400).send({ error: "Error Getblockchaininfo,try again." });
+  }
+};
+
+
+
+/*
 
 //BLOCKCOUNT COUNT BLOCK
 router.get("/getblockcount", (req, res) => {
@@ -196,14 +237,9 @@ router.get("/getrawtransaction/:id", (req, res) => {
     request(options, callback);
   });
 
+*/
 
-
-
-
-
-module.exports = router;
-
-
+//module.exports = router;
 
 /*
 
