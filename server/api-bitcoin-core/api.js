@@ -12,6 +12,8 @@ dotenv.config();
 const USER = process.env.RPC_USER;
 const PASS = process.env.RPC_PASSWORD;
 
+// const IP = process.env.RPC_IP
+
 
 const headers = {
   "content-type": "text/plain;"
@@ -25,7 +27,7 @@ router.get("/test", (req, res) => res.json({ msg: "backend works" }));
 router.get("/getblockcount", (req, res) => {
     var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getblockcount","params":[]}`;
     var options = {
-      url: `http://${USER}:${PASS}@3.17.181.129:8332/`,      
+      url: `http://${USER}:${PASS}@3.17.181.129:8332/`,     // `http://${USER}:${PASS}@${IP}/`
       method: "POST",
       headers: headers,
       body: dataString
