@@ -10,7 +10,7 @@ dotenv.config();
 const USER = process.env.RPC_USER;
 const PASS = process.env.RPC_PASSWORD;
 
-// const IP = process.env.RPC_IP
+// const IP = process.env.RPC_IP;
 
 /*
 const headers = {
