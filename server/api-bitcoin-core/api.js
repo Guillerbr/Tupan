@@ -9,7 +9,6 @@ dotenv.config();
 
 const USER = process.env.RPC_USER;
 const PASS = process.env.RPC_PASSWORD;
-
 // const IP = process.env.RPC_IP;
 
 /*
@@ -61,6 +60,25 @@ exports.getBlockchaininfo = async (req, res) => {
 };
 
 
+exports.listWallets = async (req, res) => {
+  try {
+    var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"listwallets","params":[]}`;
+    var options = {
+      url: `http://${USER}:${PASS}@3.17.181.129:8332/`,      
+      method: "POST",
+      headers: headers,
+      body: dataString
+    };
+    if (!error && response.statusCode == 200) {
+      const data = JSON.parse(body);
+      res.send(data);
+    }
+  } catch (err) {
+    return res.status(400).send({ error: "Error List Wallets,try again." });
+  }
+};
+
+
 
 /*
 
@@ -84,7 +102,7 @@ router.get("/getblockcount", (req, res) => {
   });
 
 
-//BLOCKCHAIN INFO
+//BLOCKCHAIN INFO-OK
 router.get("/getblockchaininfo", (req, res) => {
     var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getblockchaininfo","params":[]}`;
     var options = {
@@ -104,7 +122,7 @@ router.get("/getblockchaininfo", (req, res) => {
   });
 
 
-//BLOCKCHAIN 
+//LISTWALLETS-OK 
 router.get("/listwallets", (req, res) => {
     var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"listwallets","params":[]}`;
     var options = {
