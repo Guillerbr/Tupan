@@ -12,28 +12,26 @@ const PASS = process.env.RPC_PASSWORD;
 // const IP = process.env.RPC_IP;
 
 
-
 //API CHECK
 //router.get("/test", (req, res) => res.json({ msg: "backend works" }));
 
-//review this function-WARNING-WARNING
-exports.getBlockcount = async (req, res) => {
-  var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getblockcount","params":[]}`;
-  var options = {
-    url: `http://${USER}:${PASS}@3.17.181.129:8332/`, // `http://${USER}:${PASS}@${IP}/`
-    method: "POST",
-    headers: headers,
-    body: dataString
-  };
 
-  callback = (error, response, body) => {
+exports.getBlockcount = async (req, res) => {
+  try {
+    var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getblockcount","params":[]}`;
+    var options = {
+      url: `http://${USER}:${PASS}@3.17.181.129:8332/`,      
+      method: "POST",
+      headers: headers,
+      body: dataString
+    };
     if (!error && response.statusCode == 200) {
       const data = JSON.parse(body);
       res.send(data);
     }
-    console.log(error);
-  };
-  request(options, callback);
+  } catch (err) {
+    return res.status(400).send({ error: "Error Getblockcount,try again." });
+  }
 };
 
 
