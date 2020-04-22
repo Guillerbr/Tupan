@@ -14,9 +14,10 @@ const cotationsController = require('../controllers/cotationsController');
 //RPC SERVICE
 const rpc = require('../api-bitcoin-core/api.js');
 
-router.get('/rpc-btc/apirpc', rpc.getBlockcount);
+router.get('/rpc-btc/getblockcount', rpc.getBlockcount);
 router.get('/rpc-btc/getblockchaininfo', rpc.getBlockchaininfo);
 router.get('/rpc-btc/listwallets', rpc.listWallets);
+router.get('/rpc-btc/getnewaddress', rpc.getNewaddress);
 
 
 //routers auth

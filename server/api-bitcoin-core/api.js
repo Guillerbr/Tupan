@@ -11,15 +11,12 @@ const USER = process.env.RPC_USER;
 const PASS = process.env.RPC_PASSWORD;
 // const IP = process.env.RPC_IP;
 
-/*
-const headers = {
-  "content-type": "text/plain;"
-};
-*/
+
 
 //API CHECK
 //router.get("/test", (req, res) => res.json({ msg: "backend works" }));
 
+//review this function-WARNING-WARNING
 exports.getBlockcount = async (req, res) => {
   var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getblockcount","params":[]}`;
   var options = {
@@ -78,6 +75,25 @@ exports.listWallets = async (req, res) => {
   }
 };
 
+
+exports.getNewaddress = async (req, res) => {
+  try {
+    var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getnewaddress","params":[]}`;
+    var options = {
+      url: `http://${USER}:${PASS}@3.17.181.129:8332/`,      
+      method: "POST",
+      headers: headers,
+      body: dataString
+    };
+    if (!error && response.statusCode == 200) {
+      const data = JSON.parse(body);
+      res.send(data);
+    }
+  } catch (err) {
+    return res.status(400).send({ error: "Error Getnewaddress,try again." });
+    //request(options, callback);
+  }
+};
 
 
 /*
@@ -142,7 +158,7 @@ router.get("/listwallets", (req, res) => {
   });
 
 
-//BLOCKCHAIN 
+//GETNEWADDRESS-OK 
 router.get("/getnewaddress", (req, res) => {
     var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getnewaddress","params":[]}`;
     var options = {
