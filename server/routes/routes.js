@@ -18,6 +18,7 @@ router.get('/rpc-btc/getblockcount', rpc.getBlockcount);
 router.get('/rpc-btc/getblockchaininfo', rpc.getBlockchaininfo);
 router.get('/rpc-btc/listwallets', rpc.listWallets);
 router.get('/rpc-btc/getnewaddress', rpc.getNewaddress);
+router.get('/rpc-btc/getblock/:hash', rpc.getBlock);
 
 
 //routers auth

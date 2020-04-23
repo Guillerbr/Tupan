@@ -20,7 +20,7 @@ exports.getBlockcount = async (req, res) => {
   try {
     var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getblockcount","params":[]}`;
     var options = {
-      url: `http://${USER}:${PASS}@3.17.181.129:8332/`,      
+      url: `http://${USER}:${PASS}@3.17.181.129:8332/`,         //  url: `http://${USER}:${PASS}@${IP}/`
       method: "POST",
       headers: headers,
       body: dataString
@@ -92,6 +92,31 @@ exports.getNewaddress = async (req, res) => {
     //request(options, callback);
   }
 };
+
+
+exports.getBlock = async (req, res) => {
+  try {
+    var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getblock","params":["${
+      req.params.hash
+    }"]}`;
+    var options = {
+      url: `http://${USER}:${PASS}@3.17.181.129:8332/`,      
+      method: "POST",
+      headers: headers,
+      body: dataString
+    };
+    if (!error && response.statusCode == 200) {
+      const data = JSON.parse(body);
+      res.send(data);
+    }
+  } catch (err) {
+    return res.status(400).send({ error: "Error Getblock,try again." });
+    //request(options, callback);
+  }
+};
+
+
+
 
 
 /*
@@ -182,7 +207,7 @@ router.get("/getnewaddress", (req, res) => {
 
 
 
-//ROUTES PARAMS
+//GETBLOCK-OK
 router.get("/getblock/:hash", (req, res) => {
     var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getblock","params":["${
       req.params.hash
