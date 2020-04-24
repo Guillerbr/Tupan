@@ -116,6 +116,26 @@ exports.getBlock = async (req, res) => {
 };
 
 
+exports.getBlockhash = async (req, res) => {
+  try {
+    var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getblockhash","params":["${
+      req.params.index
+    }"]}`;
+    var options = {
+      url: `http://${USER}:${PASS}@3.17.181.129:8332/`,      
+      method: "POST",
+      headers: headers,
+      body: dataString
+    };
+    if (!error && response.statusCode == 200) {
+      const data = JSON.parse(body);
+      res.send(data);
+    }
+  } catch (err) {
+    return res.status(400).send({ error: "Error Getblockhash,try again." });
+    //request(options, callback);
+  }
+};
 
 
 
@@ -229,6 +249,7 @@ router.get("/getblock/:hash", (req, res) => {
   });
 
 
+//GETBLOCKHASH-OK  
 //  http://localhost:4444/api/getblockhash/520482
 router.get("/getblockhash/:index", (req, res) => {
     var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getblockhash","params":[${
@@ -251,7 +272,7 @@ router.get("/getblockhash/:index", (req, res) => {
   });
 
 
-//
+//GETRAWTRANSACTION
 router.get("/getrawtransaction/:id", (req, res) => {
     var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getrawtransaction","params":["${
       req.params.id
