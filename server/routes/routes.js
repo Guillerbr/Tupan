@@ -20,6 +20,8 @@ router.get('/rpc-btc/listwallets', rpc.listWallets);
 router.get('/rpc-btc/getnewaddress', rpc.getNewaddress);
 router.get('/rpc-btc/getblock/:hash', rpc.getBlock);
 router.get('/rpc-btc/getblockhash/:index', rpc.getBlockhash);
+router.get('/rpc-btc/getrawtransaction/:id', rpc.getrawTransaction);
+
 
 
 //routers auth
