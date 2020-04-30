@@ -21,6 +21,8 @@ router.get('/rpc-btc/getnewaddress', rpc.getNewaddress);
 router.get('/rpc-btc/getblock/:hash', rpc.getBlock);
 router.get('/rpc-btc/getblockhash/:index', rpc.getBlockhash);
 router.get('/rpc-btc/getrawtransaction/:id', rpc.getrawTransaction);
+router.get('/rpc-btc/decoderawtransaction/:hex', rpc.decoderawTransaction);
+
 
 
 
