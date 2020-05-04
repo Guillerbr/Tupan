@@ -1,9 +1,3 @@
-//const express = require("express");
-//const router = express.Router();
-//var request = require("request");
-
-//__dirname, 'server',' api.js'
-
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -11,16 +5,16 @@ const USER = process.env.RPC_USER;
 const PASS = process.env.RPC_PASSWORD;
 // const IP = process.env.RPC_IP;
 
-
 //API CHECK
 //router.get("/test", (req, res) => res.json({ msg: "backend works" }));
 
+//ADD PRIVATE AUTENTICATION AND AUTORIZATION
 
 exports.getBlockcount = async (req, res) => {
   try {
     var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getblockcount","params":[]}`;
     var options = {
-      url: `http://${USER}:${PASS}@3.17.181.129:8332/`,         //  url: `http://${USER}:${PASS}@${IP}/`
+      url: `http://${USER}:${PASS}@3.17.181.129:8332/`, //  url: `http://${USER}:${PASS}@${IP}/`
       method: "POST",
       headers: headers,
       body: dataString
@@ -34,13 +28,11 @@ exports.getBlockcount = async (req, res) => {
   }
 };
 
-
-
 exports.getBlockchaininfo = async (req, res) => {
   try {
     var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getblockchaininfo","params":[]}`;
     var options = {
-      url: `http://${USER}:${PASS}@3.17.181.129:8332/`,      
+      url: `http://${USER}:${PASS}@3.17.181.129:8332/`,
       method: "POST",
       headers: headers,
       body: dataString
@@ -50,16 +42,17 @@ exports.getBlockchaininfo = async (req, res) => {
       res.send(data);
     }
   } catch (err) {
-    return res.status(400).send({ error: "Error Getblockchaininfo,try again." });
+    return res
+      .status(400)
+      .send({ error: "Error Getblockchaininfo,try again." });
   }
 };
-
 
 exports.listWallets = async (req, res) => {
   try {
     var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"listwallets","params":[]}`;
     var options = {
-      url: `http://${USER}:${PASS}@3.17.181.129:8332/`,      
+      url: `http://${USER}:${PASS}@3.17.181.129:8332/`,
       method: "POST",
       headers: headers,
       body: dataString
@@ -73,12 +66,11 @@ exports.listWallets = async (req, res) => {
   }
 };
 
-
 exports.getNewaddress = async (req, res) => {
   try {
     var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getnewaddress","params":[]}`;
     var options = {
-      url: `http://${USER}:${PASS}@3.17.181.129:8332/`,      
+      url: `http://${USER}:${PASS}@3.17.181.129:8332/`,
       method: "POST",
       headers: headers,
       body: dataString
@@ -93,14 +85,11 @@ exports.getNewaddress = async (req, res) => {
   }
 };
 
-
 exports.getBlock = async (req, res) => {
   try {
-    var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getblock","params":["${
-      req.params.hash
-    }"]}`;
+    var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getblock","params":["${req.params.hash}"]}`;
     var options = {
-      url: `http://${USER}:${PASS}@3.17.181.129:8332/`,      
+      url: `http://${USER}:${PASS}@3.17.181.129:8332/`,
       method: "POST",
       headers: headers,
       body: dataString
@@ -115,14 +104,11 @@ exports.getBlock = async (req, res) => {
   }
 };
 
-
 exports.getBlockhash = async (req, res) => {
   try {
-    var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getblockhash","params":["${
-      req.params.index
-    }"]}`;
+    var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getblockhash","params":["${req.params.index}"]}`;
     var options = {
-      url: `http://${USER}:${PASS}@3.17.181.129:8332/`,      
+      url: `http://${USER}:${PASS}@3.17.181.129:8332/`,
       method: "POST",
       headers: headers,
       body: dataString
@@ -137,14 +123,11 @@ exports.getBlockhash = async (req, res) => {
   }
 };
 
-
 exports.getrawTransaction = async (req, res) => {
   try {
-    var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getrawtransaction","params":["${
-      req.params.id
-    }"]}`;
+    var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getrawtransaction","params":["${req.params.id}"]}`;
     var options = {
-      url: `http://${USER}:${PASS}@3.17.181.129:8332/`,      
+      url: `http://${USER}:${PASS}@3.17.181.129:8332/`,
       method: "POST",
       headers: headers,
       body: dataString
@@ -154,19 +137,18 @@ exports.getrawTransaction = async (req, res) => {
       res.send(data);
     }
   } catch (err) {
-    return res.status(400).send({ error: "Error Getrawtransaction,try again." });
+    return res
+      .status(400)
+      .send({ error: "Error Getrawtransaction,try again." });
     //request(options, callback);
   }
 };
-
 
 exports.decoderawTransaction = async (req, res) => {
   try {
-    var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"decoderawtransaction","params":["${
-      req.params.hex
-    }"]}`;
+    var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"decoderawtransaction","params":["${req.params.hex}"]}`;
     var options = {
-      url: `http://${USER}:${PASS}@3.17.181.129:8332/`,      
+      url: `http://${USER}:${PASS}@3.17.181.129:8332/`,
       method: "POST",
       headers: headers,
       body: dataString
@@ -176,19 +158,14 @@ exports.decoderawTransaction = async (req, res) => {
       res.send(data);
     }
   } catch (err) {
-    return res.status(400).send({ error: "Error Decoderawtransaction,try again." });
+    return res
+      .status(400)
+      .send({ error: "Error Decoderawtransaction,try again." });
     //request(options, callback);
   }
 };
 
-
 // ADD NEWS METHODS FEATURE
-
-
-
-
-
-
 
 /*
 
@@ -281,7 +258,6 @@ router.get("/getnewaddress", (req, res) => {
 
 
 
-
 //GETBLOCK-OK
 router.get("/getblock/:hash", (req, res) => {
     var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getblock","params":["${
@@ -347,8 +323,6 @@ router.get("/getrawtransaction/:id", (req, res) => {
     };
     request(options, callback);
   });
-
-ADD NEWS FUNCTIONS
 
 
 
