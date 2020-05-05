@@ -14,6 +14,9 @@ const cotationsController = require('../controllers/cotationsController');
 //RPC SERVICE
 const rpc = require('../api-bitcoin-core/api.js');
 
+
+
+//routes api rpc bitcoin
 router.get('/rpc-btc/getblockcount', rpc.getBlockcount);
 router.get('/rpc-btc/getblockchaininfo', rpc.getBlockchaininfo);
 router.get('/rpc-btc/listwallets', rpc.listWallets);
@@ -25,22 +28,17 @@ router.get('/rpc-btc/decoderawtransaction/:hex', rpc.decoderawTransaction);
 
 
 
-
 //routers auth
 router.post('/signup', userController.signup);
-
 router.post('/login', userController.login);
-
 router.post('/forgot-password', userController.forgotPassword);
-
 router.post('/reset-password', userController.resetPassword);
 
 
 
 //auth 2fa google authentication
 router.post('/2fa-generate', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.tokengenerate);
-
-router.post('/totp-generate', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.totptokengenerate);
+router.post('/totp-generate', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'),twofactorController.totptokengenerate);
 
 router.post('/2fa-validate', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.tokenvalidate);
 
@@ -56,40 +54,29 @@ router.post('/twilio-push-app', twofactorController.twiliopushnotficationauthapp
 
 
 
-
 //routers user 
 router.get('/user/:userId', userController.allowIfLoggedin, userController.getUser);
-
 router.get('/users', userController.allowIfLoggedin, userController.grantAccess('readAny', 'profile'), userController.getUsers);
-
 router.put('/user/:userId', userController.allowIfLoggedin, userController.grantAccess('updateAny', 'profile'), userController.updateUser);
-
 router.delete('/user/:userId', userController.allowIfLoggedin, userController.grantAccess('deleteAny', 'profile'), userController.deleteUser);
-
 router.get('/userinfo', userController.userInfo);
+
 
 
 //trades tradings    no auth
 router.get('/trades',  tradesController.trades);  
-
 router.get('/trades/:tradesId', tradesController.getOneTrade);
-
 router.post('/trade', tradesController.postTrade);
-
 router.delete('/trades/:tradesId', tradesController.deleteTrade);
-
 router.put('/trades/:tradesId', tradesController.updateTrade);      
+
 
 
 //orders tradings   no auth
 router.get('/orders', ordersController.getOrders);
-
 router.get('/orders/:ordersId', ordersController.getOneOrders);
-
 router.post('/orders', ordersController.postOrders); 
-
 router.put('/orders/:ordersId', ordersController.updateOrders);
-
 router.delete('/orders/:ordersId', ordersController.deleteOrders);
     
 
@@ -99,33 +86,20 @@ router.delete('/orders/:ordersId', ordersController.deleteOrders);
 router.get('/payment', paycieloController.cieloPayment);
 
 
+
 //cotations prices stocks,criptocurrency and others
 router.get('/cotations', cotationsController.getCotations); 
-
 router.get('/search', cotationsController.getSearch); 
-
-
 
 
 
 //router Balances in balanceController.js
 router.get('/balances', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), balanceController.getBalances);
-
 router.get('/balance/:balanceId', userController.allowIfLoggedin, balanceController.getBalance);
-
 router.post('/balance', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), balanceController.postBalance);
-
 router.put('/balance/:balanceId', userController.allowIfLoggedin, userController.grantAccess('updateAny', 'profile'), balanceController.updateBalance);
 
 router.delete('/balance/:balanceId', userController.allowIfLoggedin, userController.grantAccess('deleteAny', 'profile'), balanceController.deleteBalance);
-
-
-
-//bitcoin core json rdp api
-//router.post('/getblockchaininfo', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), balanceController.postBalance);
-
-
-
 
 
 
