@@ -17,14 +17,14 @@ const rpc = require('../api-bitcoin-core/api.js');
 
 
 //routes api rpc bitcoin
-router.get('/rpc-btc/getblockcount', rpc.getBlockcount);
-router.get('/rpc-btc/getblockchaininfo', rpc.getBlockchaininfo);
-router.get('/rpc-btc/listwallets', rpc.listWallets);
-router.get('/rpc-btc/getnewaddress', rpc.getNewaddress);
-router.get('/rpc-btc/getblock/:hash', rpc.getBlock);
-router.get('/rpc-btc/getblockhash/:index', rpc.getBlockhash);
-router.get('/rpc-btc/getrawtransaction/:id', rpc.getrawTransaction);
-router.get('/rpc-btc/decoderawtransaction/:hex', rpc.decoderawTransaction);
+router.get('/rpc-btc/getblockcount', userController.allowIfLoggedin, rpc.getBlockcount);
+router.get('/rpc-btc/getblockchaininfo', userController.allowIfLoggedin, rpc.getBlockchaininfo);
+router.get('/rpc-btc/listwallets', userController.allowIfLoggedin, rpc.listWallets);
+router.get('/rpc-btc/getnewaddress', userController.allowIfLoggedin, rpc.getNewaddress);
+router.get('/rpc-btc/getblock/:hash', userController.allowIfLoggedin, rpc.getBlock);
+router.get('/rpc-btc/getblockhash/:index', userController.allowIfLoggedin, rpc.getBlockhash);
+router.get('/rpc-btc/getrawtransaction/:id', userController.allowIfLoggedin, rpc.getrawTransaction);
+router.get('/rpc-btc/decoderawtransaction/:hex', userController.allowIfLoggedin, rpc.decoderawTransaction);
 
 
 
