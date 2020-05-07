@@ -5,16 +5,15 @@ const USER = process.env.RPC_USER;
 const PASS = process.env.RPC_PASSWORD;
 // const IP = process.env.RPC_IP;
 
-//API CHECK
-//router.get("/test", (req, res) => res.json({ msg: "backend works" }));
 
 //ADD PRIVATE AUTENTICATION AND AUTORIZATION
+//ADD IP ENV VAR.EXEMPLE:   // url: `http://${USER}:${PASS}@${IP}/`
 
 exports.getBlockcount = async (req, res) => {
   try {
     var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getblockcount","params":[]}`;
     var options = {
-      url: `http://${USER}:${PASS}@3.17.181.129:8332/`, //  url: `http://${USER}:${PASS}@${IP}/`
+      url: `http://${USER}:${PASS}@3.17.181.129:8332/`,       // url: `http://${USER}:${PASS}@${IP}/`
       method: "POST",
       headers: headers,
       body: dataString

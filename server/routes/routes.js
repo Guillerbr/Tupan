@@ -98,7 +98,6 @@ router.get('/balances', userController.allowIfLoggedin, userController.grantAcce
 router.get('/balance/:balanceId', userController.allowIfLoggedin, balanceController.getBalance);
 router.post('/balance', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), balanceController.postBalance);
 router.put('/balance/:balanceId', userController.allowIfLoggedin, userController.grantAccess('updateAny', 'profile'), balanceController.updateBalance);
-
 router.delete('/balance/:balanceId', userController.allowIfLoggedin, userController.grantAccess('deleteAny', 'profile'), balanceController.deleteBalance);
 
 
@@ -115,7 +114,6 @@ router.get('/testmail', userController.testSendMail);
 
 //admin signup user role register
 router.post('/signupadmin', userController.allowIfLoggedin, userController.grantAccess('readAny', 'profile'), userController.signupAdmin);
-
 
 
 
