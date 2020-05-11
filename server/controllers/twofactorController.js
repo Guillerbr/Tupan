@@ -14,6 +14,7 @@ var url = "https://api.authy.com/protected/json/users/new";
 
 var app = Express();
 
+//env keys
 //const authToken = process.env.TWILIO_API_KEY;
 //var authtoken = process.env.TWILIO_API_KEY;
 
