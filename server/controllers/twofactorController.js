@@ -1,8 +1,7 @@
 // 2FA TOTP MODULE
-const User = require("../models/mongo/userModel");
 //const User = require("../models/mysql/userModel");
+const User = require("../models/mongo/userModel");
 const bcrypt = require("bcrypt");
-
 const BodyParser = require("body-parser");
 const Speakeasy = require("speakeasy");
 const Express = require("express");
@@ -19,17 +18,20 @@ var app = Express();
 //var authtoken = process.env.TWILIO_API_KEY;
 
 //authy twillo sms 2fa
-var authy = require("authy")(""); // PRODUCTION API KEY-AUTHY
+var authy = require("authy")("");                    // PRODUCTION API KEY-AUTHY
 //var authy = require('authy')('');
 
 app.use(BodyParser.json());
 app.use(BodyParser.urlencoded({ extended: true }));
+
+
 
 //speakeasy 2fa totp
 exports.tokengenerate = async (req, res, next) => {
   var secret = Speakeasy.generateSecret({ length: 20 });
   res.send({ secret: secret.base32 });
 };
+
 
 //speakeasy 2fa totp
 exports.totptokengenerate = async (req, res, next) => {
@@ -41,6 +43,7 @@ exports.totptokengenerate = async (req, res, next) => {
     remaining: 30 - Math.floor((new Date().getTime() / 1000.0) % 30)
   });
 };
+
 
 //speakeasy 2fa totp
 exports.tokenvalidate = async (req, res, next) => {
@@ -60,6 +63,8 @@ exports.tokenvalidate = async (req, res, next) => {
   //res.send('<script>window.location.href="www.google.com";</script>');
   //console.log(valid);
 };
+
+
 
 //twilio modules
 //twilio modules
@@ -113,6 +118,7 @@ exports.twilioauthy = async (req, res) => {
   //  res.status(200).send({ message: 'Success' });
 };
 
+
 //push notification authy app client
 exports.twiliopushnotficationauthapp = async (req, res, next) => {
   const { authy_id_client } = req.body;
@@ -137,6 +143,7 @@ exports.twiliopushnotficationauthapp = async (req, res, next) => {
 
 */
 };
+
 
 //register cellphone sms for authy twilio download client 2fa
 exports.twilioregistersmsauthy = async (req, res, next) => {
@@ -176,6 +183,7 @@ exports.twilioregistersmsauthy = async (req, res, next) => {
   // await User.findByIdAndUpdate(user._id, {$set: { cellphone, country_code } })
 };
 
+
 /*       ------- INFORMATION --------
 
 curl -XPOST "https://api.authy.com/protected/json/users/new" \
@@ -195,9 +203,7 @@ curl -X POST https://verify.twilio.com/v2/Services \
 -u ACc9e8a16ec4b344a6577767bb401025c6:2d503735899cc2a15a16b48d972bc37e
 
 
-
-
-
+________________________________________________________________________________________
 
 doc:
 
