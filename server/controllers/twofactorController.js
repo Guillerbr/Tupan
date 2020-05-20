@@ -129,6 +129,8 @@ exports.twiliopushnotficationauthapp = async (req, res, next) => {
     console.log(res.message);
   });
 
+
+
   /*
  //You can override this behavior and force sending an SMS or Voice call. 
  //This is a useful override if a user is specifically selecting "Send SMS"
@@ -142,6 +144,9 @@ exports.twiliopushnotficationauthapp = async (req, res, next) => {
   });
 
 */
+
+
+
 };
 
 
@@ -163,17 +168,17 @@ exports.twilioregistersmsauthy = async (req, res, next) => {
     .post(url, qs.stringify(data), {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
-        "X-Authy-API-Key": process.env.TWILIO_API_KEY // 'X-Authy-API-Key': ''
+        "X-Authy-API-Key": process.env.TWILIO_API_KEY         // 'X-Authy-API-Key': ''
       }
     })
     .then(data => {
-      console.log("data", data); //Withdraw on production
+      console.log("data", data);                              //Withdraw on production
       res.json({
         Message: "Successfully registered"
       });
     })
     .catch(e => {
-      console.log("error", e); //Withdraw on production
+      console.log("error", e);                                //Withdraw on production
       res.json({
         Message: "Error registering"
       });
@@ -182,6 +187,12 @@ exports.twilioregistersmsauthy = async (req, res, next) => {
   await User.findByIdAndUpdate(user._id, { cellphone, country_code });
   // await User.findByIdAndUpdate(user._id, {$set: { cellphone, country_code } })
 };
+
+
+
+
+
+
 
 
 /*       ------- INFORMATION --------
