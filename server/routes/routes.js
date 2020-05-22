@@ -44,7 +44,7 @@ router.post('/2fa-validate', userController.allowIfLoggedin, userController.gran
 
 
 
-//twilio 2fa authy and sms 
+//2FA twillio google authenticaion authy and sms 
 //router.get('/twilio', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.twilioauthy);
 router.post('/twilio', twofactorController.twilioauthy);
 //router.post('/register-sms', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.twilioregistersmsauthy);
