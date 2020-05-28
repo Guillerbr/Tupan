@@ -28,8 +28,6 @@
      sequelize-cli -dev
      
 
-
-
 ## Routes endpoint
 
      get('/ping')  
