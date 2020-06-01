@@ -3,7 +3,7 @@
 -------------------------------------------------------------------------------------------------------------
 -IMPLEMENT
 
-Transform the project into a micro framework backend API.Name it Tupã
+Transform the project into a micro framework backend API.Name it Tupã.
 
 2FA-Two-step authentication with sms,authy,google authentication,sending totp.Twillo token SMS Authy Verify API.  *Working
 
@@ -17,7 +17,7 @@ API bitcoin core node json rpc,connect in blockchain RPC authentication.  *Worki
 
 Public document test urls API in Postman.   *Working
 
-Use redis for queue caching and server optimization.
+Use Redis for queue caching and server optimization.
 
 User Jest Mocha Chai Test Framework.
 
