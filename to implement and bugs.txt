@@ -3,7 +3,7 @@
 -------------------------------------------------------------------------------------------------------------
 -IMPLEMENT
 
-Transform the project into a micro framework backend API.Name is Tupã.
+Transform the project into a micro framework backend API.Name is Tupã.  *In revision
 
 Protection Sessions against attacks CSRF, XSS, XSRF, JWT storage cookies HttpOnly.  *Working-IMPORTANT
 
@@ -11,7 +11,7 @@ Protection Sessions against attacks CSRF, XSS, XSRF, JWT storage cookies HttpOnl
 
 Implement an api cielo payment route, using axios in http requests.  *Working
 
-2FA send email sendgrid token hash 2fa email pass login.
+2FA send email sendgrid token hash 2fa email pass login.  *Working
 
 API bitcoin core node json rpc,connect in blockchain RPC authentication.  *Working-Final Stage
 
