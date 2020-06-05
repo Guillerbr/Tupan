@@ -1,11 +1,11 @@
 -TO DO IMPLEMENT AND BUGS-
 
--------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------
 -IMPLEMENT
 
 Transform the project into a micro framework backend API.Name is Tupã.  *In revision
 
-Protection Sessions against attacks CSRF, XSS, XSRF, JWT storage cookies HttpOnly.  *Working-IMPORTANT
+Protection Sessions against attacks CSRF, XSS, XSRF, JWT storage cookies HttpOnly.  *Working-IMPORTANT-IMPORTANT
 
 2FA-Two-step authentication with sms,authy,google authentication,sending totp.Twillo token SMS Authy Verify API.  *Working
 
@@ -17,7 +17,7 @@ API bitcoin core node json rpc,connect in blockchain RPC authentication.  *Worki
 
 Public document test urls API in Postman.   *Working
 
-Use Redis for queue caching and server optimization.
+Use Redis for queue,caching and server optimization.
 
 User Jest Mocha Chai Test Framework.
 
@@ -92,10 +92,10 @@ clearsale,visa-cybersourcer
 
 
 
--------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------
 
 
-_____________________________________________________________________________________________________________
+___________________________________________________________________________________________________________________________
 
 -BUGS
 
