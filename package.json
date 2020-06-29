@@ -27,7 +27,7 @@
     "qs": "^6.9.1",
     "redis": "^2.8.0",
     "request": "^2.88.0",
-    "sequelize": "^5.21.3",
+    "sequelize": "^6.2.3",
     "speakeasy": "^2.0.0"
   },
   "devDependencies": {
