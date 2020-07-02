@@ -14,7 +14,7 @@
     "accesscontrol": "^2.2.1",
     "authy": "^1.4.0",
     "axios": "^0.19.0",
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
