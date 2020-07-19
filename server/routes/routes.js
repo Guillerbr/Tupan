@@ -10,9 +10,21 @@ const twofactorController = require('../controllers/twofactorController');
 const tradesController = require('../controllers/tradesController');
 const ordersController = require('../controllers/ordersController');
 const cotationsController = require('../controllers/cotationsController');
+const paympController = require('../controllers/paympController');
+
+
 
 //RPC SERVICE
 const rpc = require('../api-bitcoin-core/api.js');
+
+
+
+//PAYMENTS SERVICES APIs-Cielo and Mercado Pago-Gateways
+//router.post('/payment', paycieloController.cieloPayment);
+router.get('/pay/ciel', paycieloController.cieloPayment);
+
+router.get('/pay/mp', paympController.mpPayment);
+
 
 
 
@@ -79,12 +91,6 @@ router.post('/orders', ordersController.postOrders);
 router.put('/orders/:ordersId', ordersController.updateOrders);
 router.delete('/orders/:ordersId', ordersController.deleteOrders);
     
-
-
-//routers payment credit card cielo gateway
-//router.post('/payment', paycieloController.cieloPayment);
-router.get('/payment', paycieloController.cieloPayment);
-
 
 
 //cotations prices stocks,criptocurrency and others
