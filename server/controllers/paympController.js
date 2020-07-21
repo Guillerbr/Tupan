@@ -9,7 +9,7 @@ var app = Express();
 app.use(BodyParser.json());
 app.use(BodyParser.urlencoded({ extended: true }));
 
-//mercado pago endpoint url API
+//Mercado Pago endpoint url API
 
 var url =
   "https://api.mercadopago.com/v1/payments?access_token=TEST-3552148219199711-053122-126fa4e90d25c9119053b9701253bd30-564201252";

@@ -74,8 +74,6 @@ mongoose
 }); 
 
 
-
-
 //cors setting to receive all origins  
 //support parsing of application/x-www-form-urlencoded post data
 
@@ -93,7 +91,6 @@ app.use(bodyParser.urlencoded({ extended: false })).use(cors());
 //app.use(cookieParser());
 
 
-
 //define default type headers 
 //x-access-token use token
 //future possibility to implement authorization or bearer token
@@ -108,9 +105,7 @@ app.use(async (req, res, next) => {
 
             //const accessToken = req.cookies.headers["x-access-token"];
             const accessToken = req.headers["x-access-token"];
-
             const { userId, exp } = await jwt.verify(accessToken, process.env.JWT_SECRET);
-
 
             // Check if token has expired
             if (exp < Date.now().valueOf() / 1000) {
@@ -131,8 +126,6 @@ app.use(async (req, res, next) => {
         return res.status(401).json({ error: 'Acess Token invalid go to login' });
 
     }
-
-
 });
 
 
