@@ -5,16 +5,16 @@ const router = express.Router();
 //import controllers
 const userController = require('../controllers/userController');
 const balanceController = require('../controllers/balanceController');
-const paycieloController = require('../controllers/pay-cieloController');
 const twofactorController = require('../controllers/twofactorController');
 const tradesController = require('../controllers/tradesController');
 const ordersController = require('../controllers/ordersController');
 const cotationsController = require('../controllers/cotationsController');
+const paycieloController = require('../controllers/paycieloController');
 const paympController = require('../controllers/paympController');
 
 
 
-//RPC SERVICE
+//RPC BITCOINCORE SERVICE API
 const rpc = require('../api-bitcoin-core/api.js');
 
 
