@@ -54,6 +54,7 @@ exports.cieloPayment = async (req, res, next) => {
     })
     .then(data => {
       //console.log("data", data);
+      //return res.json(data.data);
       return res.json(data.data);
     })
 

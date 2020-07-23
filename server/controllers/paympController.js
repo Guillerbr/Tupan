@@ -85,9 +85,11 @@ exports.mpPayment = async (req, res, next) => {
       }
     })
     .then(data => {
-      console.log("data", data);
+      //console.log("data", data);
+      return res.json(data.data);
     })
     .catch(e => {
       console.log("error", e);
+      return res.json(e);
     });
 };
