@@ -12,23 +12,21 @@ const cotationsController = require('../controllers/cotationsController');
 const paycieloController = require('../controllers/paycieloController');
 const paympController = require('../controllers/paympController');
 
-
-
-//RPC BITCOINCORE SERVICE API
+//RPC bitcoin core service API controller
 const rpc = require('../api-bitcoin-core/api.js');
+
+//ENDEPOINTS ROUTES
 
 
 
 //PAYMENTS SERVICES APIs-Cielo and Mercado Pago-Gateways
 //router.post('/payment', paycieloController.cieloPayment);
 router.get('/pay/ciel', paycieloController.cieloPayment);
-
 router.get('/pay/mp', paympController.mpPayment);
 
 
 
-
-//routes api rpc bitcoin
+//RPC BITCOINCORE SERVICE API
 router.get('/rpc-btc/getblockcount', userController.allowIfLoggedin, rpc.getBlockcount);
 router.get('/rpc-btc/getblockchaininfo', userController.allowIfLoggedin, rpc.getBlockchaininfo);
 router.get('/rpc-btc/listwallets', userController.allowIfLoggedin, rpc.listWallets);
