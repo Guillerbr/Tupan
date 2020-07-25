@@ -53,6 +53,7 @@ exports.getnetPayment = async (req, res, next) => {
 
 https://developers.getnet.com.br/
 https://developers.getnet.com.br/api#section/Como-comecar/Criando-a-sua-conta-no-Sandbox
+https://github.com/brunopazz/GetnetSDK
 
 
 access_token
