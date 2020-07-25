@@ -2,27 +2,36 @@
 const express = require('express');
 const router = express.Router();
 
-//import controllers
+//import controllers in /controllers
 const userController = require('../controllers/userController');
 const balanceController = require('../controllers/balanceController');
 const twofactorController = require('../controllers/twofactorController');
 const tradesController = require('../controllers/tradesController');
 const ordersController = require('../controllers/ordersController');
 const cotationsController = require('../controllers/cotationsController');
+
+
+//GETWAYS PAYMENTS CONTROLLERS
 const paycieloController = require('../controllers/paycieloController');
 const paympController = require('../controllers/paympController');
+const paygetnetController = require('../controllers/paygetnetController');
 
-//RPC bitcoin core service API controller
+
+
+
+//RPC Bitcoin-Core service API controller
 const rpc = require('../api-bitcoin-core/api.js');
 
-//ENDEPOINTS ROUTES
+//ENDPOINTS ROUTES
 
 
 
-//PAYMENTS SERVICES APIs-Cielo and Mercado Pago-Gateways
+//PAYMENTS SERVICES APIs-Cielo,Mercado Pago,Getnet-Gateways
 //router.post('/payment', paycieloController.cieloPayment);
 router.get('/pay/ciel', paycieloController.cieloPayment);
 router.get('/pay/mp', paympController.mpPayment);
+router.get('/pay/getnet', paygetnetController.getnetPayment);
+
 
 
 

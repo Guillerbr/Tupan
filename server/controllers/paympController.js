@@ -11,8 +11,14 @@ app.use(BodyParser.urlencoded({ extended: true }));
 
 //Mercado Pago endpoint url API
 
+// var accesstoken = "TEST-3552148219199711-072503-bb5f72b9ce0d46a506a0f08ed0d03f06-564201252";
+// var url =
+//   "https://api.mercadopago.com/v1/payments?$accesstoken";
+//  const PORT = process.env.ACCESSTOKENMP;
+
+
 var url =
-  "https://api.mercadopago.com/v1/payments?access_token=TEST-3552148219199711-053122-126fa4e90d25c9119053b9701253bd30-564201252";
+  "https://api.mercadopago.com/v1/payments?TEST-3552148219199711-072503-bb5f72b9ce0d46a506a0f08ed0d03f06-564201252";
 
 exports.mpPayment = async (req, res, next) => {
   //  const { CardNumber, ExpirationDate, SecurityCode } = req.body
