@@ -20,7 +20,7 @@ const PaymentSchema = new Schema({
   },
   
   CardNumber: {
-    type: Number,
+    type: String,
     required: true
     //select: false,
   },

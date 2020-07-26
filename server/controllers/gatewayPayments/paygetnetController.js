@@ -53,7 +53,8 @@ exports.getnetAuth = async (req, res, next) => {
 //Token Credit Card -hash card credentials
 exports.getnetToken = async (req, res, next) => {
 
-  // { CardNumber, NumberToken, ExpirationDate, SecurityCode } = req.body;
+   //const { card_number, NumberToken, ExpirationDate, SecurityCode } = req.body;
+   //var card_number1 = card_number;
 
   //Getnet URL
   const url_mode = process.env.URLGETNET;
@@ -67,19 +68,19 @@ exports.getnetToken = async (req, res, next) => {
    
   };
 
-
+     
   // const newPayment = new Payment({
   //   CardNumber,
   //   // NumberToken, ExpirationDate, SecurityCode
   // });
-  //  var data = newPayment;
+  //  var data = card_number1;
 
   axios
     .post(url, data, {
       headers: {
         Accept: "application/json, text/plain,",
         "Content-Type": "application/json",
-        Authorization: "Bearer 8b513f23-2c3c-4f1e-843e-7257a45967e9"
+        Authorization: "Bearer 2c3e5e27-107c-4ec4-8614-92e0a4766932"
       }
     })
     .then(data => {
@@ -88,6 +89,8 @@ exports.getnetToken = async (req, res, next) => {
     })
     .catch(e => {
       console.log("error", e);
+      console.log(card_number);
+      console.log(card_number1);
       return res.json(e);
     });
 };
