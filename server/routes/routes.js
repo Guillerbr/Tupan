@@ -11,13 +11,10 @@ const ordersController = require('../controllers/ordersController');
 const cotationsController = require('../controllers/cotationsController');
 
 
-//GETWAYS PAYMENTS CONTROLLERS
+//GATEWAYS PAYMENTS CONTROLLERS
 const paycieloController = require('../controllers/paycieloController');
 const paympController = require('../controllers/paympController');
 const paygetnetController = require('../controllers/paygetnetController');
-
-
-
 
 //RPC Bitcoin-Core service API controller
 const rpc = require('../api-bitcoin-core/api.js');
@@ -27,10 +24,14 @@ const rpc = require('../api-bitcoin-core/api.js');
 
 
 //PAYMENTS SERVICES APIs-Cielo,Mercado Pago,Getnet-Gateways
+//cielo
 //router.post('/payment', paycieloController.cieloPayment);
 router.get('/pay/ciel', paycieloController.cieloPayment);
+//mp
 router.get('/pay/mp', paympController.mpPayment);
-router.get('/pay/getnet', paygetnetController.getnetPayment);
+//getnet
+router.get('/pay/getnet/token', paygetnetController.getnetToken);
+router.get('/pay/getnet/payment', paygetnetController.getnetPayment);
 
 
 
