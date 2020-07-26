@@ -17,6 +17,13 @@ const PaymentSchema = new Schema({
     required: true
     //select: false,
   },
+
+  TokenNumber: {
+    type: Number,
+    required: true
+    //select: false,
+  },
+  
   Holder: {
     type: String,
     required: true

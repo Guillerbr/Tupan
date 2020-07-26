@@ -129,10 +129,6 @@ app.use(async (req, res, next) => {
 });
 
 
-//json rpc api bitcoin core
-//app.use("/api", rpcMethods);
-
-
 //response server connect
 app.use('/', routes); app.listen(PORT, () => {
     console.log('Server is listening on Port:', PORT)

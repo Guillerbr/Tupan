@@ -1,20 +1,28 @@
 //CIELO GATEWAY
-const User = require("../../models/mongo/userModel");
-const Payment = require("../../models/mongo/paymentModel");
 const BodyParser = require("body-parser");
 const Express = require("express");
 const axios = require("axios");
-
 var app = Express();
 
 app.use(BodyParser.json());
 app.use(BodyParser.urlencoded({ extended: true }));
 
-//cielo endpoint url API
-var url = "https://apisandbox.cieloecommerce.cielo.com.br/1/sales/";
+//MODELS DB
+const User = require("../../models/mongo/userModel");
+const Payment = require("../../models/mongo/paymentModel");
+
+//ENV KEYS 
+// const Token = process.env.GETNETTOKENS;
+
 
 exports.cieloPayment = async (req, res, next) => {
   //  const { CardNumber, ExpirationDate, SecurityCode } = req.body
+
+  //GETNET URL
+  const url_mode = process.env.URLCIELO;
+  //var url = "https://apisandbox.cieloecommerce.cielo.com.br/1/sales/";
+
+  var url = url_mode+"/1/sales/";
 
   var data = {
     MerchantOrderId: "2014111703",
