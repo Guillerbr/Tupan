@@ -16,7 +16,7 @@ app.use(BodyParser.urlencoded({ extended: true }));
 
 
 
-exports.getnetToken = async (req, res, next) => {
+exports.getnetAuth = async (req, res, next) => {
   //  const { CardNumber, ExpirationDate, SecurityCode } = req.body
   
   //Getnet URL
@@ -51,6 +51,96 @@ exports.getnetToken = async (req, res, next) => {
     });
     
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   //Token Credit Card -hash card credentials
+   exports.getnetToken = async (req, res, next) => {
+    //  const { CardNumber, ExpirationDate, SecurityCode } = req.body
+    
+    //Getnet URL
+    var url =
+    "https://api-sandbox.getnet.com.br/v1/tokens/card";
+  
+    var data = {
+      
+          
+          "card_number": "5155901222280001",
+          
+        
+    };
+  
+    axios
+      .post(url, data, {
+        headers: {
+         
+          "Accept": "application/json, text/plain,",
+          "Content-Type": "application/json",
+          "Authorization": "Bearer 0c91cf62-48ec-4aad-a1f5-80aead42960f",
+         
+        }
+      })
+      .then(data => {
+        //console.log("data", data);
+        return res.json(data.data);
+      })
+      .catch(e => {
+        console.log("error", e);
+        return res.json(e);
+      });
+      
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
