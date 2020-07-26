@@ -12,9 +12,9 @@ const cotationsController = require('../controllers/cotationsController');
 
 
 //GATEWAYS PAYMENTS CONTROLLERS
-const paycieloController = require('../controllers/paycieloController');
-const paympController = require('../controllers/paympController');
-const paygetnetController = require('../controllers/paygetnetController');
+const paycieloController = require('../controllers/gatewayPayments/paycieloController');
+const paympController = require('../controllers/gatewayPayments/paympController');
+const paygetnetController = require('../controllers/gatewayPayments/paygetnetController');
 
 //RPC Bitcoin-Core service API controller
 const rpc = require('../api-bitcoin-core/api.js');
