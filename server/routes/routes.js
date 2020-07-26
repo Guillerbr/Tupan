@@ -31,7 +31,7 @@ router.get('/pay/ciel', paycieloController.cieloPayment);
 router.get('/pay/mp', paympController.mpPayment);
 //getnet
 router.get('/pay/getnet/auth', paygetnetController.getnetAuth);
-router.get('/pay/getnet/token', paygetnetController.getnetToken);
+router.post('/pay/getnet/token', paygetnetController.getnetToken);
 router.get('/pay/getnet/payment', paygetnetController.getnetPayment);
 
 
