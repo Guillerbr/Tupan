@@ -12,41 +12,46 @@ const PaymentSchema = new Schema({
         },
         
     */
-   
+   card_number: {
+    type: Number,
+    //required: true
+    //select: false,
+  }, 
+
   NumberToken: {
     type: Number,
-    required: true
+    //required: true
     //select: false,
   },
   
   CardNumber: {
     type: String,
-    required: true
+    //required: true
     //select: false,
   },
 
   Holder: {
     type: String,
-    required: true
+    //required: true
     //select: false,
   },
 
   ExpirationDate: {
     //exemple 12/2021
     type: String,
-    required: true
+    //required: true
     //select: false,
   },
 
   SecurityCode: {
     type: Number,
-    required: true
+    //required: true
     //select: false,
   },
 
   Amount: {
     type: Number,
-    required: true
+    //required: true
     //select: false,
   },
 
