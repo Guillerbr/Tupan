@@ -54,20 +54,26 @@ exports.getnetAuth = async (req, res, next) => {
 exports.getnetToken = async (req, res, next) => {
 
   try{
-   const { card_number, } = req.body;
+   const { card_number } = req.body;
    //var card_number1 = card_number;
+
+   //const card_number_token = req.params.card_number;
 
    const newPayment = new  Payment({
     
-  card_number,
+   card_number,
 
 
    });
+   //console.log(card_number);
 
    await newPayment.save();
    res.json({
-    newPayment
+    newPayment,
+    card_number
    });
+
+   console.log(newPayment);
 
   } catch(error){
     console.log(error);
@@ -75,7 +81,7 @@ exports.getnetToken = async (req, res, next) => {
   }
 
 
-
+//try{
   //Getnet URL
   const url_mode = process.env.URLGETNET;
   //var url = "https://api-sandbox.getnet.com.br/v1/tokens/card";
@@ -101,7 +107,7 @@ exports.getnetToken = async (req, res, next) => {
       headers: {
         Accept: "application/json, text/plain,",
         "Content-Type": "application/json",
-        Authorization: "Bearer 8c42fbe0-1d12-4f98-8ba9-a8f899fcb6ec"
+        Authorization: "Bearer 7715a02a-db95-4ac6-9100-50a76ca3f124"
       }
     })
     .then(data => {
@@ -110,10 +116,14 @@ exports.getnetToken = async (req, res, next) => {
     })
     .catch(e => {
       console.log("error", e);
-      console.log(card_number);
+      //console.log(card_number);
       //console.log(card_number1);
       return res.json(e);
     });
+    //  } catch(error){
+    //    console.log(error);
+    //  }
+     
 };
 
 
