@@ -94,18 +94,19 @@ exports.getnetToken = async (req, res, next) => {
 
     var data = {
 
-     card_number: "5155901222280001"
+     card_number: card_number
    
    };
 
 
-  // data = {card_number:+ card_number};
+  
   //var data = card_number: "$card_number";
   //var data = "card_number"+card_number;
 
   // var obj = JSON.parse(data);
   // console.log(obj);
   console.log(data);
+  console.log(card_number);
   
 
   axios
@@ -175,7 +176,7 @@ exports.getnetPayment = async (req, res, next) => {
       number_installments: 1,
       card: {
         number_token:
-          "0ae5eccbb416139fc8b122f126a7f999915c9d6ca35ee16150936e0fa86676cc56782ad64faaf7e187827bd4133d58d290a99f7f094a77dbca2bcd079344daa9",             //IMPORTANT TOKEN CREDIT CARD-VARIABLE
+          "96a0308afafe5e1d6a1764429a9b0e2122b579059c4403337840c0cf990742a14327b2c2902f9340e3b591f4578c28c58b0075c0c8e5b9b992921c856139f96f",             //IMPORTANT TOKEN CREDIT CARD-VARIABLE
         cardholder_name: "JOAO DA SILVA",
         expiration_month: "12",
         expiration_year: "21"
@@ -188,7 +189,7 @@ exports.getnetPayment = async (req, res, next) => {
       headers: {
         Accept: "application/json, text/plain,",
         "Content-Type": "application/json",
-        Authorization: "Bearer 6706cea1-d6e4-4c40-8b6e-137782c0b6c5"     //OAUTH TOKEN GETNET 1 HOURS VALID-VARIABLE
+        Authorization: "Bearer 910aba58-1424-4571-ad32-3ae2169e64bd"     //OAUTH TOKEN GETNET 1 HOURS VALID-VARIABLE
         
       }
     })
