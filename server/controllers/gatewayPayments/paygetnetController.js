@@ -15,7 +15,6 @@ const Payment = require("../../models/mongo/paymentModel");
 //ENV KEYS 
 // const Token = process.env.GETNETTOKENS;
 
-
 exports.getnetAuth = async (req, res, next) => {
   
   //GETNET URL
@@ -32,10 +31,9 @@ exports.getnetAuth = async (req, res, next) => {
   axios
     .post(url, data, {
       headers: {
-        Accept: "application/json, text/plain,",
-        "Content-Type": "application/json",
-        Authorization:
-          "Basic YWE4ZjJjNGMtYThlYS00MjMxLTg0MmEtZTFiODUyZWM2YjEzOjgwZTMwN2Q4LWNmOGItNDU1NC05M2M5LTNmYzdmMDA0ZjVkYQ==Bearer 34724fc2-3991-422c-8d9d-1b4604d2e20a"
+        "Accept": "application/json, text/plain, */*",
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Authorization": "Basic YWE4ZjJjNGMtYThlYS00MjMxLTg0MmEtZTFiODUyZWM2YjEzOjgwZTMwN2Q4LWNmOGItNDU1NC05M2M5LTNmYzdmMDA0ZjVkYQ=="
       }
     })
     .then(data => {
@@ -53,14 +51,16 @@ exports.getnetAuth = async (req, res, next) => {
 //Token Credit Card -hash card credentials
 exports.getnetToken = async (req, res, next) => {
 
-  try{
+   try{ 
+    
    const { card_number } = req.body;
    //var card_number1 = card_number;
 
    //const card_number_token = req.params.card_number;
 
-   const newPayment = new  Payment({
+   const newPayment = new Payment({
     
+   //card_number: req.body.card_number,
    card_number,
 
 
@@ -69,19 +69,19 @@ exports.getnetToken = async (req, res, next) => {
 
    await newPayment.save();
    res.json({
-    newPayment,
-    card_number
+     newPayment,
+    //card_number
    });
 
    console.log(newPayment);
 
-  } catch(error){
-    console.log(error);
+   } catch(error){
+     console.log(error);
     
-  }
+   }
 
 
-//try{
+/*  try{  */
   //Getnet URL
   const url_mode = process.env.URLGETNET;
   //var url = "https://api-sandbox.getnet.com.br/v1/tokens/card";
@@ -93,6 +93,9 @@ exports.getnetToken = async (req, res, next) => {
    card_number: "5155901222280001"
    
   };
+
+  //var data = card_number;
+  //var data = newPayment;
   
 
      
@@ -107,12 +110,13 @@ exports.getnetToken = async (req, res, next) => {
       headers: {
         Accept: "application/json, text/plain,",
         "Content-Type": "application/json",
-        Authorization: "Bearer 7715a02a-db95-4ac6-9100-50a76ca3f124"
+        Authorization: "Bearer 9a7c8ae6-5d4e-4eac-87b7-62fb1caf168c"
       }
     })
     .then(data => {
       //console.log("data", data);
       return res.json(data.data);
+    
     })
     .catch(e => {
       console.log("error", e);
@@ -165,7 +169,7 @@ exports.getnetPayment = async (req, res, next) => {
       number_installments: 1,
       card: {
         number_token:
-          "0403af04f8d235c04927e1fe1811bddb1c98bdacf75e102ee875c038dd6af8daa7db3e3698fbc65c930a0210c975cefafdf4351cb9c2b4f4fc7efabbe7f00bf9",             //IMPORTANT TOKEN CREDIT CARD-VARIABLE
+          "0ae5eccbb416139fc8b122f126a7f999915c9d6ca35ee16150936e0fa86676cc56782ad64faaf7e187827bd4133d58d290a99f7f094a77dbca2bcd079344daa9",             //IMPORTANT TOKEN CREDIT CARD-VARIABLE
         cardholder_name: "JOAO DA SILVA",
         expiration_month: "12",
         expiration_year: "21"
@@ -178,17 +182,22 @@ exports.getnetPayment = async (req, res, next) => {
       headers: {
         Accept: "application/json, text/plain,",
         "Content-Type": "application/json",
-        Authorization: "Bearer 8b513f23-2c3c-4f1e-843e-7257a45967e9"     //OAUTH TOKEN GETNET 1 HOURS VALID-VARIABLE
+        Authorization: "Bearer 6706cea1-d6e4-4c40-8b6e-137782c0b6c5"     //OAUTH TOKEN GETNET 1 HOURS VALID-VARIABLE
         
       }
     })
     .then(data => {
-      //console.log("data", data);
-      return res.json(data.data);
+      // console.log("data", data);
+      // return res.json(data.data);
+      return res.json(data.data.status);
+       
+       
+      
     })
     .catch(e => {
       console.log("error", e);
       return res.json(e);
+    
     });
 };
 
