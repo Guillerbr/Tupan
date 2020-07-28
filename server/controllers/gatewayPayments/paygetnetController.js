@@ -51,10 +51,10 @@ exports.getnetAuth = async (req, res, next) => {
 //Token Credit Card -hash card credentials
 exports.getnetToken = async (req, res, next) => {
 
-   try{ 
+  /* try{ */
     
    const { card_number } = req.body;
-   //var card_number1 = card_number;
+   
 
    //const card_number_token = req.params.card_number;
 
@@ -65,68 +65,74 @@ exports.getnetToken = async (req, res, next) => {
 
 
    });
-   //console.log(card_number);
+   
+   console.log(card_number);
 
-   await newPayment.save();
-   res.json({
-     newPayment,
-    //card_number
-   });
+   newPayment.save();
+  //  res.json({
+  //    newPayment,
+  //   //card_number
+  //   data
 
-   console.log(newPayment);
+  //  });
 
-   } catch(error){
+  // console.log(newPayment);
+
+  /* } catch(error){
      console.log(error);
     
    }
+   */
 
 
-/*  try{  */
+/* try{  */
   //Getnet URL
   const url_mode = process.env.URLGETNET;
   //var url = "https://api-sandbox.getnet.com.br/v1/tokens/card";
 
   var url = url_mode+"/v1/tokens/card";
 
-  var data = {
+    var data = {
 
-   card_number: "5155901222280001"
+     card_number: "5155901222280001"
    
-  };
+   };
 
-  //var data = card_number;
-  //var data = newPayment;
+
+  // data = {card_number:+ card_number};
+  //var data = card_number: "$card_number";
+  //var data = "card_number"+card_number;
+
+  // var obj = JSON.parse(data);
+  // console.log(obj);
+  console.log(data);
   
-
-     
-  // const newPayment = new Payment({
-  //   CardNumber,
-  //   // NumberToken, ExpirationDate, SecurityCode
-  // });
-  //  var data = card_number;
 
   axios
     .post(url, data, {
       headers: {
-        Accept: "application/json, text/plain,",
+        "Accept": "application/json, text/plain,",
         "Content-Type": "application/json",
-        Authorization: "Bearer 9a7c8ae6-5d4e-4eac-87b7-62fb1caf168c"
+        //
+        Authorization: "Bearer 910aba58-1424-4571-ad32-3ae2169e64bd"
       }
     })
     .then(data => {
       //console.log("data", data);
       return res.json(data.data);
+      //return res.json(newPayment);
     
     })
     .catch(e => {
       console.log("error", e);
+      console.log(data);
       //console.log(card_number);
       //console.log(card_number1);
       return res.json(e);
     });
-    //  } catch(error){
-    //    console.log(error);
-    //  }
+      // } catch(error){
+      //   console.log(error);
+      // }
      
 };
 
@@ -200,6 +206,19 @@ exports.getnetPayment = async (req, res, next) => {
     
     });
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 

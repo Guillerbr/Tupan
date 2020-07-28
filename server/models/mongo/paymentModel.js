@@ -14,7 +14,7 @@ const PaymentSchema = new Schema({
     */
    card_number: {
     type: Number,
-    //required: true    
+    required: true    
     //select: false,
   }, 
 
