@@ -31,7 +31,7 @@ exports.getnetAuth = async (req, res, next) => {
   axios
     .post(url, data, {
       headers: {
-        "Accept": "application/json, text/plain, */*",
+        //"Accept": "application/json, text/plain, */*",
         "Content-Type": "application/x-www-form-urlencoded",
         "Authorization": "Basic YWE4ZjJjNGMtYThlYS00MjMxLTg0MmEtZTFiODUyZWM2YjEzOjgwZTMwN2Q4LWNmOGItNDU1NC05M2M5LTNmYzdmMDA0ZjVkYQ=="
       }
@@ -115,18 +115,53 @@ exports.getnetToken = async (req, res, next) => {
         "Accept": "application/json, text/plain,",
         "Content-Type": "application/json",
         //
-        Authorization: "Bearer 910aba58-1424-4571-ad32-3ae2169e64bd"
+        Authorization: "Bearer 11367beb-68cd-4597-b4af-3aea5f62867d"
       }
     })
     .then(data => {
       //console.log("data", data);
       return res.json(data.data);
+      //console.log(data);
+      //number_token.save();
+      //var number_token = data;
+      //number_token.save();
+      //data.save();
+      //console.log(data);
+
+
+      // const number_token = data;
+      // const newTokenPay = new Payment({
+    
+      //   //card_number: req.body.card_number,
+      //   number_token,
+     
+     
+      //   });
+      //   newTokenPay.save();
+      //   //return res.json(data);
+      //   console.log(number_token);
+
+
+
+      // var number_token = data;
+
+      // const number_token1 = new Payment({
+    
+      //   //card_number: req.body.card_number,
+      //   number_token,
+     
+     
+      //   });
+      
+      // number_token1.save();  
+
+
       //return res.json(newPayment);
     
     })
     .catch(e => {
       console.log("error", e);
-      console.log(data);
+      //console.log(data);
       //console.log(card_number);
       //console.log(card_number1);
       return res.json(e);
@@ -142,8 +177,11 @@ exports.getnetToken = async (req, res, next) => {
 //Payment credit card function
 exports.getnetPayment = async (req, res, next) => {
   
-  //  const { CardNumber, NumberToken, ExpirationDate, SecurityCode } = req.body
-  //  const CardNumber = await Payment.findOne({ where: {CardNumber} });
+  const { number_token, NumberToken, ExpirationDate, SecurityCode } = req.body;
+
+  //console.log(number_token);
+
+  
   
 
   //GETNET URL
@@ -175,8 +213,7 @@ exports.getnetPayment = async (req, res, next) => {
       transaction_type: "FULL",
       number_installments: 1,
       card: {
-        number_token:
-          "96a0308afafe5e1d6a1764429a9b0e2122b579059c4403337840c0cf990742a14327b2c2902f9340e3b591f4578c28c58b0075c0c8e5b9b992921c856139f96f",             //IMPORTANT TOKEN CREDIT CARD-VARIABLE
+        number_token: number_token,             //IMPORTANT TOKEN CREDIT CARD-VARIABLE
         cardholder_name: "JOAO DA SILVA",
         expiration_month: "12",
         expiration_year: "21"
@@ -189,7 +226,7 @@ exports.getnetPayment = async (req, res, next) => {
       headers: {
         Accept: "application/json, text/plain,",
         "Content-Type": "application/json",
-        Authorization: "Bearer 910aba58-1424-4571-ad32-3ae2169e64bd"     //OAUTH TOKEN GETNET 1 HOURS VALID-VARIABLE
+        Authorization: "Bearer 11367beb-68cd-4597-b4af-3aea5f62867d"     //OAUTH TOKEN GETNET 1 HOURS VALID-VARIABLE
         
       }
     })

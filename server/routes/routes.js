@@ -32,7 +32,7 @@ router.get('/pay/mp', paympController.mpPayment);
 //getnet
 router.get('/pay/getnet/auth', paygetnetController.getnetAuth);
 router.post('/pay/getnet/token', paygetnetController.getnetToken);
-router.get('/pay/getnet/payment', paygetnetController.getnetPayment);
+router.post('/pay/getnet/payment', paygetnetController.getnetPayment);
 
 
 
