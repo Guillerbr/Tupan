@@ -15,6 +15,7 @@ const cotationsController = require('../controllers/cotationsController');
 const paycieloController = require('../controllers/gatewayPayments/paycieloController');
 const paympController = require('../controllers/gatewayPayments/paympController');
 const paygetnetController = require('../controllers/gatewayPayments/paygetnetController');
+const paypagsegController = require('../controllers/gatewayPayments/paypagseguroController');
 
 //RPC Bitcoin-Core service API controller
 const rpc = require('../api-bitcoin-core/api.js');
@@ -27,13 +28,15 @@ const rpc = require('../api-bitcoin-core/api.js');
 //cielo
 //router.post('/payment', paycieloController.cieloPayment);
 router.get('/pay/ciel', paycieloController.cieloPayment);
-//mp
+//mercado-pago
 router.get('/pay/mp', paympController.mpPayment);
 //getnet
 router.get('/pay/getnet/auth', paygetnetController.getnetAuth);
 router.post('/pay/getnet/token', paygetnetController.getnetToken);
 router.post('/pay/getnet/payment', paygetnetController.getnetPayment);
-
+//pag-seguro
+router.post('/pay/pagseg/session', paypagsegController.createSession);
+router.post('/pay/pagseg/payment', paypagsegController.pagsegTokenCard);
 
 
 

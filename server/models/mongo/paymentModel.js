@@ -12,7 +12,14 @@ const PaymentSchema = new Schema({
         },
         
     */
-   card_number: {           //getnet param
+
+  data: {           //getnet param
+    type: String,
+    //required: true    
+    //select: false,
+  },
+
+  card_number: {           //getnet param
     type: Number,
     //required: true    
     //select: false,

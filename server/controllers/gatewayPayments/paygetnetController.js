@@ -2,6 +2,7 @@
 const BodyParser = require("body-parser");
 const Express = require("express");
 const axios = require("axios");
+//import firebase from '../../firebase';
 
 var app = Express();
 
@@ -57,52 +58,34 @@ exports.getnetAuth = async (req, res, next) => {
 //Token Credit Card -hash card credentials
 exports.getnetToken = async (req, res, next) => {
 
-  /* try{ */
+  const url_mode = process.env.URLGETNET;
+  const BearerToken = process.env.BEARERTOKEN;
+
+  //var url = "https://api-sandbox.getnet.com.br/v1/tokens/card";
+   var url = url_mode+"/v1/tokens/card";
+
     
    const { card_number } = req.body;
    
-
-   //const card_number_token = req.params.card_number;
-
    const newPayment = new Payment({
-    
-   //card_number: req.body.card_number,
+     
    card_number,
-
-
+   
    });
    
    console.log(card_number);
 
    newPayment.save();
-  //  res.json({
-  //    newPayment,
-  //   //card_number
-  //   data
-
-  //  });
-
-  // console.log(newPayment);
-
-  /* } catch(error){
-     console.log(error);
-    
-   }
-   */
-
-
-/* try{  */
-  //Getnet URL
-  const url_mode = process.env.URLGETNET;
-  //var url = "https://api-sandbox.getnet.com.br/v1/tokens/card";
-
-  var url = url_mode+"/v1/tokens/card";
+  
 
     var data = {
 
-     card_number: card_number
+      card_number: card_number
    
    };
+  
+  
+
 
 
   
@@ -120,49 +103,21 @@ exports.getnetToken = async (req, res, next) => {
       headers: {
         "Accept": "application/json, text/plain,",
         "Content-Type": "application/json",
-        //
-        Authorization: "Bearer 7a8bbb11-c043-450e-a5d8-c8b879c3643a"
+        Authorization: BearerToken,                   //OAUTH TOKEN GETNET 1 HOURS VALID-VARIABLE
       }
     })
     .then(data => {
-      //console.log("data", data);
-      return res.json(data.data);
-      //console.log(data);
-      //number_token.save();
-      //var number_token = data;
-      //number_token.save();
-      //data.save();
-      //console.log(data);
+      console.log("data", data);
+      //console.log(data.data);
+      //return res.json(data.data);
+      return res.json(data.data.number_token);
 
 
-      // const number_token = data;
-      // const newTokenPay = new Payment({
-    
-      //   //card_number: req.body.card_number,
-      //   number_token,
-     
-     
-      //   });
-      //   newTokenPay.save();
-      //   //return res.json(data);
-      //   console.log(number_token);
-
-
-
-      // var number_token = data;
-
-      // const number_token1 = new Payment({
-    
-      //   //card_number: req.body.card_number,
-      //   number_token,
-     
-     
-      //   });
+      // const pay = Payment({
+      //  data
+      // });
+      // pay.save();
       
-      // number_token1.save();  
-
-
-      //return res.json(newPayment);
     
     })
     .catch(e => {
@@ -172,6 +127,8 @@ exports.getnetToken = async (req, res, next) => {
       //console.log(card_number1);
       return res.json(e);
     });
+
+
       // } catch(error){
       //   console.log(error);
       // }
