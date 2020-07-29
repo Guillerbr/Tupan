@@ -225,7 +225,7 @@ exports.getnetPayment = async (req, res, next) => {
       headers: {
         Accept: "application/json, text/plain,",
         "Content-Type": "application/json",
-        Authorization: BearerToken,    //"Bearer 7a8bbb11-c043-450e-a5d8-c8b879c3643a"     //OAUTH TOKEN GETNET 1 HOURS VALID-VARIABLE
+        Authorization: BearerToken,                     //OAUTH TOKEN GETNET 1 HOURS VALID-VARIABLE
         
       }
     })
