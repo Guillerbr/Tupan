@@ -35,8 +35,9 @@ router.get('/pay/getnet/auth', paygetnetController.getnetAuth);
 router.post('/pay/getnet/token', paygetnetController.getnetToken);
 router.post('/pay/getnet/payment', paygetnetController.getnetPayment);
 //pag-seguro
-router.post('/pay/pagseg/session', paypagsegController.createSession);
-router.post('/pay/pagseg/payment', paypagsegController.pagsegTokenCard);
+router.post('/pay/pagseg/session', paypagsegController.pagsegSession);
+router.post('/pay/pagseg/cardtoken', paypagsegController.pagsegTokenCard);
+router.post('/pay/pagseg/payment', paypagsegController.pagsegPayment);
 
 
 
