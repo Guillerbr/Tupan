@@ -15,6 +15,10 @@ const Payment = require("../../models/mongo/paymentModel");
 //ENV KEYS 
 // const Token = process.env.GETNETTOKENS;
 
+
+
+
+
 exports.getnetAuth = async (req, res, next) => {
   
   //GETNET URL
@@ -45,6 +49,8 @@ exports.getnetAuth = async (req, res, next) => {
       return res.json(e);
     });
 };
+
+
 
 
 
@@ -171,6 +177,8 @@ exports.getnetToken = async (req, res, next) => {
       // }
      
 };
+
+
 
 
 
