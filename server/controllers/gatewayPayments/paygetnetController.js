@@ -115,7 +115,7 @@ exports.getnetToken = async (req, res, next) => {
         "Accept": "application/json, text/plain,",
         "Content-Type": "application/json",
         //
-        Authorization: "Bearer 11367beb-68cd-4597-b4af-3aea5f62867d"
+        Authorization: "Bearer 7a8bbb11-c043-450e-a5d8-c8b879c3643a"
       }
     })
     .then(data => {
@@ -179,20 +179,19 @@ exports.getnetPayment = async (req, res, next) => {
   
   const { number_token, NumberToken, ExpirationDate, SecurityCode } = req.body;
 
-  //console.log(number_token);
-
-  
-  
-
   //GETNET URL
     const url_mode = process.env.URLGETNET;
-    //var url = "https://api-sandbox.getnet.com.br/v1/payments/credit";
-  
+    const sellerid = process.env.SELLER_ID;
+    const BearerToken = process.env.BEARERTOKEN;
+    
+  //endpoint url origin
     var url = url_mode+"/v1/payments/credit";
+    //var url = "https://api-sandbox.getnet.com.br/v1/payments/credit";
   
   //BODY DATA REQ
    var data = {
-    seller_id: "ee166199-8d66-491d-988c-e4deab5bc9f5", //id inique seller account getnet
+    //seller_id: "ee166199-8d66-491d-988c-e4deab5bc9f5", //id inique seller account getnet
+    seller_id: sellerid,
     amount: "10000",
     order: {
       order_id: "12345"
@@ -226,7 +225,7 @@ exports.getnetPayment = async (req, res, next) => {
       headers: {
         Accept: "application/json, text/plain,",
         "Content-Type": "application/json",
-        Authorization: "Bearer 11367beb-68cd-4597-b4af-3aea5f62867d"     //OAUTH TOKEN GETNET 1 HOURS VALID-VARIABLE
+        Authorization: BearerToken,    //"Bearer 7a8bbb11-c043-450e-a5d8-c8b879c3643a"     //OAUTH TOKEN GETNET 1 HOURS VALID-VARIABLE
         
       }
     })
@@ -234,6 +233,12 @@ exports.getnetPayment = async (req, res, next) => {
       // console.log("data", data);
       // return res.json(data.data);
       return res.json(data.data.status);
+
+      // if(res.status(200)){
+      //   data.save();
+      // }else if (res.status(400){
+      //   res.json("Error")
+      // })
        
        
       
