@@ -9,19 +9,24 @@ var app = Express();
 app.use(BodyParser.json());
 app.use(BodyParser.urlencoded({ extended: true }));
 
+//MODELS DB
+const User = require("../../models/mongo/userModel");
+const MercadoPago = require("../../models/mongo/mercadoPago/mercadoPagoModel");
+
 //Mercado Pago endpoint url API
 
-// var accesstoken = "TEST-3552148219199711-072503-bb5f72b9ce0d46a506a0f08ed0d03f06-564201252";
-// var url =
-//   "https://api.mercadopago.com/v1/payments?$accesstoken";
-//  const PORT = process.env.ACCESSTOKENMP;
+//  var accesstoken = "TEST-3552148219199711-072503-bb5f72b9ce0d46a506a0f08ed0d03f06-564201252";
+//  var url =
+//    "https://api.mercadopago.com/v1/payments?$accesstoken";
+// //  const PORT = process.env.ACCESSTOKENMP;
 
 
-var url =
-  "https://api.mercadopago.com/v1/payments?TEST-3552148219199711-072503-bb5f72b9ce0d46a506a0f08ed0d03f06-564201252";
 
 exports.mpPayment = async (req, res, next) => {
   //  const { CardNumber, ExpirationDate, SecurityCode } = req.body
+
+  var url =
+  "https://api.mercadopago.com/v1/payments?access_token=TEST-3552148219199711-072503-bb5f72b9ce0d46a506a0f08ed0d03f06-564201252";
 
   var data = {
     token: "b3a7dbec3eb0d71798c4f19fec445795",
@@ -99,3 +104,16 @@ exports.mpPayment = async (req, res, next) => {
       return res.json(e);
     });
 };
+
+
+
+/*
+
+https://www.mercadopago.com.br/developers/pt/reference/
+
+
+
+
+
+
+*/
