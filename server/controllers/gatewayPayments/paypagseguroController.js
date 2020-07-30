@@ -145,32 +145,8 @@ exports.pagsegTokenCard = async (req, res, next) => {
 
 
 
-//   //PAG SEGURO URL
-//   const url_mode = process.env.URLPAGSEG;
-//   //var url = "https://df.uol.com.br/v2/cards";
+// https://sandbox.pagseguro.uol.com.br/
 
-//   var url = url_mode + "/v2/cards";
+// https://documenter.getpostman.com/view/4711102/SVfGyC4D?version=latest
 
-//   var data = {
-//     scope: "oob",
-//     grant_type: "client_credentials"
-//   };
 
-//   axios
-//     .post(url, data, {
-//       headers: {
-//         //"Accept": "application/json, text/plain, */*",
-//         "Content-Type": "application/x-www-form-urlencoded",
-//         Authorization:
-//           "Basic YWE4ZjJjNGMtYThlYS00MjMxLTg0MmEtZTFiODUyZWM2YjEzOjgwZTMwN2Q4LWNmOGItNDU1NC05M2M5LTNmYzdmMDA0ZjVkYQ=="
-//       }
-//     })
-//     .then(data => {
-//       //console.log("data", data);
-//       return res.json(data.data);
-//     })
-//     .catch(e => {
-//       console.log("error", e);
-//       return res.json(e);
-//     });
-//};
