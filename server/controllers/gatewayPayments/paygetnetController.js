@@ -11,7 +11,7 @@ app.use(BodyParser.urlencoded({ extended: true }));
 
 //MODELS DB
 const User = require("../../models/mongo/userModel");
-const Payment = require("../../models/mongo/paymentModel");
+const GetNet = require("../../models/mongo/getNet/getNetModel");
 
 //ENV KEYS 
 // const Token = process.env.GETNETTOKENS;
@@ -67,7 +67,7 @@ exports.getnetToken = async (req, res, next) => {
     
    const { card_number } = req.body;
    
-   const newPayment = new Payment({
+   const newToken = new GetNet({
      
    card_number,
    
@@ -75,7 +75,7 @@ exports.getnetToken = async (req, res, next) => {
    
    console.log(card_number);
 
-   newPayment.save();
+   newToken.save();
   
 
     var data = {
