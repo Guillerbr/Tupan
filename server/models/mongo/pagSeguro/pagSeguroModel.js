@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const PaymentSchema = new Schema({
+const PagseguroSchema = new Schema({
     /*
         user: {
             type: mongoose.Schema.Types.ObjectId,     //ref user id, moogoose
@@ -14,60 +14,44 @@ const PaymentSchema = new Schema({
     */
 
 
-  response: {                  //getnet param
+  sessionId: {                  //getnet param
     type: String,
     //required: true    
     //select: false,
   },
 
-  card_number: {           //getnet param
+  amount: {           //getnet param
     type: Number,
     //required: true    
     //select: false,
   }, 
 
-  number_token: {          //getnet param
+  cardNumber: {          //getnet param
     type: Number,
     //required: true
     //select: false,
   },
 
-  data: {                  //getnet param
+  cardCvv: {                  //getnet param
     type: Number,
     //required: true
     //select: false,
   },
   
-  CardNumber: {
+  cardExpirationMonth: {
     type: String,
     //required: true
     //select: false,
   },
 
-  Holder: {
+  cardExpirationYear: {
     type: String,
     //required: true
     //select: false,
   },
 
-  ExpirationDate: {
-    //exemple 12/2021
-    type: String,
-    //required: true
-    //select: false,
-  },
-
-  SecurityCode: {
-    type: Number,
-    //required: true
-    //select: false,
-  },
-
-  Amount: {
-    type: Number,
-    //required: true
-    //select: false,
-  },
+  
+  
 
   createdAt: {
     type: Date,
@@ -80,6 +64,6 @@ const PaymentSchema = new Schema({
   },
 });
 
-const Payment = mongoose.model("payment", PaymentSchema);
+const PagSeguro = mongoose.model("pagseguro", PagseguroSchema);
 
-module.exports = Payment;
+module.exports = PagSeguro;

@@ -12,7 +12,7 @@ app.use(BodyParser.urlencoded({ extended: true }));
 
 //MODELS DB
 const User = require("../../models/mongo/userModel");
-const Payment = require("../../models/mongo/paymentModel");
+const PagSeguro = require("../../models/mongo/pagSeguro/pagSeguroModel");
 
 //ENV KEYS
 // const Token = process.env.GETNETTOKENS;
@@ -50,7 +50,7 @@ exports.pagsegTokenCard = async (req, res, next) => {
   } = req.body;
 
   var data = qs.stringify({
-    sessionId: "9191f2fcddb04a3fb29f0853363deeb9",
+    sessionId: "f3ff98174a284de5aa27741a6c01c466",
     amount: "11",
     cardNumber: cardNumber,
     cardBrand: "Visa",
@@ -58,6 +58,22 @@ exports.pagsegTokenCard = async (req, res, next) => {
     cardExpirationMonth: cardExpirationMonth,
     cardExpirationYear: cardExpirationYear
   });
+
+  const newToken = new PagSeguro({
+    
+    sessionId,
+    amount,
+    cardNumber,
+    cardBrand,
+    cardCvv,
+    cardExpirationMonth,
+    cardExpirationYear
+
+  });
+
+  newToken.save();        //save data in PagSeguro model mongodb
+
+
   var config = {
     method: "post",
     url: "https://df.uol.com.br/v2/cards\n",
@@ -69,8 +85,19 @@ exports.pagsegTokenCard = async (req, res, next) => {
 
   axios(config)
     .then(function(response) {
-      console.log(JSON.stringify(response.data));
-      return res.json(response.data);
+      //console.log(JSON.stringify(response.data));
+      console.log(JSON.stringify(response.data.token));
+      return res.json(response.data.token);
+
+      //const {token_card } =  res.body;
+      //const token_card = data;
+      // const cardToken = new Payment({
+      //   response,
+      // });
+
+      // cardToken.save();
+
+
     })
     .catch(function(error) {
       console.log(error);
