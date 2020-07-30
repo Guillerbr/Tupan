@@ -71,7 +71,7 @@ exports.pagsegTokenCard = async (req, res, next) => {
 
   });
 
-  newToken.save();        //save data in PagSeguro model mongodb
+  newToken.save();        //save data in pagseguros model mongodb
 
 
   var config = {

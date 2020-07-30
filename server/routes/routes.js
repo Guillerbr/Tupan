@@ -27,7 +27,7 @@ const rpc = require('../api-bitcoin-core/api.js');
 //PAYMENTS GATEWAYS SERVICES APIs-Cielo,Mercado Pago,Getnet,
 //cielo
 //router.post('/payment', paycieloController.cieloPayment);
-router.get('/pay/ciel', paycieloController.cieloPayment);
+router.post('/pay/cielo/payment', paycieloController.cieloPayment);
 //mercado-pago
 router.get('/pay/mp', paympController.mpPayment);
 //getnet

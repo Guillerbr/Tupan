@@ -9,14 +9,14 @@ app.use(BodyParser.urlencoded({ extended: true }));
 
 //MODELS DB
 const User = require("../../models/mongo/userModel");
-const Payment = require("../../models/mongo/paymentModel");
+const Cielo = require("../../models/mongo/cielo/cieloModel");
 
 //ENV KEYS 
 // const Token = process.env.GETNETTOKENS;
 
 
 exports.cieloPayment = async (req, res, next) => {
-  //  const { CardNumber, ExpirationDate, SecurityCode } = req.body
+    const { CardNumber, Holder, ExpirationDate, SecurityCode } = req.body;
 
   //GETNET URL
   const url_mode = process.env.URLCIELO;
@@ -35,10 +35,10 @@ exports.cieloPayment = async (req, res, next) => {
       Installments: 1,
       SoftDescriptor: "123456789ABCD",
       CreditCard: {
-        CardNumber: "1234123412341231",
-        Holder: "Teste Holder",
-        ExpirationDate: "12/2030",
-        SecurityCode: "123",
+        CardNumber: CardNumber,
+        Holder: Holder,
+        ExpirationDate: ExpirationDate,     // ex: 12/2030
+        SecurityCode: SecurityCode,
         Brand: "Visa",
         CardOnFile: {
           Usage: "Used",
@@ -49,10 +49,22 @@ exports.cieloPayment = async (req, res, next) => {
     }
   };
 
+  const newPayment = new Cielo({
+    CardNumber,
+    Holder,
+    ExpirationDate,
+    SecurityCode,
+  });
+
+  newPayment.save();          //save data in cielos model mongodb
+
+
   axios
     .post(url, data, {
       headers: {
         "Content-Type": "application/json",
+        //"Accept": "application/x-www-form-urlencoded",
+
         MerchantId: "b17ac0ba-ff14-408a-93d7-dbcba07363b0",
         MerchantKey: "XKSPPVZAZGAXATFPYBLNLKDHMLDMUENYIYJJXJUC"
 
@@ -63,7 +75,7 @@ exports.cieloPayment = async (req, res, next) => {
     .then(data => {
       //console.log("data", data);
       //return res.json(data.data);
-      return res.json(data.data);
+      return res.json(data.data.Payment.ReturnMessage);
     })
 
     .catch(e => {
