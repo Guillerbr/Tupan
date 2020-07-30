@@ -38,6 +38,8 @@ router.post('/pay/getnet/payment', paygetnetController.getnetPayment);
 router.post('/pay/pagseg/session', paypagsegController.pagsegSession);
 router.post('/pay/pagseg/cardtoken', paypagsegController.pagsegTokenCard);
 router.post('/pay/pagseg/payment', paypagsegController.pagsegPayment);
+router.post('/pay/pagseg/billet', paypagsegController.pagsegBoleto);
+
 
 
 
