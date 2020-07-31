@@ -22,6 +22,11 @@ exports.pagsegSession = async (req, res, next) => {
   // email= 'guillerbrasilrj@gmail.com';
   //var token= EAD7FC0724EF424294BE1A3C3D62FEF2;
 
+  //var url = process.env.URL;
+  var email = process.env.EMAIL;
+  var token = process.env.TOKEN;
+  
+
   var config = {
     method: "post",
     url:
@@ -32,7 +37,22 @@ exports.pagsegSession = async (req, res, next) => {
   axios(config)
     .then(function(response) {
       //console.log(JSON.stringify(response.data));
-      return res.json(response.data);
+      //return res.json(response.data);
+
+      const sessionId = response.data;
+
+      const session_Id = new PagSeguro({
+
+        sessionId,
+
+      });
+
+      session_Id.save();
+      //return res.json(session_Id.id);
+      return res.json(session_Id.sessionId);
+      //return res.send(response.data);
+
+
     })
     .catch(function(error) {
       console.log(error);
@@ -50,7 +70,7 @@ exports.pagsegTokenCard = async (req, res, next) => {
     cardExpirationYear
   } = req.body;
 
-  const sessionId = process.env.SESSIONID; //REQUIRED SESSION ID-Token expiration.
+  const sessionId = process.env.SESSIONID;             //REQUIRED SESSION ID-Token expiration. 
 
   var data = qs.stringify({
     sessionId: sessionId,
@@ -61,18 +81,6 @@ exports.pagsegTokenCard = async (req, res, next) => {
     cardExpirationMonth: cardExpirationMonth,
     cardExpirationYear: cardExpirationYear
   });
-
-  const newToken = new PagSeguro({
-    // sessionId,
-    // amount,
-    // cardNumber,
-    // cardBrand,
-    // cardCvv,
-    // cardExpirationMonth,
-    // cardExpirationYear
-  });
-
-  //newToken.save(); //save data in pagseguros model mongodb
 
   var config = {
     method: "post",
@@ -107,6 +115,7 @@ exports.pagsegTokenCard = async (req, res, next) => {
       cardToken.save();                                // functin mongoose .save() datas in pagseguros colletion/model
 
       return res.json(response.data.token);
+      //return res.send(response.data);
       //res.json("Success!");
       //console.log(token_card);
       
@@ -118,7 +127,11 @@ exports.pagsegTokenCard = async (req, res, next) => {
 };
 
 exports.pagsegPayment = async (req, res, next) => {
-  const { installmentValue } = req.body;
+
+  //const { installmentValue } = req.body;
+
+  //const creditCardToken = 
+  //const creditCardToken = await PagSeguro.findOne({ email, password: hashedPassword });  
 
   var data = qs.stringify({
     paymentMode: "default",
@@ -142,7 +155,7 @@ exports.pagsegPayment = async (req, res, next) => {
     senderCPF: "22111944785",
     senderAreaCode: "11",
     senderPhone: "56273440",
-    senderEmail: "c23318287636434949818@sandbox.pagseguro.com.br", //EMAIL USER BUYER
+    senderEmail: "c23318287636434949818@sandbox.pagseguro.com.br",                           //EMAIL USER BUYER
     //'senderHash': 'pUbfUdXTdakVu1U7',                                                      //PASSWORD USER BUYER
     shippingAddressStreet: "Av.Brig.FariaLima",
     shippingAddressNumber: "1384",
@@ -154,9 +167,9 @@ exports.pagsegPayment = async (req, res, next) => {
     shippingAddressCountry: "BRA",
     //'shippingType': '1',
     //'shippingCost': '1.00',
-    creditCardToken: "8f13c508cdcb4ddf9f3a8f472ac8e3d9", //TOKEN DO CARTÂO FEITO NA TOKENIZAÇÂO ANTERIOR,MUDA SEMPRE
-    installmentQuantity: "1", //REQUIRED-QUANTIDADE DE PRESTAÇÕES
-    installmentValue: "10300.00", //REQUIRED-VALOR DA PRESTAÇÃO
+    creditCardToken: "8f13c508cdcb4ddf9f3a8f472ac8e3d9",           //TOKEN DO CARTÂO FEITO NA TOKENIZAÇÂO ANTERIOR,MUDA SEMPRE
+    installmentQuantity: "1",                                      //REQUIRED-QUANTIDADE DE PRESTAÇÕES
+    installmentValue: "10300.00",                                  //REQUIRED-VALOR DA PRESTAÇÃO
     // 'noInterestInstallmentQuantity': '4',
     creditCardHolderName: "Caio Silva",
     creditCardHolderCPF: "22111944785",
@@ -184,8 +197,9 @@ exports.pagsegPayment = async (req, res, next) => {
 
   axios(config)
     .then(function(response) {
-      console.log(JSON.stringify(response.data));
-      return res.json(response.data);
+      //console.log(JSON.stringify(response.data));
+      return res.send(response.data);
+      //return res.json(response.data);
     })
     .catch(function(error) {
       console.log(error);
@@ -238,7 +252,8 @@ exports.pagsegBoleto = async (req, res, next) => {
   axios(config)
     .then(function(response) {
       console.log(JSON.stringify(response.data));
-      return res.json(response.data);
+      //return res.json(response.data);
+      return res.send(response.data);
     })
     .catch(function(error) {
       console.log(error);
