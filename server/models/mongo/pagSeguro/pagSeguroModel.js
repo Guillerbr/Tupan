@@ -14,37 +14,43 @@ const PagseguroSchema = new Schema({
     */
 
 
-  sessionId: {                  //getnet param
+  token_card: {                  //pagseguro param-hash token card
     type: String,
     //required: true    
     //select: false,
   },
 
-  amount: {           //getnet param
+  sessionId: {                  //pagseguro param
+    type: String,
+    //required: true    
+    //select: false,
+  },
+
+  amount: {                     //pagseguro param
     type: Number,
     //required: true    
     //select: false,
   }, 
 
-  cardNumber: {          //getnet param
+  cardNumber: {                 //pagseguro param
     type: Number,
     //required: true
     //select: false,
   },
 
-  cardCvv: {                  //getnet param
+  cardCvv: {                    //pagseguro param
     type: Number,
     //required: true
     //select: false,
   },
   
-  cardExpirationMonth: {
+  cardExpirationMonth: {        //pagseguro param
     type: String,
     //required: true
     //select: false,
   },
 
-  cardExpirationYear: {
+  cardExpirationYear: {         //pagseguro param
     type: String,
     //required: true
     //select: false,

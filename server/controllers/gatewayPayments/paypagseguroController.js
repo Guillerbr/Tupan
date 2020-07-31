@@ -16,6 +16,7 @@ const PagSeguro = require("../../models/mongo/pagSeguro/pagSeguroModel");
 
 //ENV KEYS
 // const Token = process.env.GETNETTOKENS;
+//const sessionId = process.env.SESSIONID;
 
 exports.pagsegSession = async (req, res, next) => {
   // email= 'guillerbrasilrj@gmail.com';
@@ -40,7 +41,7 @@ exports.pagsegSession = async (req, res, next) => {
 
 exports.pagsegTokenCard = async (req, res, next) => {
   const {
-    sessionId,
+    //sessionId,
     amount,
     cardNumber,
     cardBrand,
@@ -49,8 +50,10 @@ exports.pagsegTokenCard = async (req, res, next) => {
     cardExpirationYear
   } = req.body;
 
+  const sessionId = process.env.SESSIONID; //REQUIRED SESSION ID-Token expiration.
+
   var data = qs.stringify({
-    sessionId: "f3ff98174a284de5aa27741a6c01c466",
+    sessionId: sessionId,
     amount: "11",
     cardNumber: cardNumber,
     cardBrand: "Visa",
@@ -60,19 +63,16 @@ exports.pagsegTokenCard = async (req, res, next) => {
   });
 
   const newToken = new PagSeguro({
-    
-    sessionId,
-    amount,
-    cardNumber,
-    cardBrand,
-    cardCvv,
-    cardExpirationMonth,
-    cardExpirationYear
-
+    // sessionId,
+    // amount,
+    // cardNumber,
+    // cardBrand,
+    // cardCvv,
+    // cardExpirationMonth,
+    // cardExpirationYear
   });
 
-  newToken.save();        //save data in pagseguros model mongodb
-
+  //newToken.save(); //save data in pagseguros model mongodb
 
   var config = {
     method: "post",
@@ -86,21 +86,34 @@ exports.pagsegTokenCard = async (req, res, next) => {
   axios(config)
     .then(function(response) {
       //console.log(JSON.stringify(response.data));
-      console.log(JSON.stringify(response.data.token));
+      //console.log(JSON.stringify(response.data.token));
+      //return res.json(response.data.token);
+      //console.log(config);
+
+      const token_card = response.data.token;
+      console.log(token_card);
+      const cardToken = new PagSeguro({
+        
+        token_card,
+        //sessionId,
+        amount,
+        cardNumber,
+        cardBrand,
+        cardCvv,
+        cardExpirationMonth,
+        cardExpirationYear
+      });
+
+      cardToken.save();                                // functin mongoose .save() datas in pagseguros colletion/model
+
       return res.json(response.data.token);
-
-      //const {token_card } =  res.body;
-      //const token_card = data;
-      // const cardToken = new Payment({
-      //   response,
-      // });
-
-      // cardToken.save();
-
-
+      //res.json("Success!");
+      //console.log(token_card);
+      
     })
     .catch(function(error) {
       console.log(error);
+      res.json("Error!");
     });
 };
 
@@ -232,9 +245,6 @@ exports.pagsegBoleto = async (req, res, next) => {
       return res.json(error);
     });
 };
-
-
-
 
 // https://dev.pagseguro.uol.com.br/reference/introducao
 
