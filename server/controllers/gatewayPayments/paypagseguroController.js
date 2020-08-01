@@ -19,20 +19,19 @@ const PagSeguro = require("../../models/mongo/pagSeguro/pagSeguroModel");
 //const sessionId = process.env.SESSIONID;
 
 exports.pagsegSession = async (req, res, next) => {
-  // email= 'guillerbrasilrj@gmail.com';
-  //var token= EAD7FC0724EF424294BE1A3C3D62FEF2;
+  
 
   //var url = process.env.URL;
   var email = process.env.EMAIL;
   var token = process.env.TOKEN;
   
-
   var config = {
     method: "post",
     url:
-      "https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=guillerbrasilrj@gmail.com&token=EAD7FC0724EF424294BE1A3C3D62FEF2",
+      `https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=${email}&token=${token}`,
     headers: {}
   };
+
 
   axios(config)
     .then(function(response) {
@@ -49,8 +48,9 @@ exports.pagsegSession = async (req, res, next) => {
 
       session_Id.save();
       //return res.json(session_Id.id);
-      return res.json(session_Id.sessionId);
-      //return res.send(response.data);
+      //return res.json(session_Id.sessionId);
+      return res.send(response.data);
+      
 
 
     })
@@ -114,8 +114,8 @@ exports.pagsegTokenCard = async (req, res, next) => {
 
       cardToken.save();                                // functin mongoose .save() datas in pagseguros colletion/model
 
-      return res.json(response.data.token);
-      //return res.send(response.data);
+      //return res.json(response.data.token);
+      return res.send(response.data);
       //res.json("Success!");
       //console.log(token_card);
       
@@ -167,7 +167,7 @@ exports.pagsegPayment = async (req, res, next) => {
     shippingAddressCountry: "BRA",
     //'shippingType': '1',
     //'shippingCost': '1.00',
-    creditCardToken: "8f13c508cdcb4ddf9f3a8f472ac8e3d9",           //TOKEN DO CARTÂO FEITO NA TOKENIZAÇÂO ANTERIOR,MUDA SEMPRE
+    creditCardToken: "2db5c6aaf29f4fe2aa0f4ce1021eac2d",           //TOKEN DO CARTÂO FEITO NA TOKENIZAÇÂO ANTERIOR,MUDA SEMPRE
     installmentQuantity: "1",                                      //REQUIRED-QUANTIDADE DE PRESTAÇÕES
     installmentValue: "10300.00",                                  //REQUIRED-VALOR DA PRESTAÇÃO
     // 'noInterestInstallmentQuantity': '4',
@@ -185,15 +185,21 @@ exports.pagsegPayment = async (req, res, next) => {
     billingAddressState: "SP",
     billingAddressCountry: "BRA"
   });
+
+
+  var email = process.env.EMAIL;
+  var token = process.env.TOKEN;
+  
   var config = {
     method: "post",
     url:
-      "https://ws.sandbox.pagseguro.uol.com.br/v2/transactions?email=guillerbrasilrj@gmail.com&token=EAD7FC0724EF424294BE1A3C3D62FEF2",
+      `https://ws.sandbox.pagseguro.uol.com.br/v2/transactions?email=${email}&token=${token}`,
     headers: {
       "Content-Type": "application/x-www-form-urlencoded"
     },
     data: data
   };
+
 
   axios(config)
     .then(function(response) {
@@ -239,15 +245,28 @@ exports.pagsegBoleto = async (req, res, next) => {
     shippingType: "1",
     shippingCost: "1.00"
   });
+
+  var email = process.env.EMAIL;
+  var token = process.env.TOKEN;
+
   var config = {
     method: "post",
     url:
-      "https://ws.sandbox.pagseguro.uol.com.br/v2/transactions?email=guillerbrasilrj@gmail.com&token=EAD7FC0724EF424294BE1A3C3D62FEF2",
+    `https://ws.sandbox.pagseguro.uol.com.br/v2/transactions?email=${email}&token=${token}`,
     headers: {
-      "Content-Type": "application/x-www-form-urlencoded"
+       "Content-Type": "application/x-www-form-urlencoded"
     },
-    data: data
+       data: data
   };
+
+
+
+// var config = {
+//     method: "post",
+//     url:
+//       `https://my-api-link/v2/sessions?email=${email}&token=${token}`,
+//     headers: {}
+//   };
 
   axios(config)
     .then(function(response) {
