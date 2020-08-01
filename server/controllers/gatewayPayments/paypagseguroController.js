@@ -13,6 +13,8 @@ app.use(BodyParser.urlencoded({ extended: true }));
 //MODELS DB
 const User = require("../../models/mongo/userModel");
 const PagSeguro = require("../../models/mongo/pagSeguro/pagSeguroModel");
+const PagSeguroSessionId = require("../../models/mongo/pagSeguro/pagSeguroSessionModel");
+
 
 //ENV KEYS
 // const Token = process.env.GETNETTOKENS;
@@ -37,23 +39,25 @@ exports.pagsegSession = async (req, res, next) => {
     .then(function(response) {
       //console.log(JSON.stringify(response.data));
       //return res.json(response.data);
+      //return res.send(response.data)
 
-      const sessionId = response.data;
-
-      const session_Id = new PagSeguro({
-
-        sessionId,
-
-      });
-
-      session_Id.save();
-      //return res.json(session_Id.id);
-      //return res.json(session_Id.sessionId);
-      return res.send(response.data);
       
+     // const sessionId = response.data;
 
-
+      const regexexp = /<id>(.+?)<\/id>/
+      const sessionMatch = regexexp.exec(response.data)
+      const sessionId = sessionMatch[1];
+    
+      const session_Id = new PagSeguroSessionId({
+    
+        sessionId,
+    
+      });
+    
+      session_Id.save();
+      return res.send(response.data);
     })
+
     .catch(function(error) {
       console.log(error);
     });
@@ -71,6 +75,12 @@ exports.pagsegTokenCard = async (req, res, next) => {
   } = req.body;
 
   const sessionId = process.env.SESSIONID;             //REQUIRED SESSION ID-Token expiration. 
+  
+
+  // const sessionId = PagSeguroSessionId;
+  // const PagSeguroSessionId = await PagSeguroSessionId.findOne({ where: {sessionId} });
+  // console.log(PagSeguroSessionId);
+  //const sessionId = PagSeguroSessionId.findOne({ where: {sessionId} });  
 
   var data = qs.stringify({
     sessionId: sessionId,
@@ -115,14 +125,16 @@ exports.pagsegTokenCard = async (req, res, next) => {
       cardToken.save();                                // functin mongoose .save() datas in pagseguros colletion/model
 
       //return res.json(response.data.token);
-      return res.send(response.data);
+      // res.send(response.data.token);
       //res.json("Success!");
       //console.log(token_card);
+      //return res.send(token_card);
+      return res.send(response.data.token);
       
     })
     .catch(function(error) {
       console.log(error);
-      res.json("Error!");
+      return res.json("Error!");
     });
 };
 
