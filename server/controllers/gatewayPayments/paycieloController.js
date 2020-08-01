@@ -13,6 +13,8 @@ const Cielo = require("../../models/mongo/cielo/cieloModel");
 
 //ENV KEYS 
 // const Token = process.env.GETNETTOKENS;
+// const MerchantId = process.env.MERCHANTID;
+// const MerchantKey = process.env.MERCHANTKEY; 
 
 
 exports.cieloPayment = async (req, res, next) => {
@@ -49,33 +51,46 @@ exports.cieloPayment = async (req, res, next) => {
     }
   };
 
-  const newPayment = new Cielo({
-    CardNumber,
-    Holder,
-    ExpirationDate,
-    SecurityCode,
-  });
+ 
 
-  newPayment.save();          //save data in cielos model mongodb
-
+  var MerchantId = process.env.MERCHANTID;
+  var MerchantKey = process.env.MERCHANTKEY; 
 
   axios
     .post(url, data, {
       headers: {
+
         "Content-Type": "application/json",
         //"Accept": "application/x-www-form-urlencoded",
 
-        MerchantId: "b17ac0ba-ff14-408a-93d7-dbcba07363b0",
-        MerchantKey: "XKSPPVZAZGAXATFPYBLNLKDHMLDMUENYIYJJXJUC"
+         "MerchantId": MerchantId,
+         "MerchantKey": MerchantKey
 
-        //  "MerchantId": process.env.MERCHANTID,
-        //  "MerchantKey": process.env.MERCHANTKEY
       }
     })
     .then(data => {
       //console.log("data", data);
       //return res.json(data.data);
+      //return res.json(data.data.Payment.ReturnMessage);
+
+      const ReturnMessage = data.data.Payment.ReturnMessage;
+
+      const newPayment = new Cielo({
+
+        ReturnMessage,         //response data API and save
+        CardNumber,
+        Holder,
+        ExpirationDate,
+        SecurityCode,
+      });
+    
+      newPayment.save();
+
       return res.json(data.data.Payment.ReturnMessage);
+
+
+
+
     })
 
     .catch(e => {

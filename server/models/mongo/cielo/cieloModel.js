@@ -37,6 +37,11 @@ const CieloSchema = new Schema({
     //required: true
     //select: false,
   },
+
+  ReturnMessage: {             //cielo response status payment
+    type: String,
+
+  },
   
 
 

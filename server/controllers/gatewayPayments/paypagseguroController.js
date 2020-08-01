@@ -102,7 +102,7 @@ exports.pagsegTokenCard = async (req, res, next) => {
       console.log(token_card);
       const cardToken = new PagSeguro({
         
-        token_card,
+        token_card,           //response data API and save 
         //sessionId,
         amount,
         cardNumber,
@@ -259,14 +259,6 @@ exports.pagsegBoleto = async (req, res, next) => {
        data: data
   };
 
-
-
-// var config = {
-//     method: "post",
-//     url:
-//       `https://my-api-link/v2/sessions?email=${email}&token=${token}`,
-//     headers: {}
-//   };
 
   axios(config)
     .then(function(response) {
