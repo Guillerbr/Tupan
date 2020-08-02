@@ -36,6 +36,6 @@ const PagseguroSessionIdSchema = new Schema({
   },
 });
 
-const PagSeguroSessionId = mongoose.model("pagseguro-session-id", PagseguroSessionIdSchema);
+const PagSeguroSessionId = mongoose.model("pagseguros-session-id", PagseguroSessionIdSchema);
 
 module.exports = PagSeguroSessionId;

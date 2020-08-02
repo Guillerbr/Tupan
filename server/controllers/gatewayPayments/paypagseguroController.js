@@ -142,60 +142,61 @@ exports.pagsegPayment = async (req, res, next) => {
 
   //const { installmentValue } = req.body;
 
-  //const creditCardToken = 
+  
   //const creditCardToken = await PagSeguro.findOne({ email, password: hashedPassword });  
 
   var data = qs.stringify({
-    paymentMode: "default",
-    paymentMethod: "creditCard",
+
+    //paymentMode: "default",
+    //paymentMethod: "creditCard",                   
     //'receiverEmail': 'c23318287636434949818@sandbox.pagseguro.com.br',
     currency: "BRL",
     // 'extraAmount': '1.00',
-    itemId1: "0001",
-    itemDescription1: "NotebookPrata",
-    itemAmount1: "10300.00", //REQUIRED
-    itemQuantity1: "1", //REQUIRED
+    itemId1: "0001",                                              //REQUIRED
+    itemDescription1: "NotebookPrata",                            //REQUIRED
+    itemAmount1: "10300.00",                                      //REQUIRED
+    itemQuantity1: "1",                                           //REQUIRED
 
     //  'itemId2':'0002',
     //  'itemDescription2':'Notebook Azul',
     //  'itemAmount2':'10000.00',
     //  'itemQuantity2':'1',
 
-    notificationURL: "https://sualoja.com.br/notifica.html",
-    reference: "REF1234",
-    senderName: "Caio Silva",
-    senderCPF: "22111944785",
-    senderAreaCode: "11",
-    senderPhone: "56273440",
-    senderEmail: "c23318287636434949818@sandbox.pagseguro.com.br",                           //EMAIL USER BUYER
+    // notificationURL: "https://sualoja.com.br/notifica.html",
+    // reference: "REF1234",
+    senderName: "Caio Silva",                                     //REQUIRED-
+    senderCPF: "22111944785",                                     //REQUIRED-
+    senderAreaCode: "11",                                         //REQUIRED-
+    senderPhone: "56273440",                                      //REQUIRED-
+    senderEmail: "c23318287636434949818@sandbox.pagseguro.com.br",                           ////REQUIRED-EMAIL USER BUYER
     //'senderHash': 'pUbfUdXTdakVu1U7',                                                      //PASSWORD USER BUYER
-    shippingAddressStreet: "Av.Brig.FariaLima",
-    shippingAddressNumber: "1384",
-    shippingAddressComplement: "5oandar",
-    shippingAddressDistrict: "JardimPaulistano",
-    shippingAddressPostalCode: "01452002",
-    shippingAddressCity: "SaoPaulo",
-    shippingAddressState: "SP",
-    shippingAddressCountry: "BRA",
+    shippingAddressStreet: "Av.Brig.FariaLima",                   //REQUIRED-
+    shippingAddressNumber: "1384",                                //REQUIRED-           
+    shippingAddressComplement: "5oandar",                         //REQUIRED-
+    shippingAddressDistrict: "JardimPaulistano",                  //REQUIRED-
+    shippingAddressPostalCode: "01452002",                        //REQUIRED-
+    shippingAddressCity: "SaoPaulo",                              //REQUIRED-
+    shippingAddressState: "SP",                                   //REQUIRED-
+    shippingAddressCountry: "BRA",                                //REQUIRED-
     //'shippingType': '1',
     //'shippingCost': '1.00',
-    creditCardToken: "2db5c6aaf29f4fe2aa0f4ce1021eac2d",           //TOKEN DO CARTÂO FEITO NA TOKENIZAÇÂO ANTERIOR,MUDA SEMPRE
-    installmentQuantity: "1",                                      //REQUIRED-QUANTIDADE DE PRESTAÇÕES
-    installmentValue: "10300.00",                                  //REQUIRED-VALOR DA PRESTAÇÃO
+    creditCardToken: "6f27d0b8a5db47579e6c7e12bbf3bcc6",          //REQUIRED-TOKEN DO CARTÂO FEITO NA TOKENIZAÇÂO 
+    installmentQuantity: "1",                                     //REQUIRED-QUANTIDADE DE PRESTAÇÕES
+    installmentValue: "10300.00",                                 //REQUIRED-VALOR DA PRESTAÇÃO
     // 'noInterestInstallmentQuantity': '4',
-    creditCardHolderName: "Caio Silva",
-    creditCardHolderCPF: "22111944785",
-    creditCardHolderBirthDate: "27/10/1987",
-    creditCardHolderAreaCode: "11",
-    creditCardHolderPhone: "56273440",
-    billingAddressStreet: "Av.Brig.FariaLima",
-    billingAddressNumber: "1384",
-    billingAddressComplement: "5oandar",
-    billingAddressDistrict: "JardimPaulistano",
-    billingAddressPostalCode: "01452002",
-    billingAddressCity: "SaoPaulo",
-    billingAddressState: "SP",
-    billingAddressCountry: "BRA"
+     creditCardHolderName: "Caio Silva",                          //REQUIRED-
+     creditCardHolderCPF: "22111944785",                          //REQUIRED-        
+    // creditCardHolderBirthDate: "27/10/1987",
+    // creditCardHolderAreaCode: "11",
+    // creditCardHolderPhone: "56273440",
+     billingAddressStreet: "Av.Brig.FariaLima",                   //REQUIRED-
+     billingAddressNumber: "1384",                                //REQUIRED-
+    // billingAddressComplement: "5oandar",
+     billingAddressDistrict: "JardimPaulistano",                  //REQUIRED-
+     billingAddressPostalCode: "01452002",                        //REQUIRED-
+     billingAddressCity: "SaoPaulo",
+     billingAddressState: "SP",                                   //REQUIRED-
+     billingAddressCountry: "BRA"                                 //REQUIRED-
   });
 
 
