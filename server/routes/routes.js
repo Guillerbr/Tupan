@@ -31,7 +31,7 @@ router.post('/pay/cielo/payment', paycieloController.cieloPayment);
 //mercado-pago
 router.get('/pay/mp', paympController.mpPayment);
 //getnet
-router.get('/pay/getnet/auth', paygetnetController.getnetAuth);
+router.post('/pay/getnet/auth', paygetnetController.getnetAuth);
 router.post('/pay/getnet/token', paygetnetController.getnetToken);
 router.post('/pay/getnet/payment', paygetnetController.getnetPayment);
 //pag-seguro

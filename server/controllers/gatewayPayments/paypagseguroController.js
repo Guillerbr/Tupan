@@ -77,13 +77,14 @@ exports.pagsegTokenCard = async (req, res, next) => {
   const sessionId = process.env.SESSIONID;             //REQUIRED SESSION ID-Token expiration. 
   
 
-  // const sessionId = PagSeguroSessionId;
+  
   // const PagSeguroSessionId = await PagSeguroSessionId.findOne({ where: {sessionId} });
+  // const sessionId = PagSeguroSessionId;
   // console.log(PagSeguroSessionId);
   //const sessionId = PagSeguroSessionId.findOne({ where: {sessionId} });  
 
   var data = qs.stringify({
-    sessionId: sessionId,
+    sessionId: sessionId,                              //REQUIRED SESSION ID-TOKEN expiration.
     amount: "11",
     cardNumber: cardNumber,
     cardBrand: "Visa",
@@ -141,17 +142,17 @@ exports.pagsegTokenCard = async (req, res, next) => {
 exports.pagsegPayment = async (req, res, next) => {
 
   //const { installmentValue } = req.body;
-
-  
   //const creditCardToken = await PagSeguro.findOne({ email, password: hashedPassword });  
+
+  //PagSeguro.findOne()
 
   var data = qs.stringify({
 
     //paymentMode: "default",
     //paymentMethod: "creditCard",                   
     //'receiverEmail': 'c23318287636434949818@sandbox.pagseguro.com.br',
-    currency: "BRL",
     // 'extraAmount': '1.00',
+    currency: "BRL",
     itemId1: "0001",                                              //REQUIRED
     itemDescription1: "NotebookPrata",                            //REQUIRED
     itemAmount1: "10300.00",                                      //REQUIRED
@@ -168,8 +169,8 @@ exports.pagsegPayment = async (req, res, next) => {
     senderCPF: "22111944785",                                     //REQUIRED-
     senderAreaCode: "11",                                         //REQUIRED-
     senderPhone: "56273440",                                      //REQUIRED-
-    senderEmail: "c23318287636434949818@sandbox.pagseguro.com.br",                           ////REQUIRED-EMAIL USER BUYER
-    //'senderHash': 'pUbfUdXTdakVu1U7',                                                      //PASSWORD USER BUYER
+    senderEmail: "c23318287636434949818@sandbox.pagseguro.com.br",     //REQUIRED-EMAIL USER BUYER
+    //'senderHash': 'pUbfUdXTdakVu1U7',                                                
     shippingAddressStreet: "Av.Brig.FariaLima",                   //REQUIRED-
     shippingAddressNumber: "1384",                                //REQUIRED-           
     shippingAddressComplement: "5oandar",                         //REQUIRED-
@@ -180,7 +181,7 @@ exports.pagsegPayment = async (req, res, next) => {
     shippingAddressCountry: "BRA",                                //REQUIRED-
     //'shippingType': '1',
     //'shippingCost': '1.00',
-    creditCardToken: "6f27d0b8a5db47579e6c7e12bbf3bcc6",          //REQUIRED-TOKEN DO CARTÂO FEITO NA TOKENIZAÇÂO 
+    creditCardToken: "6f27d0b8a5db47579e6c7e12bbf3bcc6",          //REQUIRED-HASH TOKEN CARD-IMPORTANT 
     installmentQuantity: "1",                                     //REQUIRED-QUANTIDADE DE PRESTAÇÕES
     installmentValue: "10300.00",                                 //REQUIRED-VALOR DA PRESTAÇÃO
     // 'noInterestInstallmentQuantity': '4',

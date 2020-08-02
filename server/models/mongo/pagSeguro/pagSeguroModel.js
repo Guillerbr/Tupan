@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 
 const PagseguroSchema = new Schema({
     /*
-        user: {
-            type: mongoose.Schema.Types.ObjectId,     //ref user id, moogoose
+        user: { 
+            type: mongoose.Schema.Types.ObjectId,     //ref user id, moogoose Relational function
             ref: 'user',                              //user schema ref
             require: true
     
