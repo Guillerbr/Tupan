@@ -14,3 +14,6 @@ const firebaseConfig = {
 
   firebase.initializeApp(firebaseConfig);
   export default firebase;
+
+
+  //include firebase tools for the project
