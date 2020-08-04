@@ -16,4 +16,4 @@ const firebaseConfig = {
   export default firebase;
 
 
-  //include firebase tools
+  //include firebase toolss
