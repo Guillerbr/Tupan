@@ -12,9 +12,8 @@ const User = require("../../models/mongo/userModel");
 const Cielo = require("../../models/mongo/cielo/cieloModel");
 
 //ENV KEYS 
-// const Token = process.env.GETNETTOKENS;
-// const MerchantId = process.env.MERCHANTID;
-// const MerchantKey = process.env.MERCHANTKEY; 
+// var MerchantId = process.env.MERCHANTID;
+// var MerchantKey = process.env.MERCHANTKEY; 
 
 
 exports.cieloPayment = async (req, res, next) => {
@@ -39,7 +38,7 @@ exports.cieloPayment = async (req, res, next) => {
       CreditCard: {
         CardNumber: CardNumber,
         Holder: Holder,
-        ExpirationDate: ExpirationDate,     // ex: 12/2030
+        ExpirationDate: ExpirationDate,       // ex: 12/2030
         SecurityCode: SecurityCode,
         Brand: "Visa",
         CardOnFile: {
@@ -83,16 +82,10 @@ exports.cieloPayment = async (req, res, next) => {
         ExpirationDate,
         SecurityCode,
       });
-    
+       
       newPayment.save();
-
       return res.json(data.data.Payment.ReturnMessage);
-
-
-
-
     })
-
     .catch(e => {
       console.log("error", e);
       return res.json(e);

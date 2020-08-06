@@ -71,7 +71,7 @@ exports.getnetToken = async (req, res, next) => {
       headers: {
         Accept: "application/json, text/plain,",
         "Content-Type": "application/json",
-        Authorization: BearerToken //OAUTH TOKEN GETNET 1 HOURS VALID-VARIABLE
+        Authorization: BearerToken                   //OAUTH TOKEN GETNET 1 HOURS VALID-VARIABLE
       }
     })
     .then(data => {
