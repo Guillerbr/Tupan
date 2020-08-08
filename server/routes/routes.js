@@ -10,6 +10,9 @@ const tradesController = require('../controllers/tradesController');
 const ordersController = require('../controllers/ordersController');
 const cotationsController = require('../controllers/cotationsController');
 
+//OPENBANK CONTROLLERS
+const stoneController = require('../controllers/openBank/stone/index');
+
 
 //GATEWAYS PAYMENTS CONTROLLERS
 const paycieloController = require('../controllers/gatewayPayments/paycieloController');
@@ -21,6 +24,10 @@ const paypagsegController = require('../controllers/gatewayPayments/paypagseguro
 const rpc = require('../api-bitcoin-core/api.js');
 
 //ENDPOINTS ROUTES
+
+
+//OPENBANK
+router.get('/openbank/stone', stoneController.listBanks);
 
 
 
