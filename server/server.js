@@ -32,10 +32,10 @@ const client = redis.createClient(REDIS_PORT);
 //const User = require('./models/mongo/userModel');
 
 //mysql config sequelize model
-//const User = require('../models/users');
+const User = require('../models/users');
 
 //mysql config model
-const User = require('./models/mysql/userModel');
+//const User = require('./models/mysql/userModel');
 
 
 //dir path env set
@@ -48,22 +48,22 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 
-/*
+
 //mysql sequelize connect function
-const sequelize = new Sequelize('node-acl-sequelize-test', 'root', 'root', {
-    host: 'localhost',
-    dialect: 'mysql',
+// const sequelize = new Sequelize('node-acl-sequelize-test', 'root', 'root', {
+//     host: 'localhost',
+//     dialect: 'mysql',
     
-  });
+//   });
 
   
-     sequelize.authenticate().then(function(){
-        console.log('Connected Mysql DB to the Database successfully!');
-    }).catch(function(err) {
-    console.error('Connected Mysql DB to the Database failed!');
-  });
+//      sequelize.authenticate().then(function(){
+//         console.log('Connected Mysql DB to the Database successfully!');
+//     }).catch(function(err) {
+//     console.error('Connected Mysql DB to the Database failed!');
+//   });
 
-  */
+
 
 
 //mongoose mongo connect function

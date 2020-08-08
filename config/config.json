@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "gui8811",
-    "database": "node-acl-sequelize-test",
+    "password": "",
+    "database": "Tupã",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "operatorsAliases": false
