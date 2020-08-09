@@ -26,14 +26,15 @@ exports.getnetAuth = async (req, res, next) => {
   const { scope, grant_type } = req.body;
 
   var data = {
-    scope: scope,
-    grant_type: grant_type
+    // scope: scope,
+    // grant_type: grant_type
+    
   };
 
   axios
     .post(url, data, {
       headers: {
-        //"Accept": "application/json, text/plain",
+        "Accept": "application/json, text/plain",
         "Content-Type": "application/x-www-form-urlencoded",
         Authorization:
           "Basic YWE4ZjJjNGMtYThlYS00MjMxLTg0MmEtZTFiODUyZWM2YjEzOjgwZTMwN2Q4LWNmOGItNDU1NC05M2M5LTNmYzdmMDA0ZjVkYQ=="
@@ -111,7 +112,7 @@ exports.getnetPayment = async (req, res, next) => {
   //BODY DATA REQ
   var data = {
     //seller_id: "ee166199-8d66-491d-988c-e4deab5bc9f5", //id inique seller account getnet
-    seller_id: sellerid,
+    //seller_id: sellerid,                           
     amount: "10000",
     order: {
       order_id: "12345"
@@ -132,7 +133,7 @@ exports.getnetPayment = async (req, res, next) => {
       transaction_type: "FULL",
       number_installments: 1,
       card: {
-        number_token: number_token, //IMPORTANT TOKEN CREDIT CARD-VARIABLE
+        number_token: number_token,               //IMPORTANT TOKEN CREDIT CARD-VARIABLE
         cardholder_name: "JOAO DA SILVA",
         expiration_month: "12",
         expiration_year: "21"
@@ -145,7 +146,7 @@ exports.getnetPayment = async (req, res, next) => {
       headers: {
         Accept: "application/json, text/plain,",
         "Content-Type": "application/json",
-        Authorization: BearerToken //OAUTH TOKEN GETNET 1 HOURS VALID-VARIABLE
+        Authorization: BearerToken                 //OAUTH TOKEN GETNET 1 HOURS VALID-VARIABLE
       }
     })
     .then(data => {

@@ -1,26 +1,41 @@
 // server/controllers/userController.js
 
-//const User = require('../models/mongo/userModel');
-//const User = require("../../models/users.js");
-const User = require("../models/mysql/userModel");
 
-const Balance = require("../models/mongo/balanceModel");
+// const { Sequelize } = require('sequelize');
+
+// const sequelize = new Sequelize('Tupã', 'root', '', {
+//   host: 'localhost',
+//   dialect: 'mysql',
+// });
+
+
+
+
+// ACL-RBAC Roles 
+const { roles } = require("../roles");
+
+//LIBS
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const crypto = require("crypto");
 
+//DB MODELS 
+//const User = require('../models/mongo/userModel');
+const User = require("../../models/users.js");
+//const User = require("../models/mysql/userModel");
+//const Balance = require("../models/mongo/balanceModel");
+
+//SENDGRIP API EMAIL
 const sgMail = require("@sendgrid/mail");
 //sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-// Add this to the top of the file
-const { roles } = require("../roles");
 
-//functions bcrypt pass
+
+//bcrypt hash crypter password
 async function hashPassword(password) {
   return await bcrypt.hash(password, 10);
 }
-
-//bcrypt function auth
+//bcrypt validade password
 async function validatePassword(plainPassword, hashedPassword) {
   return await bcrypt.compare(plainPassword, hashedPassword);
 }
@@ -74,7 +89,6 @@ exports.signup = async (req, res, next) => {
 
     // check if email user exist in db,if yes,returns or error.
     if (await User.findOne({ where: { email } }))
-      //   //mysql: where: {email}
       return res.status(400).send({ error: "User already registered" });
 
     const hashedPassword = await hashPassword(password);
