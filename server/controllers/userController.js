@@ -1,15 +1,7 @@
 // server/controllers/userController.js
 
 
-// const { Sequelize } = require('sequelize');
-
-// const sequelize = new Sequelize('Tupã', 'root', '', {
-//   host: 'localhost',
-//   dialect: 'mysql',
-// });
-
-
-
+require("../../config/config.json");
 
 // ACL-RBAC Roles 
 const { roles } = require("../roles");
@@ -22,7 +14,6 @@ const crypto = require("crypto");
 //DB MODELS 
 //const User = require('../models/mongo/userModel');
 const User = require("../../models/users.js");
-//const User = require("../models/mysql/userModel");
 //const Balance = require("../models/mongo/balanceModel");
 
 //SENDGRIP API EMAIL
@@ -102,7 +93,6 @@ exports.signup = async (req, res, next) => {
     //option function role :   role: "basic"      or     role: role || "basic" });
 
     /*
-
         const accessToken = jwt.sign({  where: {email} }, process.env.JWT_SECRET, {            //to implement return 400 message expiration token 
             expiresIn: "1d"                                                                    // error token x access token does not work
         });
