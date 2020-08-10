@@ -32,7 +32,7 @@ require("dotenv").config({
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-//mysql sequelize connect function
+//ORM SQL SEQUELIZE CONNECT
 const sequelize = new Sequelize('Tupã', 'root', '', {
     host: 'localhost',
     dialect: 'mysql',
@@ -45,7 +45,7 @@ const sequelize = new Sequelize('Tupã', 'root', '', {
     console.error('Connected Mysql DB to the Database failed!');
   });
 
-//MONGO DB CONNECTION
+//ORM MONGOOSE-MONGO DB CONNECTION
 mongoose.connect(process.env.MONGO_SECRET).then(() => {
   console.log("Connected Mongo DB to the Database successfully!");
 });
