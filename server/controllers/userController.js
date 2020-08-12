@@ -99,7 +99,7 @@ exports.signup = async (req, res, next) => {
 
         newUser.accessToken = accessToken;
 
-        */
+    */
 
     await newUser.save();
     res.json({
