@@ -159,11 +159,12 @@ exports.forgotPassword = async (req, res) => {
 
     const msg = {
       to: email,
-      from: "apitest@api.com", //    'apinet@gmail.com'
+      from: "apitest@api.com",            //'apinet@gmail.com'
       subject: "Sending with Twilio SendGrid is Fun",
       text: "and easy to do anywhere, even with Node.js",
       html: token,
-      email, //'<strong>and easy to do anywhere fd, even with Node.js {token} </strong> {token}',
+      email, 
+      //'<strong>and easy to do anywhere fd, even with Node.js {token} </strong> {token}',
     };
 
     sgMail.send(msg);
