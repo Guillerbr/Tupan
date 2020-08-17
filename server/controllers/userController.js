@@ -345,7 +345,7 @@ exports.testSendMail = async (req, res) => {
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
   const msg = {
-    to: "guillerbrasilrj@gmail.com",
+    to: "clientsuport@gmail.com",
     from: "guillerbrasilrj@gmail.com",
     subject: "Test api sendgrid status",
     text: "Test ping API Sendgrid",
