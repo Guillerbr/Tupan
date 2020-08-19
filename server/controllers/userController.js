@@ -12,8 +12,8 @@ const bcrypt = require("bcrypt");
 const crypto = require("crypto");
 
 //DB MODELS 
-//const User = require('../models/mongo/userModel');
-const User = require("../../models/users.js");
+const User = require('../models/mongo/userModel');
+//const User = require("../../models/users.js");
 //const Balance = require("../models/mongo/balanceModel");
 
 //SENDGRIP API EMAIL
