@@ -14,11 +14,15 @@ const cotationsController = require('../controllers/cotationsController');
 const stoneController = require('../controllers/openBank/stone');
 
 
+
 //GATEWAYS PAYMENTS CONTROLLERS
 const paycieloController = require('../controllers/gatewayPayments/paycieloController');
 const paympController = require('../controllers/gatewayPayments/paympController');
 const paygetnetController = require('../controllers/gatewayPayments/paygetnetController');
 const paypagsegController = require('../controllers/gatewayPayments/paypagseguroController');
+
+//BIN BAKS LIST CONTROLLERS
+const binlistapiController = require('../controllers/gatewayPayments/binlistapiController');
 
 //RPC Bitcoin-Core service API controller
 const rpc = require('../api-bitcoin-core/api.js');
@@ -30,7 +34,8 @@ const rpc = require('../api-bitcoin-core/api.js');
 router.get('/openbank/stone', stoneController.listBanks);
 router.get('/openbank/stone:id', stoneController.listidBanks);
 
-
+//BIN BANK LIST CHECKER
+router.get('/bin/binlist', binlistapiController.binlistApi);
 
 
 //PAYMENTS GATEWAYS SERVICES APIs-Cielo,Mercado Pago,Getnet,
