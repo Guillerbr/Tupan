@@ -3,7 +3,7 @@
 # Simple ACL-RBAC Backend Sistem use Nodejs,Mysql and MongoDB
 
 
-## Dependencies used
+## NodeJS Dependencies Used
 
      accesscontrol
      speakeasy 
@@ -30,6 +30,8 @@
      
 
 ## Routes endpoint
+     In server/routes/routes.js
+     Check the existing url routes,customize or create a news http route.
 
      get('/ping')  
     
@@ -62,23 +64,23 @@
 
 
 ## Use Sql DataBase- Mysql and PostgreSql
-     Two packages were used for SQL database,they are ORMs, **sequelize** and **pg** modules.
+     Two packages were used for SQL database,they are ORMs, sequelize and pg modules.
      in /config/config.json
      Change the credentials to those in your database mysql. 
 
 
-## Use Mongo DataBase
-     in .env file
+## Use MongoDB DataBase
+     In .env file
      Change the credentials to those in your database mongodb.
      Change to your collection name.
+     Module ORM Mongoose.
 
         
 
-## Roles ACL-RBAC accesscontrol lib module Accesscontrol
-    
-     in /server/roles.js    
-     We can configure the crud access level rules per user.
-     Admin user type has to control CRUD over system.
+## Roles ACL-RBAC (accesscontrol) lib module Accesscontrol
+     In /server/roles.js    
+     We can configure the access level rules per user.
+     Roles such as Admin and Manager may have system privileges.
 
 
 ## Use 2fa TOTP token module Speakeasy- Google Authentication Client  
@@ -144,7 +146,7 @@
          
 ## Init project dev test
 
-     npm install 
+     npm install or yarn install
      
      cd /server
      
@@ -166,18 +168,25 @@
      sudo npm install pm2 -g
 
      Inside of the directory /server folder run the command: 
+
+     Install Application:
+     npm or yarn install
+
+     PM2 command start:
      pm2 start server.js  
-     or cluster mode:
+     
+     Cluster mode:
      pm2 start server.js -i max
 
      Persistence mode command:
      pm2 startup
 
-     Finish
+     Save and Finish:
      pm2 save
 
+*The reverse proxy system can be implemented with Nginx as an infrastructure.
 
-## Use NodeJS 10/12 and NPM or YARN.
+## Use NodeJS 10/12 and NPM or YARN Modules.
 
 
-## Change the .env file with your credentials
+## Change the .env file with your credentials.
