@@ -2,16 +2,18 @@
 const express = require('express');
 const router = express.Router();
 
-//import controllers in /controllers
-const userController = require('../controllers/userController');
-const balanceController = require('../controllers/balanceController');
+
+
+//2FA SECURITY ACCESS CONTROL
 const twofactorController = require('../controllers/twofactorController');
+
+//EXCHANGE COINS STOKS
+const balanceController = require('../controllers/balanceController');
 const tradesController = require('../controllers/tradesController');
 const ordersController = require('../controllers/ordersController');
 const cotationsController = require('../controllers/cotationsController');
 
-//OPENBANK CONTROLLERS
-const stoneController = require('../controllers/openBank/stone');
+
 
 
 
@@ -21,7 +23,7 @@ const paympController = require('../controllers/gatewayPayments/paympController'
 const paygetnetController = require('../controllers/gatewayPayments/paygetnetController');
 const paypagsegController = require('../controllers/gatewayPayments/paypagseguroController');
 
-//BIN BAKS LIST CONTROLLERS
+//BIN BANKS LIST CONTROLLERS
 const binlistapiController = require('../controllers/gatewayPayments/binlistapiController');
 
 //RPC Bitcoin-Core service API controller
@@ -30,7 +32,35 @@ const rpc = require('../api-bitcoin-core/api.js');
 //ENDPOINTS ROUTES
 
 
-//OPENBANK
+
+//AUTH USERS
+
+//AUTHENTICATION USERS CONTROLLERS
+const userController = require('../controllers/userController');
+const authforgotPassword = require('../controllers/authUsers/authusersController');
+
+
+//AUTH USERS ROTES
+router.post('/signup', userController.signup);
+//router.post('/login', userController.login);
+router.post('/forgot-password', userController.forgotPassword);
+router.post('/reset-password', userController.resetPassword);
+
+router.post('/auth/signup', authforgotPassword.signup);
+router.post('/auth/login', authforgotPassword.login);
+//router.post('/auth/forgot-password', authforgotPassword.forgotPassword);
+//router.post('/auth/reset-password', authforgotPassword.resetPassword);
+
+
+
+//router.post('/auth/reset-password', authforgotPassword.authforgot2faPassword);
+
+
+
+//OPENBANK CONTROLLERS
+const stoneController = require('../controllers/openBank/stone');
+
+//OPENBANK ROUTES
 router.get('/openbank/stone', stoneController.listBanks);
 router.get('/openbank/stone:id', stoneController.listidBanks);
 
@@ -67,13 +97,6 @@ router.get('/rpc-btc/getblockhash/:index', userController.allowIfLoggedin, rpc.g
 router.get('/rpc-btc/getrawtransaction/:id', userController.allowIfLoggedin, rpc.getrawTransaction);
 router.get('/rpc-btc/decoderawtransaction/:hex', userController.allowIfLoggedin, rpc.decoderawTransaction);
 
-
-
-//routers auth
-router.post('/signup', userController.signup);
-router.post('/login', userController.login);
-router.post('/forgot-password', userController.forgotPassword);
-router.post('/reset-password', userController.resetPassword);
 
 
 

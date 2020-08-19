@@ -32,17 +32,19 @@ require("dotenv").config({
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-//ORM SQL SEQUELIZE CONNECT
-const sequelize = new Sequelize('Tupã', 'root', '', {
-    host: 'localhost',
-    dialect: 'mysql',
+//ORM SQL SEQUELIZE CONNECTION
+const sequelize = new Sequelize("Tupã", "root", "", {
+  host: "localhost",
+  dialect: "mysql",
+});
 
-  });
-
-     sequelize.authenticate().then(function(){
-        console.log('Connected Mysql DB to the Database successfully!');
-    }).catch(function(err) {
-    console.error('Connected Mysql DB to the Database failed!');
+sequelize
+  .authenticate()
+  .then(function () {
+    console.log("Connected Mysql DB to the Database successfully!");
+  })
+  .catch(function (err) {
+    console.error("Connected Mysql DB to the Database failed!");
   });
 
 //ORM MONGOOSE-MONGO DB CONNECTION
