@@ -21,6 +21,7 @@
      authy -twillo
      request
      mysql2
+     pg
      sequelize
      redis
      cookie-parser
@@ -60,7 +61,8 @@
 
 
 
-## Use Mysql DataBase
+## Use Sql DataBase- Mysql and PostgreSql
+     Two packages were used for SQL database,they are ORMs, **sequelize** and **pg** modules.
      in /config/config.json
      Change the credentials to those in your database mysql. 
 
@@ -68,6 +70,8 @@
 ## Use Mongo DataBase
      in .env file
      Change the credentials to those in your database mongodb.
+     Change to your collection name.
+
         
 
 ## Roles ACL-RBAC accesscontrol lib module Accesscontrol
