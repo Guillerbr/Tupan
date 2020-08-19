@@ -33,8 +33,12 @@
      In server/routes/routes.js
      Check the existing url routes,customize or create a news http route.
 
+TEST PING API:
+
      get('/ping')  
-    
+
+USER:
+
      post('/signup')
      post('/login')
      post('/forgot-password')
@@ -45,21 +49,43 @@
      put('/user/:userId')
      delete('/user/:userId')
 
+BALANCES:
+
      get('/balances')
      post('/balance')
      put('/balance/:balanceId')
      delete('/balance/:balanceId')
 
+
+2FA Google:
+
      post('/2fa-generate')
      post('/totp-generate')
      post('/2fa-validate')
 
+SMS Twilio:
+
      post('/twilio')
      post('/register-sms')
      post('/twilio-push-app')
-     
+ADMIN:  
+
      post('/signupadmin')
      get('/userinfo')
+
+GATEWAYS PAYMENTS:
+
+ Cielo:
+     post('/pay/cielo/payment')
+
+ Mercado Pago:
+     get('/pay/mp')     
+
+
+OPEN BAKING:
+
+
+
 
 
 
@@ -144,7 +170,7 @@
      admin,supervisor,basic,final_user.
 
          
-## Init project dev test
+## Init project Dev Test
 
      npm install or yarn install
      
@@ -160,7 +186,7 @@
      yarn server or
      node server
     
-## Init project production
+## Init project Production
 
      I recommend using the pm2 tool
 
@@ -186,7 +212,17 @@
 
 *The reverse proxy system can be implemented with Nginx as an infrastructure.
 
-## Use NodeJS 10/12 and NPM or YARN Modules.
+## Secutiry
+     PentestLab testing tools for attacks and vulnerabilities.
+     
+     NoSql
+     XSS
+     Authentication standards
+     encryption and salt
+     httponly cookies
+     Oauth
 
+
+## Use NodeJS 10/12 and NPM or YARN Modules.
 
 ## Change the .env file with your credentials.
