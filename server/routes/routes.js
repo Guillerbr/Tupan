@@ -5,7 +5,7 @@ const router = express.Router();
 
 
 //2FA SECURITY ACCESS CONTROL
-const twofactorController = require('../controllers/twofactorController');
+//const twofactorController = require('../controllers/twofactorController');
 
 //EXCHANGE COINS STOKS
 const balanceController = require('../controllers/balanceController');
@@ -50,10 +50,33 @@ router.post('/auth/signup', authforgotPassword.signup);
 router.post('/auth/login', authforgotPassword.login);
 //router.post('/auth/forgot-password', authforgotPassword.forgotPassword);
 //router.post('/auth/reset-password', authforgotPassword.resetPassword);
-
-
-
 //router.post('/auth/reset-password', authforgotPassword.authforgot2faPassword);
+
+
+
+
+//2FA CONTROLLERS
+
+//2FA SECURITY ACCESS CONTROLLERS
+//const twofactorController = require('../controllers/authUsers/2faController');
+const twofactorController = require('../controllers/twofactorController');
+
+
+//2FA ROUTES
+//GOOGLE AUTHENTICATION
+router.post('/2fa-generate', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.tokengenerate);
+router.post('/totp-generate', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'),twofactorController.totptokengenerate);
+router.post('/2fa-validate', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.tokenvalidate);
+
+
+//TWILLIO
+//router.get('/twilio', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.twilioauthy);
+router.post('/twilio', twofactorController.twilioauthy);
+//router.post('/register-sms', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.twilioregistersmsauthy);
+router.post('/register-sms', twofactorController.twilioregistersmsauthy);
+//router.post('/twilio-push-app', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.twiliopushnotficationauthapp);
+router.post('/twilio-push-app', twofactorController.twiliopushnotficationauthapp);
+
 
 
 
@@ -98,23 +121,6 @@ router.get('/rpc-btc/getrawtransaction/:id', userController.allowIfLoggedin, rpc
 router.get('/rpc-btc/decoderawtransaction/:hex', userController.allowIfLoggedin, rpc.decoderawTransaction);
 
 
-
-
-//auth 2fa google authentication
-router.post('/2fa-generate', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.tokengenerate);
-router.post('/totp-generate', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'),twofactorController.totptokengenerate);
-
-router.post('/2fa-validate', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.tokenvalidate);
-
-
-
-//2FA twillio google authenticaion authy and sms 
-//router.get('/twilio', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.twilioauthy);
-router.post('/twilio', twofactorController.twilioauthy);
-//router.post('/register-sms', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.twilioregistersmsauthy);
-router.post('/register-sms', twofactorController.twilioregistersmsauthy);
-//router.post('/twilio-push-app', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.twiliopushnotficationauthapp);
-router.post('/twilio-push-app', twofactorController.twiliopushnotficationauthapp);
 
 
 

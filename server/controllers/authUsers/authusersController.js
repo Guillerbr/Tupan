@@ -3,12 +3,15 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const crypto = require("crypto");
 
+//DB MYSQL SEQUELIZE CONFIG
+//require("../../../config/config.json");
+
 // ACL-RBAC Roles
 const { roles } = require("../../roles");
 
 //DB MODELS
 const User = require("../../models/mongo/userModel");
-//const User = require("../../models/users.js");
+//const User = require("../../../models/users.js");
 //const Balance = require("../models/mongo/balanceModel");
 
 //BCRYPT FUNCTION HASH CRIPTOG PASSWORD
@@ -72,7 +75,9 @@ exports.signup = async (req, res, next) => {
       return res.status(400).send({ error: "Password field must be filled" });
 
     // check if email user exist in db,if yes,returns or error.
-    if (await User.findOne({ where: { email } }))
+    if (await User.findOne({ where: { email } }))         //mongoose function
+    //if (await User.findOne(email))                      //sequelize  or sql orm fuction-update
+     
       return res.status(400).send({ error: "User already registered" });
 
     const hashedPassword = await hashPassword(password);
