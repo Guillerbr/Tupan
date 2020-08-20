@@ -4,7 +4,9 @@
   "description": "Tupã project is new sources APIs center",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +17,7 @@
     "apollo-server-express": "^2.16.1",
     "authy": "^1.4.0",
     "axios": "^0.19.2",
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
@@ -26,7 +28,7 @@
     "graphql": "^15.3.0",
     "graphql-tools": "^6.0.18",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.7.1",
+    "mongoose": "^5.7.5",
     "mysql2": "^2.1.0",
     "passport": "^0.4.1",
     "pg": "^8.3.2",
@@ -35,10 +37,12 @@
     "redis": "^2.8.0",
     "request": "^2.88.0",
     "sequelize": "^6.3.4",
-    "speakeasy": "^2.0.0"
+    "speakeasy": "^2.0.0",
+    "snyk": "^1.380.0"
   },
   "devDependencies": {
     "jest": "^25.1.0",
     "sequelize-cli": "^5.5.1"
-  }
+  },
+  "snyk": true
 }
