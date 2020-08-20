@@ -58,15 +58,17 @@ router.post('/auth/login', authforgotPassword.login);
 //2FA CONTROLLERS
 
 //2FA SECURITY ACCESS CONTROLLERS
-//const twofactorController = require('../controllers/authUsers/2faController');
-const twofactorController = require('../controllers/twofactorController');
+const twofactorController = require('../controllers/authUsers/2faController');
+//const twofactorController = require('../controllers/twofactorController');
 
 
 //2FA ROUTES
 //GOOGLE AUTHENTICATION
-router.post('/2fa-generate', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.tokengenerate);
-router.post('/totp-generate', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'),twofactorController.totptokengenerate);
-router.post('/2fa-validate', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.tokenvalidate);
+router.post('/auth/2fa/generate', twofactorController.tokengenerate);
+router.post('/auth/2fa/totp-generate', twofactorController.totptokengenerate);
+router.post('/auth/2fa/validade', twofactorController.tokenvalidate);
+//router.post('/totp-generate', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'),twofactorController.totptokengenerate);
+//router.post('/2fa-validate', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.tokenvalidate);
 
 
 //TWILLIO

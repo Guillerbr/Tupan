@@ -1,6 +1,6 @@
 // 2FA TOTP MODULE
 //const User = require("../models/mysql/userModel");
-const User = require("../models/mongo/userModel");
+const User = require("../../models/mongo/userModel");
 const bcrypt = require("bcrypt");
 const BodyParser = require("body-parser");
 const Speakeasy = require("speakeasy");
@@ -26,14 +26,14 @@ app.use(BodyParser.urlencoded({ extended: true }));
 
 
 
-//speakeasy 2fa totp
+//SPEAKEASY GOOGLE AUTHENTICATION TOTP
 exports.tokengenerate = async (req, res, next) => {
   var secret = Speakeasy.generateSecret({ length: 20 });
   res.send({ secret: secret.base32 });
 };
 
 
-//speakeasy 2fa totp
+//SPEAKEASY GOOGLE AUTHENTICATION TOTP
 exports.totptokengenerate = async (req, res, next) => {
   res.send({
     token: Speakeasy.totp({
@@ -45,7 +45,7 @@ exports.totptokengenerate = async (req, res, next) => {
 };
 
 
-//speakeasy 2fa totp
+//SPEAKEASY GOOGLE AUTHENTICATION TOTP
 exports.tokenvalidate = async (req, res, next) => {
   res.send({
     valid: Speakeasy.totp.verify({
@@ -66,8 +66,8 @@ exports.tokenvalidate = async (req, res, next) => {
 
 
 
-//twilio modules
-//twilio modules
+//TWILLIO SMS AUTH TOTP AUTHENTICATION
+
 
 //twillo 2fa token authy app
 exports.twilioauthy = async (req, res) => {
