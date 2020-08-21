@@ -1,12 +1,17 @@
 // 2FA TOTP MODULE
-//const User = require("../models/mysql/userModel");
-const User = require("../../models/mongo/userModel");
+
 const bcrypt = require("bcrypt");
 const BodyParser = require("body-parser");
 const Speakeasy = require("speakeasy");
 const Express = require("express");
 const axios = require("axios");
 var qs = require("qs");
+
+//DB MODELS
+//const User = require("../models/mysql/userModel");
+//const User = require("src/models/mongo/userModel"); 
+const User = require("../../models/mongo/userModel");
+
 
 //url twilio authy api post register
 var url = "https://api.authy.com/protected/json/users/new";

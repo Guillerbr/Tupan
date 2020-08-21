@@ -8,6 +8,7 @@ const jwt = require("jsonwebtoken");
 const path = require("path");
 //const Sequelize = require("../config/config.json");
 const Sequelize = require("sequelize");
+//const { Sequelize, INTEGER, STRING, DOUBLE } = require("sequelize")
 
 //const cookieParser = require('cookie-parser');
 //const redis = require('redis');
@@ -46,6 +47,8 @@ sequelize
   .catch(function (err) {
     console.error("Connected Mysql DB to the Database failed!");
   });
+
+
 
 //ORM MONGOOSE-MONGO DB CONNECTION
 mongoose.connect(process.env.MONGO_SECRET).then(() => {
@@ -92,7 +95,7 @@ app.use(async (req, res, next) => {
   }
 });
 
-//response server connect
+//RESPONSE SERVER
 app.use("/", routes);
 app.listen(PORT, () => {
   console.log("Server is listening on Port:", PORT);

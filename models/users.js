@@ -20,6 +20,9 @@
 //   return Users;
 // };
 
+
+
+
 module.exports = function (sequelize, DataTypes) {
   var Users = sequelize.define("Users", {
     id: DataTypes.UUID,
@@ -40,3 +43,22 @@ module.exports = function (sequelize, DataTypes) {
       };
   return Users; //RETURN THE TABLE
 };
+
+
+
+
+
+
+// const User = sequelize.define("users", {
+//   id: {
+//       type: INTEGER,
+//       autoIncrement: true,
+//       primaryKey: true
+//   },
+//   title: STRING(255),
+//   price: {
+//       type: DOUBLE,
+//       defaultValue: 0.0
+//   },
+//   description: STRING(255)
+// })
