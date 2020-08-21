@@ -65,6 +65,7 @@ app.use(bodyParser.urlencoded({ extended: false })).use(cors());
 //FEATURE COOKIE PARSER
 //app.use(cookieParser());
 
+
 //ACL RBAC TOKEN JWT-BEARER AUTHORIZATION IMPLEMENT FEATURE
 app.use(async (req, res, next) => {
   try {
