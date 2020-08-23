@@ -26,6 +26,7 @@
     "graphql": "^15.3.0",
     "graphql-tools": "^6.0.18",
     "jsonwebtoken": "^8.5.1",
+    "knex": "^0.21.5",
     "mongoose": "^5.10.0",
     "mysql2": "^2.1.0",
     "passport": "^0.4.1",
