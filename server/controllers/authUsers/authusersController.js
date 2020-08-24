@@ -16,7 +16,7 @@ const User = require("../../models/mongo/userModel");
 
 //BCRYPT FUNCTION HASH CRIPTOG PASSWORD
 async function hashPassword(password) {
-  return await bcrypt.hash(password, 10);
+  return await bcrypt.hash(password, 15);
 }
 //BCRYPT FUNCTION VALIDATE PASSWORD
 async function validatePassword(plainPassword, hashedPassword) {
