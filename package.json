@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@sendgrid/mail": "^7.2.4",
+    "@sendgrid/mail": "^7.2.5",
     "accesscontrol": "^2.2.1",
     "apollo-server-express": "^2.16.1",
     "authy": "^1.4.0",
