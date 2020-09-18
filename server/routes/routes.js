@@ -122,14 +122,14 @@ router.post('/twilio-push-app', twofactorController.twiliopushnotficationauthapp
 
 //PIX BACEN CONTROLLERS
 const pixIndex = require('../controllers/pixBacen/index.js');
-const gerenciaNetIndex = require('../controllers/pixBacen/gerenciaNet/index.js');
+const gerenciaNetDocumento = require('../controllers/pixBacen/gerenciaNet/index.js');
 
 
 //PIX BACEN ROUTES
 router.get('/pixbr/index', pixIndex.pixIndex );
 
 //GERENCIA NET
-router.get('/pixbr/gerencianet', gerenciaNetIndex.gerenciaNetIndex );
+router.post('/pixbr/gerencianet/documento', gerenciaNetDocumento.gerenciaNetDocumento );
 
 
 //               END PIX BACEN

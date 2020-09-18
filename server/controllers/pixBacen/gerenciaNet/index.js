@@ -8,39 +8,18 @@ var app = Express();
 app.use(BodyParser.json());
 app.use(BodyParser.urlencoded({ extended: true }));
 
-exports.gerenciaNetIndex = async (req, res, next) => {
+exports.gerenciaNetDocumento = async (req, res, next) => {
     // const { CardNumber, Holder, ExpirationDate, SecurityCode } = req.body;
   
     //ENVS KEYS
-    const url_mode = process.env.URLCIELO;
+    const url_mode = process.env.GERENCIANET_URL;
   
     //URL MODE
-    var url = url_mode + "/1/sales/";
+    var url = url_mode + "/documento";  
   
     
     var data = {
-      MerchantOrderId: "2014111703",
-      Customer: {
-        Name: "Comprador crédito simples",
-      },
-      Payment: {
-        Type: "CreditCard",
-        Amount: 15700,
-        Installments: 1,
-        SoftDescriptor: "123456789ABCD",
-        CreditCard: {
-          CardNumber: CardNumber,
-          Holder: Holder,
-          ExpirationDate: ExpirationDate, // ex: 12/2030
-          SecurityCode: SecurityCode,
-          Brand: "Visa",
-          CardOnFile: {
-            Usage: "Used",
-            Reason: "Unscheduled",
-          },
-        },
-        IsCryptoCurrencyNegotiation: true,
-      },
+     
     };
   
     var MerchantId = process.env.MERCHANTID;
@@ -77,6 +56,7 @@ exports.gerenciaNetIndex = async (req, res, next) => {
       .catch((e) => {
         console.log("error", e);
         return res.json(e);
+        //console.log(url);
       });
   };
 
