@@ -82,3 +82,13 @@ exports.pixIndex = async (req, res, next) => {
       return res.json(e);
     });
 };
+
+
+
+
+/*
+
+DOC:      https://gerencianet.com.br/blog/gerencianet-se-prepara-para-lancar-sua-api-do-pix/#void
+
+
+*/
