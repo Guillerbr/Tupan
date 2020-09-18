@@ -2,46 +2,38 @@
 const express = require('express');
 const router = express.Router();
 
+//  API BIN LIST
+
+//BIN BANKS LIST CONTROLLERS
+const binlistapiController = require('../controllers/gatewayPayments/binlistapiController');
+
+//BIN BANK LIST ROUTES
+router.get('/bin/binlist', binlistapiController.binlistApi);
+
+
+//  API BIN LIST END
+
+
 
 
 //2FA SECURITY ACCESS CONTROL
 //const twofactorController = require('../controllers/twofactorController');
 
-//EXCHANGE COINS STOKS
-const balanceController = require('../controllers/balanceController');
-const tradesController = require('../controllers/tradesController');
-const ordersController = require('../controllers/ordersController');
-const cotationsController = require('../controllers/cotationsController');
 
+//          AUTH USERS
 
-
-
-
-
-
-//BIN BANKS LIST CONTROLLERS
-const binlistapiController = require('../controllers/gatewayPayments/binlistapiController');
-
-
-
-//ENDPOINTS ROUTES
-
-
-
-
-//AUTH USERS
 
 //AUTHENTICATION USERS CONTROLLERS
 const userController = require('../controllers/userController');
 const authforgotPassword = require('../controllers/authUsers/authusersController');
 
 
-//AUTH USERS ROTES
+//     AUTH USERS ROTES
+
 router.post('/signup', userController.signup);
 //router.post('/login', userController.login);
 router.post('/forgot-password', userController.forgotPassword);
 router.post('/reset-password', userController.resetPassword);
-
 router.post('/auth/signup', authforgotPassword.signup);
 router.post('/auth/login', authforgotPassword.login);
 //router.post('/auth/forgot-password', authforgotPassword.forgotPassword);
@@ -49,9 +41,47 @@ router.post('/auth/login', authforgotPassword.login);
 //router.post('/auth/reset-password', authforgotPassword.authforgot2faPassword);
 
 
+//      USERS INFOS DETAILS
+
+//ROUTES
+router.get('/user/:userId', userController.allowIfLoggedin, userController.getUser);
+router.get('/users', userController.allowIfLoggedin, userController.grantAccess('readAny', 'profile'), userController.getUsers);
+router.put('/user/:userId', userController.allowIfLoggedin, userController.grantAccess('updateAny', 'profile'), userController.updateUser);
+router.delete('/user/:userId', userController.allowIfLoggedin, userController.grantAccess('deleteAny', 'profile'), userController.deleteUser);
+router.get('/userinfo', userController.userInfo);
 
 
-//2FA CONTROLLERS
+//          USERS INFOS DETAILS END
+//          AUTH USERS END
+
+
+
+
+//           EXCHANGE 
+
+
+// EXCHANGE CONTROLLERS
+const balanceController = require('../controllers/balanceController');
+const tradesController = require('../controllers/tradesController');
+const ordersController = require('../controllers/ordersController');
+const cotationsController = require('../controllers/cotationsController');
+
+
+//EXCHANGE ROUTES
+router.get('/balances', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), balanceController.getBalances);
+router.get('/balance/:balanceId', userController.allowIfLoggedin, balanceController.getBalance);
+router.post('/balance', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), balanceController.postBalance);
+router.put('/balance/:balanceId', userController.allowIfLoggedin, userController.grantAccess('updateAny', 'profile'), balanceController.updateBalance);
+router.delete('/balance/:balanceId', userController.allowIfLoggedin, userController.grantAccess('deleteAny', 'profile'), balanceController.deleteBalance);
+
+
+//          EXCHANGE  END
+
+
+
+
+//           2FA 
+
 
 //2FA SECURITY ACCESS CONTROLLERS
 const twofactorController = require('../controllers/authUsers/2faController');
@@ -67,13 +97,12 @@ router.post('/auth/2fa/validade', twofactorController.tokenvalidate);
 //router.post('/2fa-validate', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.tokenvalidate);
 
 
-
-
-//               TWILLIO 
+//           2FA END
 
 
 
 
+//           TWILLIO 2FA AND OUTHERS
 
 //TWILLIO ROUTES
 //router.get('/twilio', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.twilioauthy);
@@ -82,6 +111,10 @@ router.post('/twilio', twofactorController.twilioauthy);
 router.post('/register-sms', twofactorController.twilioregistersmsauthy);
 //router.post('/twilio-push-app', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.twiliopushnotficationauthapp);
 router.post('/twilio-push-app', twofactorController.twiliopushnotficationauthapp);
+
+
+//           TWILLIO 2FA AND OUTHERS END
+
 
 
 
@@ -100,19 +133,16 @@ router.get('/pixbr/index', pixIndex.pixIndex );
 
 
 
-
-
 //               OPEN BANKING
+
 
 //OPENBANK CONTROLLERS
 const stoneController = require('../controllers/openBank/stone');
 
+
 //OPENBANK ROUTES
 router.get('/openbank/stone', stoneController.listBanks);
 router.get('/openbank/stone:id', stoneController.listidBanks);
-
-//BIN BANK LIST CHECKER
-router.get('/bin/binlist', binlistapiController.binlistApi);
 
 
 //               OPEN BANKING END
@@ -176,16 +206,12 @@ router.get('/rpc-btc/decoderawtransaction/:hex', userController.allowIfLoggedin,
 
 
 
-//routers user 
-router.get('/user/:userId', userController.allowIfLoggedin, userController.getUser);
-router.get('/users', userController.allowIfLoggedin, userController.grantAccess('readAny', 'profile'), userController.getUsers);
-router.put('/user/:userId', userController.allowIfLoggedin, userController.grantAccess('updateAny', 'profile'), userController.updateUser);
-router.delete('/user/:userId', userController.allowIfLoggedin, userController.grantAccess('deleteAny', 'profile'), userController.deleteUser);
-router.get('/userinfo', userController.userInfo);
 
 
 
-//trades tradings    no auth
+//      TRADING EXCHANGE MODE
+
+//ROUTES
 router.get('/trades',  tradesController.trades);  
 router.get('/trades/:tradesId', tradesController.getOneTrade);
 router.post('/trade', tradesController.postTrade);
@@ -194,7 +220,7 @@ router.put('/trades/:tradesId', tradesController.updateTrade);
 
 
 
-//orders tradings   no auth
+//ROUTES
 router.get('/orders', ordersController.getOrders);
 router.get('/orders/:ordersId', ordersController.getOneOrders);
 router.post('/orders', ordersController.postOrders); 
@@ -202,25 +228,17 @@ router.put('/orders/:ordersId', ordersController.updateOrders);
 router.delete('/orders/:ordersId', ordersController.deleteOrders);
     
 
+//      TRADING EXCHANGE MODE END
+
+
 
 //cotations prices stocks,criptocurrency and others
 router.get('/cotations', cotationsController.getCotations); 
 router.get('/search', cotationsController.getSearch); 
 
 
-
-//router Balances in balanceController.js
-router.get('/balances', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), balanceController.getBalances);
-router.get('/balance/:balanceId', userController.allowIfLoggedin, balanceController.getBalance);
-router.post('/balance', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), balanceController.postBalance);
-router.put('/balance/:balanceId', userController.allowIfLoggedin, userController.grantAccess('updateAny', 'profile'), balanceController.updateBalance);
-router.delete('/balance/:balanceId', userController.allowIfLoggedin, userController.grantAccess('deleteAny', 'profile'), balanceController.deleteBalance);
-
-
-
-//test status api
+//TEST STATUS API
 router.get('/ping', userController.pingme);
-
 
 
 //test send api email sendgrid-for dev-not use production-
