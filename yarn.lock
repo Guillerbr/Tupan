@@ -1342,7 +1342,7 @@
     chalk "^2.0.1"
     deepmerge "^4.2.2"
 
-"@sendgrid/mail@^7.2.4":
+"@sendgrid/mail@^7.2.6":
   version "7.2.6"
   resolved "https://registry.yarnpkg.com/@sendgrid/mail/-/mail-7.2.6.tgz#8f6a398ad75fb1ed7a35a9bb18cbdac111637ef6"
   integrity sha512-eP9MuqEZIgt4bHaoufWqKGUY4Bo7FUgST3WGNYIDXIe1rP2dV6/JR7Ac2Dl9iW22gy15nc58fLGIGa41XbwtuA==
