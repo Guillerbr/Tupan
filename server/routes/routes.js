@@ -17,17 +17,12 @@ const cotationsController = require('../controllers/cotationsController');
 
 
 
-//GATEWAYS PAYMENTS CONTROLLERS
-const paycieloController = require('../controllers/gatewayPayments/paycieloController');
-const paympController = require('../controllers/gatewayPayments/paympController');
-const paygetnetController = require('../controllers/gatewayPayments/paygetnetController');
-const paypagsegController = require('../controllers/gatewayPayments/paypagseguroController');
+
 
 //BIN BANKS LIST CONTROLLERS
 const binlistapiController = require('../controllers/gatewayPayments/binlistapiController');
 
-//RPC Bitcoin-Core service API controller
-const rpc = require('../api-bitcoin-core/api.js');
+
 
 //ENDPOINTS ROUTES
 
@@ -72,7 +67,15 @@ router.post('/auth/2fa/validade', twofactorController.tokenvalidate);
 //router.post('/2fa-validate', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.tokenvalidate);
 
 
-//TWILLIO
+
+
+//               TWILLIO 
+
+
+
+
+
+//TWILLIO ROUTES
 //router.get('/twilio', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.twilioauthy);
 router.post('/twilio', twofactorController.twilioauthy);
 //router.post('/register-sms', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.twilioregistersmsauthy);
@@ -112,18 +115,34 @@ router.get('/openbank/stone:id', stoneController.listidBanks);
 router.get('/bin/binlist', binlistapiController.binlistApi);
 
 
+//               OPEN BANKING END
+
+
+
+
 //               GATEWAYS PAYMENTS
 
-//PAYMENTS GATEWAYS SERVICES APIs-Cielo,Mercado Pago,Getnet,
+//GATEWAYS PAYMENTS CONTROLLERS
+const paycieloController = require('../controllers/gatewayPayments/paycieloController');
+const paympController = require('../controllers/gatewayPayments/paympController');
+const paygetnetController = require('../controllers/gatewayPayments/paygetnetController');
+const paypagsegController = require('../controllers/gatewayPayments/paypagseguroController');
+
+
+//GATEWAYS ROUTES
+
 //cielo
 //router.post('/payment', paycieloController.cieloPayment);
 router.post('/pay/cielo/payment', paycieloController.cieloPayment);
+
 //mercado-pago
 router.get('/pay/mp', paympController.mpPayment);
+
 //getnet
 router.post('/pay/getnet/auth', paygetnetController.getnetAuth);
 router.post('/pay/getnet/token', paygetnetController.getnetToken);
 router.post('/pay/getnet/payment', paygetnetController.getnetPayment);
+
 //pag-seguro
 router.post('/pay/pagseg/session', paypagsegController.pagsegSession);
 router.post('/pay/pagseg/cardtoken', paypagsegController.pagsegTokenCard);
@@ -131,8 +150,18 @@ router.post('/pay/pagseg/payment', paypagsegController.pagsegPayment);
 router.post('/pay/pagseg/billet', paypagsegController.pagsegBoleto);
 
 
+//               GATEWAYS PAYMENTS END
 
-//RPC BITCOINCORE SERVICE API
+
+
+
+//          RPC API BITCOIN CORE 
+
+//RPC API BITCOIN CORE CONTROLLERS
+const rpc = require('../api-bitcoin-core/api.js');
+
+
+//RPC API BITCOIN CORE ROUTES
 router.get('/rpc-btc/getblockcount', userController.allowIfLoggedin, rpc.getBlockcount);
 router.get('/rpc-btc/getblockchaininfo', userController.allowIfLoggedin, rpc.getBlockchaininfo);
 router.get('/rpc-btc/listwallets', userController.allowIfLoggedin, rpc.listWallets);
@@ -143,6 +172,7 @@ router.get('/rpc-btc/getrawtransaction/:id', userController.allowIfLoggedin, rpc
 router.get('/rpc-btc/decoderawtransaction/:hex', userController.allowIfLoggedin, rpc.decoderawTransaction);
 
 
+//          RPC API BITCOIN CORE END
 
 
 
