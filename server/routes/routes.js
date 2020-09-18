@@ -33,6 +33,7 @@ const rpc = require('../api-bitcoin-core/api.js');
 
 
 
+
 //AUTH USERS
 
 //AUTHENTICATION USERS CONTROLLERS
@@ -81,6 +82,24 @@ router.post('/twilio-push-app', twofactorController.twiliopushnotficationauthapp
 
 
 
+//               PIX BACEN
+
+//PIX BACEN CONTROLLERS
+const pixIndex = require('../controllers/pixBacen/index');
+
+
+//PIX BACEN ROUTES
+router.get('/pixbr/index', pixIndex.pixIndex );
+
+
+//               END PIX BACEN
+
+
+
+
+
+
+//               OPEN BANKING
 
 //OPENBANK CONTROLLERS
 const stoneController = require('../controllers/openBank/stone');
@@ -92,6 +111,8 @@ router.get('/openbank/stone:id', stoneController.listidBanks);
 //BIN BANK LIST CHECKER
 router.get('/bin/binlist', binlistapiController.binlistApi);
 
+
+//               GATEWAYS PAYMENTS
 
 //PAYMENTS GATEWAYS SERVICES APIs-Cielo,Mercado Pago,Getnet,
 //cielo
@@ -108,7 +129,6 @@ router.post('/pay/pagseg/session', paypagsegController.pagsegSession);
 router.post('/pay/pagseg/cardtoken', paypagsegController.pagsegTokenCard);
 router.post('/pay/pagseg/payment', paypagsegController.pagsegPayment);
 router.post('/pay/pagseg/billet', paypagsegController.pagsegBoleto);
-
 
 
 
