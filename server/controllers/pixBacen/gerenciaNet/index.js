@@ -80,3 +80,15 @@ exports.gerenciaNetDocumento = async (req, res, next) => {
       //console.log(url);
     });
 };
+
+
+
+/*
+
+DOCS:
+https://gerencianet.com.br/blog/gerencianet-se-prepara-para-lancar-sua-api-do-pix/#void
+
+
+
+
+*/
