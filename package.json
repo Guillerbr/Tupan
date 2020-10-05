@@ -39,7 +39,7 @@
     "speakeasy": "^2.0.0"
   },
   "devDependencies": {
-    "jest": "^25.1.0",
+    "jest": "^26.5.0",
     "sequelize-cli": "^5.5.1"
   }
 }
