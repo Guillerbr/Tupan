@@ -2,6 +2,7 @@
 
 # Simple ACL-RBAC Backend Sistem use Nodejs,Mysql and MongoDB
 
+## Access the documentation files inside the DOCS folder at the root of the project.
 
 ## NodeJS Dependencies Used
 
