@@ -195,11 +195,6 @@ exports.twilioregistersmsauthy = async (req, res, next) => {
 
 
 
-
-
-
-
-
 /*       ------- INFORMATION --------
 
 curl -XPOST "https://api.authy.com/protected/json/users/new" \

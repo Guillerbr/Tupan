@@ -112,6 +112,9 @@ router.post('/register-sms', twofactorController.twilioregistersmsauthy);
 //router.post('/twilio-push-app', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'balance'), twofactorController.twiliopushnotficationauthapp);
 router.post('/twilio-push-app', twofactorController.twiliopushnotficationauthapp);
 
+//router.post('/2', twofactorController.twilioregistersmsauthy2);
+
+
 
 //           TWILLIO 2FA AND OUTHERS END
 

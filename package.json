@@ -27,7 +27,7 @@
     "graphql-tools": "^6.0.18",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.21.5",
-    "mongoose": "^5.10.0",
+    "mongoose": "^5.11.6",
     "mysql2": "^2.1.0",
     "passport": "^0.4.1",
     "pg": "^8.3.2",
@@ -36,7 +36,8 @@
     "redis": "^2.8.0",
     "request": "^2.88.0",
     "sequelize": "^6.3.4",
-    "speakeasy": "^2.0.0"
+    "speakeasy": "^2.0.0",
+    "twilio": "^3.54.0"
   },
   "devDependencies": {
     "jest": "^25.1.0",
