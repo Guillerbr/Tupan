@@ -33,7 +33,7 @@ exports.binlistApi = async (req, res, next) => {
 };
 
 /*
-
+CHECK BIN CREDIT CARD APIs
 https://binlist.net/
 
 
