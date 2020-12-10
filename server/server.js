@@ -7,7 +7,7 @@ const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const path = require("path");
 //const Sequelize = require("../config/config.json");
-//const Sequelize = require("sequelize");
+const Sequelize = require("sequelize");
 //const { Sequelize, INTEGER, STRING, DOUBLE } = require("sequelize")
 
 //const cookieParser = require('cookie-parser');
