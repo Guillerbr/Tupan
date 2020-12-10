@@ -152,7 +152,7 @@ exports.forgotPassword = async (req, res) => {
     const now = new Date();
     now.setHours(now.getHours() + 1);                         //1 HR valid token
 
-    await user.update({
+    await user.save({
       passwordResetToken: token,
       passwordResetExpires: now,
     });
