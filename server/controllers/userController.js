@@ -150,7 +150,7 @@ exports.forgotPassword = async (req, res) => {
     const user = await User.findOne({ where: { email } });
     const token = crypto.randomBytes(20).toString("hex");
     const now = new Date();
-    now.setHours(now.getHours() + 1); //1 HR valid token
+    now.setHours(now.getHours() + 1);                         //1 HR valid token
 
     await user.update({
       passwordResetToken: token,
@@ -159,7 +159,7 @@ exports.forgotPassword = async (req, res) => {
 
     const msg = {
       to: email,
-      from: "apitest@api.com",            //'apinet@gmail.com'
+      from: process.env.SENDGRID_USE_EMAIL ,                  //your e-mail register sendgrid
       subject: "Sending with Twilio SendGrid is Fun",
       text: "and easy to do anywhere, even with Node.js",
       html: token,
@@ -173,14 +173,16 @@ exports.forgotPassword = async (req, res) => {
     console.log(sgMail);
     console.log(token);
     console.log(now);
+    //console.log(user);
     //console.log(error);
 
     res.status(200).json({
       Success: "Request sent successfully,check token in your email!",
     });
   } catch (err) {
-    //console.log(err);
+    console.log(err);
     res.status(400).send({ error: "E-mail does not exist!" });
+    console.log(token);
   }
 };
 
