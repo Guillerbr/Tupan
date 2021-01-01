@@ -1,6 +1,4 @@
 // server/controllers/userController.js
-
-
 require("../../config/config.json");
 
 // ACL-RBAC Roles 
