@@ -86,10 +86,6 @@ GATEWAYS PAYMENTS:
 OPEN BAKING:
 
 
-
-
-
-
 ## Use Sql DataBase- Mysql and PostgreSql
      Two packages were used for SQL database,they are ORMs, sequelize and pg modules.
      in /config/config.json
