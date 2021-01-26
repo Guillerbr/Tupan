@@ -38,7 +38,7 @@
     "pg-hstore": "^2.3.3",
     "qs": "^6.9.6",
     "redis": "^2.8.0",
-    "request": "^2.88.0",
+    "request": "^2.88.2",
     "sequelize": "^6.4.0",
     "speakeasy": "^2.0.0",
     "twilio": "^3.55.0"
