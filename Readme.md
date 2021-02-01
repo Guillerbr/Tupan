@@ -112,23 +112,29 @@ Check the file at the root of the project **package.json** for the dependencies 
 _Using the **pm2** tool_
 
 Command installing globally:
+
 `sudo npm install pm2 -g`
 
 Inside of the directory **/server** folder root project, run the command:
 
 Install Application:
+
 `npm or yarn install`
 
 PM2 command start:
+
 `pm2 start server.js`
 
 Cluster mode:
+
 `pm2 start server.js -i max`
 
 Persistence mode command:
+
 `pm2 startup`
 
 Save and Finish:
+
 `pm2 save`
 
 *The reverse proxy system can be implemented with Nginx as an infrastructure.*
