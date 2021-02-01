@@ -2,28 +2,27 @@
 
 # Simple ACL-RBAC Backend Sistem use Nodejs,Mysql and MongoDB
 
-## Access the documentation files inside the DOCS folder at the root of the project.
+## Access the documentation files inside the root DOCS folder.
 
-## Dependencies Used
+## Dependencies used
 
 Check the file at the root of the project **package.json** for the dependencies used in the project
 
-## Init project Dev Test
+## Starting the project in development mode
 
 ` npm install or yarn install`
 
-    cd /server
+`cd /server`
 
+`node server.js`
 
-    use nodemon tools:
+## Use nodemon tools:
 
-    nodemon server.js
+`cd /server`
 
-    or
+`nodemon server.js`
 
-    npm server or
-    yarn server or
-    node server
+# Database
 
 ## Use Sql DataBase- Mysql and PostgreSql
 
@@ -38,13 +37,15 @@ Check the file at the root of the project **package.json** for the dependencies 
     Change to your collection name.
     Module ORM Mongoose.
 
-## OPEN BAKING:
+# RBAC Authorization
 
 ## Roles ACL-RBAC (accesscontrol) lib module Accesscontrol
 
     In /server/roles.js
     We can configure the access level rules per user.
     Roles such as Admin and Manager may have system privileges.
+
+# 2FA Two Factor Authentication
 
 ## Use 2fa TOTP token module Speakeasy- Google Authentication Client
 
@@ -55,6 +56,8 @@ Check the file at the root of the project **package.json** for the dependencies 
 
     Use two-factor authentication for node.js.Authy npm module in Authy app 2fa.
     Use two-factor authentication for node.js.Twilio npm module in SMS 2fa.
+
+# Email API Service
 
 ## Use Sendgrid Api Email service
 
@@ -106,29 +109,33 @@ Check the file at the root of the project **package.json** for the dependencies 
 
 ## Init project Production
 
-    I recommend using the pm2 tool
+_Using the **pm2** tool_
 
-    Command installing globally:
-    sudo npm install pm2 -g
+Command installing globally:
+`sudo npm install pm2 -g`
 
-    Inside of the directory /server folder run the command:
+Inside of the directory **/server** folder root project, run the command:
 
-    Install Application:
-    npm or yarn install
+Install Application:
+`npm or yarn install`
 
-    PM2 command start:
-    pm2 start server.js
+PM2 command start:
+`pm2 start server.js`
 
-    Cluster mode:
-    pm2 start server.js -i max
+Cluster mode:
+`pm2 start server.js -i max`
 
-    Persistence mode command:
-    pm2 startup
+Persistence mode command:
+`pm2 startup`
 
-    Save and Finish:
-    pm2 save
+Save and Finish:
+`pm2 save`
 
-\*The reverse proxy system can be implemented with Nginx as an infrastructure.
+*The reverse proxy system can be implemented with Nginx as an infrastructure.*
+
+# Docker
+
+# Kubernetes
 
 ## Secutiry
 
@@ -141,13 +148,10 @@ Check the file at the root of the project **package.json** for the dependencies 
     httponly cookies
     Oauth
 
+## OPEN BAKING:
+
+## PIX BACEN:
+
 ## Use NodeJS 10/12 and NPM or YARN Modules.
 
 ## Change the .env file with your credentials.
-
-````
-
-```
-
-```
-````
