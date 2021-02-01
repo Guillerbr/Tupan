@@ -10,7 +10,7 @@ Check the file at the root of the project **package.json** for the dependencies 
 
 ## Init project Dev Test
 
-     ``` bash
+     ```bash
       npm install or yarn install
 
      ```
