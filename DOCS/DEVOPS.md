@@ -11,3 +11,7 @@ Docker é uma plataforma como serviço que usam virtualização de nível de sis
 ### Kubernetes
 
 Kubernetes é um sistema de orquestração de contêineres open-source que automatiza a implantação, o dimensionamento e a gestão de aplicações em contêineres.
+
+### Jenkis
+
+### Github Actions
