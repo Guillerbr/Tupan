@@ -15,3 +15,7 @@ Kubernetes é um sistema de orquestração de contêineres open-source que autom
 ### Jenkis
 
 ### Github Actions
+
+### Zabbix
+
+### Grafana
