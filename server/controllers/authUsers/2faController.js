@@ -6,12 +6,13 @@ const Speakeasy = require("speakeasy");
 const Express = require("express");
 const axios = require("axios");
 var qs = require("qs");
+const crypto = require("crypto");
+const nodemailer = require("nodemailer");
 
 //DB MODELS
 //const User = require("../models/mysql/userModel");
-//const User = require("src/models/mongo/userModel"); 
+//const User = require("src/models/mongo/userModel");
 const User = require("../../models/mongo/userModel");
-
 
 //url twilio authy api post register
 var url = "https://api.authy.com/protected/json/users/new";
@@ -23,13 +24,57 @@ var app = Express();
 //var authtoken = process.env.TWILIO_API_KEY;
 
 //authy twillo sms 2fa
-var authy = require("authy")("");                    // PRODUCTION API KEY-AUTHY
+var authy = require("authy")(""); // PRODUCTION API KEY-AUTHY
 //var authy = require('authy')('');
 
 app.use(BodyParser.json());
 app.use(BodyParser.urlencoded({ extended: true }));
 
+//2FA SEND EMAIL CODE TOKEN NODEMAILER
+exports.twofactorAuthEmail = async (req, res, next) => {
+  const { email } = req.body; //REQUEST BODY JSON
 
+  const token = crypto.randomBytes(20).toString("hex");
+  const now = new Date();
+  now.setHours(now.getHours() + 1); //1 HR valid token
+
+  if (email == null) {
+    return res
+      .status(400)
+      .json({ Error: "The parameter email must be passed!" });
+  }
+
+  // CONFIG SMTP SERVER
+  let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: "587",
+    //secure: true,
+    auth: {
+      user: "@gmail.com", //G-MAIL USER
+      pass: "",           //G-MAIL PASS
+    },
+  });
+  try {
+    transporter
+      .sendMail({
+        from: email,
+        to: "guillerbrasilrj@gmail.com",
+        subject: email,
+        //text: email,
+        html: "Email:     " + email + "Token:      " + token + "",
+      })
+      // .then((message) => {
+      //   console.log(message);
+      // })
+      // .catch((err) => {
+      //   console.log(err);
+      // });
+
+    //next();
+  } catch (error) {
+    return res.status(400).json({ error: "Error send message, try again!" });
+  }
+};
 
 //SPEAKEASY GOOGLE AUTHENTICATION TOTP
 exports.tokengenerate = async (req, res, next) => {
@@ -37,18 +82,16 @@ exports.tokengenerate = async (req, res, next) => {
   res.send({ secret: secret.base32 });
 };
 
-
 //SPEAKEASY GOOGLE AUTHENTICATION TOTP
 exports.totptokengenerate = async (req, res, next) => {
   res.send({
     token: Speakeasy.totp({
       secret: req.body.secret,
-      encoding: "base32"
+      encoding: "base32",
     }),
-    remaining: 30 - Math.floor((new Date().getTime() / 1000.0) % 30)
+    remaining: 30 - Math.floor((new Date().getTime() / 1000.0) % 30),
   });
 };
-
 
 //SPEAKEASY GOOGLE AUTHENTICATION TOTP
 exports.tokenvalidate = async (req, res, next) => {
@@ -57,8 +100,8 @@ exports.tokenvalidate = async (req, res, next) => {
       secret: req.body.secret,
       encoding: "base32",
       token: req.body.token,
-      window: 0
-    })
+      window: 0,
+    }),
   });
   //return res.redirect("www.google.com");
   //next.domain('localhost:5500/ping')
@@ -69,10 +112,7 @@ exports.tokenvalidate = async (req, res, next) => {
   //console.log(valid);
 };
 
-
-
 //TWILLIO SMS AUTH TOTP AUTHENTICATION
-
 
 //twillo 2fa token authy app
 exports.twilioauthy = async (req, res) => {
@@ -84,7 +124,7 @@ exports.twilioauthy = async (req, res) => {
     //if (await User.findOne({ authy_id_client }))
     //return res.status(400).send({ error: 'User already registered' });
 
-    authy.verify(authy_id, (token = token_client), function(err, res) {
+    authy.verify(authy_id, (token = token_client), function (err, res) {
       console.log(res.message);
       // console.log(res.error);
 
@@ -123,18 +163,15 @@ exports.twilioauthy = async (req, res) => {
   //  res.status(200).send({ message: 'Success' });
 };
 
-
 //push notification authy app client
 exports.twiliopushnotficationauthapp = async (req, res, next) => {
   const { authy_id_client } = req.body;
 
   var authy_id = authy_id_client;
 
-  authy.request_sms(authy_id, function(err, res) {
+  authy.request_sms(authy_id, function (err, res) {
     console.log(res.message);
   });
-
-
 
   /*
  //You can override this behavior and force sending an SMS or Voice call. 
@@ -149,11 +186,7 @@ exports.twiliopushnotficationauthapp = async (req, res, next) => {
   });
 
 */
-
-
-
 };
-
 
 //register cellphone sms for authy twilio download client 2fa
 exports.twilioregistersmsauthy = async (req, res, next) => {
@@ -165,35 +198,33 @@ exports.twilioregistersmsauthy = async (req, res, next) => {
     user: {
       email: email,
       cellphone: cellphone,
-      country_code: country_code
-    }
+      country_code: country_code,
+    },
   };
 
   axios
     .post(url, qs.stringify(data), {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
-        "X-Authy-API-Key": process.env.TWILIO_API_KEY         // 'X-Authy-API-Key': ''
-      }
+        "X-Authy-API-Key": process.env.TWILIO_API_KEY, // 'X-Authy-API-Key': ''
+      },
     })
-    .then(data => {
-      console.log("data", data);                              //Withdraw on production
+    .then((data) => {
+      console.log("data", data); //Withdraw on production
       res.json({
-        Message: "Successfully registered"
+        Message: "Successfully registered",
       });
     })
-    .catch(e => {
-      console.log("error", e);                                //Withdraw on production
+    .catch((e) => {
+      console.log("error", e); //Withdraw on production
       res.json({
-        Message: "Error registering"
+        Message: "Error registering",
       });
     });
 
   await User.findByIdAndUpdate(user._id, { cellphone, country_code });
   // await User.findByIdAndUpdate(user._id, {$set: { cellphone, country_code } })
 };
-
-
 
 /*       ------- INFORMATION --------
 
