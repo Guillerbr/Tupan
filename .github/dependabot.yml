@@ -1,0 +1,80 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: mongoose
+    versions:
+    - 5.11.15
+    - 5.11.16
+    - 5.11.17
+    - 5.11.18
+    - 5.11.19
+    - 5.12.0
+    - 5.12.1
+    - 5.12.2
+    - 5.12.3
+    - 5.12.5
+  - dependency-name: redis
+    versions:
+    - 3.0.2
+    - 3.1.0
+    - 3.1.1
+  - dependency-name: firebase
+    versions:
+    - 8.2.10
+    - 8.2.4
+    - 8.2.5
+    - 8.2.6
+    - 8.2.7
+    - 8.2.8
+    - 8.2.9
+    - 8.3.0
+    - 8.3.1
+    - 8.3.2
+    - 8.3.3
+    - 8.4.1
+  - dependency-name: twilio
+    versions:
+    - 3.56.0
+    - 3.57.0
+    - 3.58.0
+    - 3.59.0
+    - 3.60.0
+  - dependency-name: apollo-server-express
+    versions:
+    - 2.20.0
+    - 2.21.0
+    - 2.21.1
+    - 2.21.2
+    - 2.22.1
+    - 2.22.2
+  - dependency-name: y18n
+    versions:
+    - 4.0.1
+  - dependency-name: nodemailer
+    versions:
+    - 6.4.18
+    - 6.5.0
+  - dependency-name: graphql-tools
+    versions:
+    - 7.0.2
+    - 7.0.3
+  - dependency-name: graphql
+    versions:
+    - 15.5.0
+  - dependency-name: sequelize
+    versions:
+    - 6.5.0
+  - dependency-name: pg
+    versions:
+    - 8.5.1
+  - dependency-name: dotenv
+    versions:
+    - 8.2.0
+  - dependency-name: request
+    versions:
+    - 2.88.2
