@@ -34,6 +34,12 @@ const tradesController = require("../controllers/tradesController");
 const ordersController = require("../controllers/ordersController");
 const cotationsController = require("../controllers/cotationsController");
 
+
+// ALPHA MARKET FINANCE API
+const alphaMarketController = require("../controllers/financialMarket/alphaMarketController");
+router.post("/finance/market/company", alphaMarketController.alphaMarket);
+
+
 //2FA SECURITY ACCESS CONTROL
 //const twofactorController = require('../controllers/twofactorController');
 
