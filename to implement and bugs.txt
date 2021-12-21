@@ -1,0 +1,122 @@
+-TO DO IMPLEMENT AND BUGS-
+
+-----------------------------------------------------------------------------------------------------------------------------
+-IMPLEMENT
+
+Transform the project into a micro framework backend API.Name is Tupã.  *In revision
+
+Protection Sessions against attacks CSRF, XSS, XSRF, JWT storage cookies HttpOnly.  *Working-IMPORTANT-IMPORTANT
+
+2FA-Two-step authentication with sms,authy,google authentication,sending totp.Twillo token SMS Authy Verify API.  *Working
+
+Implement an api cielo payment route, using axios in http requests.  *Working
+
+2FA send email sendgrid token hash 2fa email pass login.  *Working
+
+API bitcoin core node json rpc,connect in blockchain RPC authentication.  *Working-Final Stage
+
+Public document test urls API in Postman.   *Working
+
+Use Redis for queue,caching and server optimization.
+
+User Jest Mocha Chai Test Framework.
+
+Use RabbitMQ or others.Messaging broker server for order receipts.
+
+Use Websocket (socket.io) to chat and book bitcoin offers or currency quotes.
+
+Use Hashcorp Vault and Consul for passwords hash.
+
+Use Traefik proxy.
+
+Use Docker and Kubernets.
+
+Use Terraform.
+
+Use Elasticsearch and Kibana.
+
+Use enhanced authentication with firebase device id module.
+
+Use online payment method with bitcoin transaction,QRCODE PAYMENTS.
+https://btcpayserver.org/
+
+API pricing and information on trading stocks,cryptocurrencies,forex,etc.
+https://www.alphavantage.co/
+
+API pricing and information on trading stocks,cryptocurrencies,forex,etc.
+https://finnhub.io/
+
+API pricing and information on trading stocks,cryptocurrencies,forex,etc.
+https://financialmodelingprep.com/developer/docs/
+https://financialmodelingprep.com
+
+Algorithmic trading and quantitative trading open source platform.
+https://github.com/StockSharp/StockSharp
+
+Use TradingView charts API.
+
+U2F Authentication for super admin.
+
+UUID - Implement device verification by client, apply to administrator.
+
+JavaScript API for face detection and face recognition in the browser and nodejs with tensorflow.js.
+https://github.com/justadudewhohacks/face-api.js/
+
+Fingerprinting identifying a web browser with accuracy of up to 94%.
+https://github.com/Valve/fingerprintjs2
+
+Authentication biometrics-fingerprint,voice and face recognition.
+
+Security level layer for login,sending authentication token to email.
+
+Payment gateways like Visa, Mastercard, Stripe.And other credit card payment slips.
+
+Price information, Forex Currency Conversion API.
+
+Trading station simulator broker in cryptocurrencies, forex, stock exchanges, other assets.
+Trader simulator with margin and leverage.
+
+DEX- Exchange decentralized brokerage-Peer-to-peer exchange of assets on the ECR20 Ethereum blockchain.
+
+Trading algorithms, customized by the user.Robots trading for indicator parameters.
+
+Trading algorithms cryptocurrency arbitration modules.
+
+Anti-fraud consultation module for credit cards and other payment methods.
+clearsale,visa-cybersourcer,etc.
+
+Grafana dashboard admin charts.
+
+Use Helmet.js- Helps you secure your Express apps by setting various HTTP headers.
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+___________________________________________________________________________________________________________________________
+
+-BUGS
+
+When registering the token x-access-token does not work, only generating a new one when you login.Token invalid.   signup
+
+It is possible to create a new user with the email field without an @ .email.com
+Any string is accepted, should only accept email, default @ .com. singup
+
+When the token is sent in the request header of a route without authentication the token error is reported.
+
+Does not inform when JWT access-token is expired.
+
+______________________________________________________________________________________________________________
+DEPLOY-
+
+
+
+
+
+
+
+______________________________________________________________________________________________________________
