@@ -2,6 +2,10 @@
 Here, information about the PIX within the Tupã system will be documented.
 Aqui serão documentadas as informações sobre PIX dentro do sistema Tupã.
 
+```bash
+git push -f origin master
+```
+
 ## MERCADO PAGO
 
 
