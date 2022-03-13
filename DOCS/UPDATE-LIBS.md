@@ -20,7 +20,7 @@ ncu --upgrade
 - Instale os novos pacotes 
 
 ```bash
-npm install.
+npm install
 ```
 
 ### Security
