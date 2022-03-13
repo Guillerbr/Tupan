@@ -5,17 +5,22 @@
 - Como atualizo todos os pacotes npm de uma só vez?
 npm-check-updates
 - Instale a ferramenta 
+
 ```bash 
 npm install -g npm-check-updates
 ```
-
 - Verifique se o seu package.json está registrado no controle de versão (o próximo comando substituirá o package.json)
-- Atualize o package.json ncu --upgrade.
+- Atualize o package.json 
+
+```bash 
+ncu --upgrade
+```
 - Valide as alterações em seu package.json.
-- Instale os novos pacotes npm install.
+
+- Instale os novos pacotes 
 
 ```bash
-npm update
+npm install.
 ```
 
 ### Security
