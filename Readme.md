@@ -1,9 +1,11 @@
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FGuillerbr%2Frbac-node-acl-mongo.svg?type=small)](https://app.fossa.com/projects/git%2Bgithub.com%2FGuillerbr%2Frbac-node-acl-mongo?ref=badge_small)
 
 # Tupã is a web backend framework in NodeJS.
+
 ### ACL-RBAC Backend -Database: Mysql, MongoDB, GraphQL, Firestore.
 
 #### Access the documentation files inside the root DOCS folder.
+
 ## Dependencies:
 
 Check the file at the root of the project **package.json** for the dependencies used in the project
@@ -137,11 +139,15 @@ Save and Finish:
 
 `pm2 save`
 
-*The reverse proxy system can be implemented with Nginx as an infrastructure.*
+_The reverse proxy system can be implemented with Nginx as an infrastructure._
 
 # Docker
 
 # Kubernetes
+
+## Heroku
+
+- Procfile configuration Heroku Hosting Service.
 
 ## Secutiry
 
