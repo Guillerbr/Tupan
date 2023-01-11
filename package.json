@@ -30,7 +30,7 @@
     "graphql-tools": "^8.2.0",
     "helmet": "^5.0.2",
     "jsonwebtoken": "^8.5.1",
-    "knex": "^1.0.4",
+    "knex": "^2.4.0",
     "mongoose": "^6.2.6",
     "mysql2": "^2.3.3",
     "nodemailer": "^6.7.2",
